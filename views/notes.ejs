@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placemebt </title>
+
+    <!-- FAVICON -->
+    <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+
+    <!-- Bootstrap 5 CDN Links -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Custom File's Link -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/notes.css">
+    <link rel="stylesheet" href="css/responsive-style.css">
+
+    <style>
+      .card {
+        box-shadow: 0 0.9375rem 1.875rem rgb(77 87 222 / 30%);
+        background: var(--bg-white);
+        transition: box-shadow 0.3s ease-in-out;
+      }
+    
+      .card:hover {
+        box-shadow: 0 0.9375rem 1.875rem rgb(77 87 222 / 60%);
+      }
+    
+    
+      .btn {
+        background-image: var(--gradient);
+        color: var(--text-white);
+      }
+    
+      .btn:hover {
+          border-color: var(--secondary-color);
+          background: var(--bg-white);
+          color: var(--secondary-text);
+          box-shadow: none;
+      }
+    
+      .title_h{
+          font-weight: 700;
+          font-size: 2.25rem;
+          line-height: 3.125rem;
+          text-align: center;
+          color: var(--text-black);
+          font-family: var(--primary-font);
+          text-transform: uppercase;
+      }
+      .cover{
+          margin-top: 10%;
+      }
+    
+    
+      @media (max-width: 1199.5px) {
+          .title_h {
+              font-size: 1.875rem;
+              line-height: 2.6875rem;
+              margin-top:0;
+          }
+          .cover{
+              margin-top: 22%;
+          }
+    
+      }
+    
+      @media (max-width: 767px) {
+    
+          .title_h{
+              font-size: 1.0rem;
+              line-height: 2.1875rem;
+              margin-top: 20px;
+          }
+          .cover{
+              margin-top: 30%;
+          }
+      }
+    </style>
+</head>
+
+
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="75" style="background-image: url('images/body-bg.png.webp'); background-size: cover; background-position: center;">
+    <!-- Content of your page -->
+  </body>
+  
+    <!-- Navbar section -->
+    <%- include("header"); -%>
+    <!-- Navbar section exit -->
+
+    <div class="dark:bg-gray-900 cover">
+
+
+          <h1 class="text-center text-3xl pt-8 pb-4 title_h">
+            Study Materials
+          </h1>
+
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+          <% for(var i=0; i<photo.length; i++) { %>
+            <div class="p-6 flex justify-center">
+              <div class="w-full max-w-sm bg-white rounded-xl border border-gray-200 shadow-md dark:bg-slate-800 dark:border-black card">
+                <div class="flex flex-col items-center p-6">
+                  <img
+                    class="mb-3 w-24 h-24 rounded-full shadow-lg"
+                    src="<%= photo[i] %>"
+                    alt="PythonNotes"
+                  />
+                  <h5
+                    class="mb-1 text-xl font-medium text-gray-900 dark:text-white"
+                  >
+                  <%= courses[i] %> 
+                  </h5>
+                  <div class="grid mt-4">
+                  
+                      <a href="#"><button class="btn">Start Learning!</button></a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% } %>
+        </div>
+    </div> 
+
+
+    <!-- Footer section -->
+    <%- include("footer"); -%>
+    <!-- Footer section Exit -->
