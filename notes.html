@@ -57,7 +57,34 @@
     font-family: var(--primary-font);
     text-transform: uppercase;
 }
+.cover{
+    margin-top: 10%;
+}
 
+
+@media (max-width: 1199.5px) {
+    .title_h {
+        font-size: 1.875rem;
+        line-height: 2.6875rem;
+        margin-top:0;
+    }
+    .cover{
+        margin-top: 22%;
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    .title_h{
+        font-size: 1.0rem;
+        line-height: 2.1875rem;
+        margin-top: 20px;
+    }
+    .cover{
+        margin-top: 30%;
+    }
+}
 
   
     </style>
@@ -113,11 +140,11 @@
 
 
 
-    <div class="dark:bg-gray-900" style="
-    margin-top:10%;
-">
+    <div class="dark:bg-gray-900 cover">
+
+
           <h1
-          class="title_h"
+          class="text-center text-3xl pt-8 pb-4 title_h"
         >
     Study Materials
         </h1>
