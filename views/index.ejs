@@ -53,9 +53,7 @@
     <!--announcement section starts-->
 
 
-    <h1 class="text-center text-3xl pt-8 pb-4" style="
-    font-size: 38px;
-">
+    <h1 class="text-center text-3xl pt-8 pb-4" style="font-size: 38px;">
         LATEST UPDATES
       </h1>
 
@@ -67,17 +65,13 @@
 
                     <!--sdfdasfads-->
                     <div class="boxdesign1" style="width:50%; height: 240px; color:#8b0000; margin-left: 25%; ">
-                        <ul class="list"
-                            style="color:#035e6c; overflow-y: scroll; height: 205px; scroll-behavior  : auto; font-size: 90%; font-family: Arial, Helvetica, sans-serif; list-style-type:disc;">
+                        <ul class="list" style="color:#035e6c; overflow-y: scroll; height: 205px; scroll-behavior  : auto; font-size: 90%; font-family: Arial, Helvetica, sans-serif; list-style-type:disc;">
                        
-
-                            <li class="list-new">New PPT On Java is uploaded today <img src="images/new.gif" alt="New_img"></li><br>
-
-                            <li class="list-new">New Video Lecture is Uploaded<img src="images/new.gif" alt="New_img"></li><br>
-                            <li class="list-new">new session willl be arranged todsy by manan sir</li><br>
-                            <li class="list-new">New Project releated videos downloaded</li><br>
-                            <li class="list-new">Kindally Attend The Meeting Tomorrow for placement helping session</li><br>
-                            <li class="list-new">Fillout the form for upcoming hackathon </li>
+                            <% for(var i=0; i<addNotice.length; i++) { %>
+                                <div class="card">
+                                    <li class="list-new"><%= addNotice[i].note %></li><br>
+                                </div>
+                            <% } %>
                         </ul>
                     </div>
                     <!--sdfdasfads-->
@@ -86,11 +80,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
    <!--annoucememt section exit-->
 
 
@@ -131,7 +120,7 @@
                             <span class="large">25</span>
                             <span class="smll">Years <br>of <br>Excellence</span>
                         </div>
-                        <!-- <div class="call-now d-flex py-4">
+                        <div class="call-now d-flex py-4">
                             <div>
                                 <span class="fa fa-phone-alt"></span>
                             </div>
@@ -139,7 +128,7 @@
                                 <p>call us now</p>
                                 <h5>(+1)-800-555-6789</h5>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
 
