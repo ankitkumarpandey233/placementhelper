@@ -25,6 +25,7 @@
 :root {
     /* Background Color */
     --primary-color: #4458dc;
+    --scroll-bar: #fff;
     --secondary-color: #854fee;
     --bg-white: #fff;
     --bg-light: #faf8ff;
@@ -66,7 +67,7 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
+    background: var(--scroll-bar);
 }
 
 section {
