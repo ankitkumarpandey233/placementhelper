@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <form action="/admin" method="post">
     <input type="text" name="Add" placeholder="New Notice">
     <button type="submit" name="submit">Add Note</button>
@@ -11,4 +12,19 @@
   </div>
 <% } %>
 <button type="submit" name="submit">delete Note</button>
+=======
+    <form action="/admin" method="post">
+        <input type="text" name="Add" placeholder="New Notice">
+        <button type="submit" name="submit">Add Note</button>
+  </form> 
+
+    <form action="/delete" method="post">
+    <% for(var i=0; i<addNotice.length; i++) { %>
+      <div>
+          <input type="checkbox" name="checkbox" value="<%=addNotice[i]._id%>" onchange="this.form.submit()">
+          <p> <%= addNotice[i].note %> </p>
+      </div>
+    <% } %>
+    <button type="submit" name="submit">delete Note</button>
+>>>>>>> 6fed80b7a153f0572e3e1b7eb039ee4f739c2a65
 </form> 
