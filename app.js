@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const mongoose= require("mongoose");
 
 const app = express();
 
@@ -9,12 +10,48 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 
+mongoose.connect("mongodb+srv://mohatadhruv:123@cluster0.qw1uqgt.mongodb.net/?retryWrites=true&w=majority",{
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+const notice = {
+  note: String
+};
+
+const Notice = mongoose.model("Notice" , notice);
+
+
+
+app.get("/admin", function(req, res)
+{
+  res.render("admin.ejs");
+});
+
+app.post('/admin',function(req,res)
+{
+    const text = req.body.Add;
+    const item1 = new Notice({
+      note : text
+    });
+    item1.save();
+    res.redirect("/");
+});
+
 
 
 const src = ["images/client-img/logo1.webp","images/client-img/logo2.webp","images/client-img/logo3.webp","images/client-img/logo4.webp","images/client-img/logo5.webp","images/client-img/logo6.webp","images/client-img/logo7.webp","images/client-img/logo8.webp","images/client-img/logo9.webp"]
 app.get("/", function(req, res)
 {
-  res.render("index.ejs",{photo: src});
+
+  Notice.find()
+      .then((item) => {
+        res.render("index.ejs",{photo: src , addNotice: item});
+      })
+      .catch((error) => {
+        console.error('Error saving data:', error);
+      });
+  
 });
 
 
@@ -26,7 +63,6 @@ app.get("/notes", function(req, res)
 {
   res.render("notes.ejs",{photo: img , courses: course});
 });
-
 
 
 

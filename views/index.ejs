@@ -49,6 +49,15 @@
     </section>
     <!-- Banner section exit -->
 
+
+    <!-- notice board -->
+    <% for(var i=0; i<addNotice.length; i++) { %>
+        <div>
+            <p> <%= addNotice[i].note %> </p><br>
+        </div>
+    <% } %>
+    <!-- notice board end -->
+
     <!-- About section -->
     <section id="about" class="about_wrapper">
         <div class="container">
@@ -64,7 +73,6 @@
                         ipsam quos rem magni dolores doloribus. Lorem, ipsum dolor sit amet consectetur adipisicing
                         elit. Beatae veniam dignissimos error quia ipsam quos rem magni dolores doloribus.</p>
                     <a href="#" class="main-btn primary-btn mt-4">Study Materials</a>
-
                 </div>
             </div>
             <div class="row justify-content-center pt-5">
