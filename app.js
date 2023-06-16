@@ -25,7 +25,13 @@ const Notice = mongoose.model("Notice" , notice);
 
 app.get("/admin", function(req, res)
 {
-  res.render("admin.ejs");
+  Notice.find()
+      .then((item) => {
+        res.render("admin.ejs",{addNotice: item});
+      })
+      .catch((error) => {
+        console.error('Error saving data:', error);
+      });
 });
 
 app.post('/admin',function(req,res)
@@ -38,6 +44,19 @@ app.post('/admin',function(req,res)
     res.redirect("/");
 });
 
+app.post('/delete',function(req,res)
+{
+    const checked = req.body.checkbox;
+
+    Notice.findByIdAndRemove(checked)
+      .then(() => {
+        res.redirect("/admin");
+      })
+      .catch((error) => {
+        console.error('Error saving data:', error);
+      });
+    
+});
 
 
 const src = ["images/client-img/logo1.webp","images/client-img/logo2.webp","images/client-img/logo3.webp","images/client-img/logo4.webp","images/client-img/logo5.webp","images/client-img/logo6.webp","images/client-img/logo7.webp","images/client-img/logo8.webp","images/client-img/logo9.webp"]

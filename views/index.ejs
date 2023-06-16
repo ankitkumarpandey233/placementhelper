@@ -19,6 +19,49 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive-style.css">
 
+    <style>
+         .cards-list {
+        z-index: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+        .card {
+            margin: 30px auto;
+            width: 300px;
+            height: 300px;
+            border-radius: 40px;
+            box-shadow: 5px 5px 30px 7px rgba(0, 0, 0, 0.25), -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
+            cursor: pointer;
+            transition: 0.4s;
+            
+        }
+    
+        .box1 {
+            width: 200px;
+            height: 200px;
+            background-color: rgb(149, 32, 246);
+            color: white;
+            border-radius: 20px;
+            text-align: center;
+            line-height: 100px;
+            font-weight: bold;
+            font-size: 25px;
+            margin: 0 auto;
+            --gradient: linear-gradient(to right, #4458dc 0%, #854fee 100%), radial-gradient(circle at top left, #4458dc, #854fee);
+    
+        }
+    
+        .card:hover {
+            transform: scale(0.9, 0.9);
+            box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25),
+                -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
+        }
+    </style>
+    
+
 </head>
 
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="75">
@@ -49,14 +92,15 @@
     </section>
     <!-- Banner section exit -->
 
-
+    <div class="cards-list">
     <!-- notice board -->
     <% for(var i=0; i<addNotice.length; i++) { %>
-        <div>
-            <p> <%= addNotice[i].note %> </p><br>
+        <div class="card">
+            <div class="box1"><%= addNotice[i].note %></div>
         </div>
     <% } %>
     <!-- notice board end -->
+    </div>
 
     <!-- About section -->
     <section id="about" class="about_wrapper">
