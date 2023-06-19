@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 
-mongoose.connect("mongodb+srv://mohatadhruv:123@cluster0.qw1uqgt.mongodb.net/?retryWrites=true&w=majority",{
+mongoose.connect("mongodb+srv://pandey:pandey@cluster0.hohci9l.mongodb.net/?retryWrites=true&w=majority",{
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -82,6 +82,9 @@ app.get("/notes", function(req, res)
   res.render("notes.ejs",{photo: img , courses: course});
 });
 
+app.get('/form', (req, res) => {
+  res.render('form.ejs');
+})
 
 
 
