@@ -35,7 +35,7 @@
                     <label>Confirm password</label>    <input type="password" placeholder=" confirm Password" required="">
                 </div>
             </fieldset>
-                <button type="button" class="btn" id="btnNextSignup">Next</button>
+                <button type="button" class="btn" id="btnNextSignup" style="width: 100%;">Next</button>
                 <div class="account-exist">
                     Already have an account? <a href="#" id="login">Login</a>
                 </div>
@@ -72,6 +72,7 @@
                     <label>Enter Your Mobile number</label>    <input type="text" placeholder="Don't Use Area Code(+91)" required>
                 </div>
             </fieldset>
+            <button type="button" class="btn" id="btnPrev1">Go Back</button>
                 <button type="button" class="btn" id="btnNext2">Next</button>
             </div>
             
@@ -91,6 +92,7 @@
             
 
             </fieldset>
+            <button type="button" class="btn" id="btnPrev2">Go Back</button>
                 <button type="button" class="btn" id="btnNext3">Next</button>
             </div>
             <div class="next inActive">
@@ -107,6 +109,7 @@
             </div>
 
             </fieldset>
+            <button type="button" class="btn" id="btnPrev3">Go Back</button>
                 <button type="button" class="btn" id="btnNext4">Next</button>
             </div>
             <div class="next inActive">
@@ -122,6 +125,7 @@
                     <label>Other</label>     <input type="text" placeholder="Twitter,Peerlist...">
                 </div>
             </fieldset>
+            <button type="button" class="btn" id="btnPrev4">Go Back</button>
                 <button type="button" class="btn" id="btnNext5">Next</button>
             </div>
             <div class="next inActive">
@@ -137,6 +141,7 @@
                     <input type="file" id="pdfFile" accept=".pdf" required>
                 </div>
             </fieldset>
+            <button type="button" class="btn" id="btnPrev5">Go Back</button>
                 <button type="submit" class="btn">Submit</button>
             </div>
          </form>
@@ -159,6 +164,51 @@
 
     // Event listener for the addInputButton click
     addInputButton.addEventListener('click', addInputField);
+</script>
+
+
+<script>
+const sections = Array.from(document.querySelectorAll('.next'));
+
+function showSection(index) {
+    sections.forEach(section => section.classList.remove('active'));
+    sections[index].classList.add('active');
+}
+
+
+
+function goToPreviousSection() {
+    const currentSection = sections.findIndex(section => section.classList.contains('active'));
+    if (currentSection > 0) {
+        showSection(currentSection - 1);
+    } else if (currentSection === 0) {
+        // signIn.classList.add('active');
+        signUp.classList.remove('inActive');
+        sections[currentSection].classList.remove('active');
+        sections[currentSection].classList.add('inActive');
+    }
+}
+
+
+
+
+
+
+
+const btnPrev1 = document.getElementById('btnPrev1');
+const btnPrev2 = document.getElementById('btnPrev2');
+const btnPrev3 = document.getElementById('btnPrev3');
+const btnPrev4 = document.getElementById('btnPrev4');
+const btnPrev5 = document.getElementById('btnPrev5');
+
+btnPrev1.addEventListener('click', goToPreviousSection);
+btnPrev2.addEventListener('click', goToPreviousSection);
+btnPrev3.addEventListener('click', goToPreviousSection);
+btnPrev4.addEventListener('click', goToPreviousSection);
+btnPrev5.addEventListener('click', goToPreviousSection);
+
+
+
 </script>
     <script src="js/Form.js"></script>
 </body>

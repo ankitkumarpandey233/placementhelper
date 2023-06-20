@@ -1,3 +1,7 @@
+
+
+
+
 let signIn = document.querySelector(".signin");
 let signUp = document.querySelector(".signup");
 let nextSection = document.querySelectorAll(".next");
