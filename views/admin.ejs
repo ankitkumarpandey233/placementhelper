@@ -1,15 +1,55 @@
-
-<form action="/admin" method="post">
-        <input type="text" name="Add" placeholder="New Notice">
-        <button type="submit" name="submit">Add Note</button>
-  </form> 
-
-    <form action="/delete" method="post">
-    <% for(var i=0; i<addNotice.length; i++) { %>
-      <div>
-          <input type="checkbox" name="checkbox" value="<%=addNotice[i]._id%>" onchange="this.form.submit()">
-          <p> <%= addNotice[i].note %> </p>
-      </div>
-    <% } %>
-    <button type="submit" name="submit">delete Note</button>
-</form> 
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Display</title>
+  </head>
+  <body>
+    <h1>Data Display</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Confirm Password</th>
+          <th>Enrollment</th>
+          <th>Birth Date</th>
+          <th>Mobile</th>
+          <th>Marks (10th)</th>
+          <th>Marks (12th)</th>
+          <th>CGPA</th>
+          <th>Skills</th>
+          <th>LinkedIn</th>
+          <th>GitHub</th>
+          <th>Other ID</th>
+          <th>Photo</th>
+          <th>Resume</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i=0; i<item.length; i++){ %>
+          <tr>
+            <td><%= item[i].name %></td>
+            <td><%= item[i].email %></td>
+            <td><%= item[i].enrollment %></td>
+            <td><%= item[i].birthDate %></td>
+            <td><%= item[i].mobile %></td>
+            <td><%= item[i].marks10 %></td>
+            <td><%= item[i].marks12 %></td>
+            <td><%= item[i].cgpa %></td>
+            <td><%= item[i].skills %></td>
+            <td><a href="#">LinkedIn</a></td>
+            <td><a href="#">GitHub</a></td>
+            <td><%= item[i].otherid %></td>
+            <td><a href="<%= item[i].photo %>">Resume</a></td>
+            <td><a href="<%= item[i].resume %>">Resume</a></td>
+            <tb><img src="/image/<%= item[i].photo %>" alt="Image"></tb>
+            <tb><object width="100%" height="800" type="application/pdf" data="data:application/pdf;base64,<%= item[i].resume.toString('base64') %>"></object></tb>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <br><br><br><br>
+    <a href="/logout">Logout</a>
+  </body>
+</html>
