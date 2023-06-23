@@ -20,7 +20,7 @@ const con ={
   host : "localhost",
   user : "root",
   password:"",
-  database: "collage"
+  database: "college"
 };
 
 //pool creation 
@@ -246,7 +246,9 @@ app.get("/notes", function(req, res)
 
 
 
-
+app.get('/student', (req, res) => {
+  res.render('student dashboard.ejs');
+});
 
 
 //form
