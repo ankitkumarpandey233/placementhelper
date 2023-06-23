@@ -14,25 +14,32 @@
      <div class="wrapper">
          <div class="headline">
              <h1 style="text-transform: uppercase;"> Welcome to placement helper</h1><br>
-             <h3 style="text-transform: uppercase; color: red;"> Kindally login or signup here</h3>
+             <h3 style="text-transform: uppercase; color: red"> Kindally login or signup here</h3>
          </div>
-         <form class="form" method="post" action="#">
+         <form class="form" method="post" action="/register">
             <div class="signup">
                 <fieldset>
                     <legend>ENTER SIGNUP DETAILS</legend>
                 <div class="form-group">
-                 <label>Enter Your Full Name</label>  <input type="text" placeholder="Full name" required="">
+                 <label>Enter Your Full Name</label>  
+                 <input type="text" name="name" placeholder="Full name" required="">
                 </div>
                 <div class="form-group">
-                    <label>Enter Your Email address </label>   <input type="email" placeholder="random@gnu.ac.in" required="">
+                    <label>Enter Your Email address </label>   
+                    <input type="email" name="email" id="email" placeholder="random@gnu.ac.in" required="">
+                    <span id="emailError" style="color: red;"></span>
                 </div>
 
 
                 <div class="form-group">
-                    <label>Enter Secure Password</label>    <input type="password" placeholder="Password" required="">
+                    <label>Enter Secure Password</label>    
+                    <input type="password" name="password" id="password" placeholder="Password" required="">
+                    <span id="passwordError" style="color: red" class="error"></span>
                 </div>
                 <div class="form-group">
-                    <label>Confirm password</label>    <input type="password" placeholder=" confirm Password" required="">
+                    <label>Confirm password</label>    
+                    <input type="password" name="cpassword" id="cpassword" placeholder=" confirm Password" required="">
+                    <span id="cpasswordError" style="color: red" class="error"></span>
                 </div>
             </fieldset>
                 <button type="button" class="btn" id="btnNextSignup" style="width: 100%;">Next</button>
@@ -41,35 +48,24 @@
                 </div>
             </div>
             
-            <div class="signin"> 
-                <fieldset>
-                    <legend>ENTER LOGIN DETAILS</legend>
-                <div class="form-group">
-                    <label>Enter Your Email</label><input type="email" placeholder="Email" required="">
-                </div>
-                <div class="form-group">
-                    <label>Enter Your Password</label><input type="password" placeholder="Password" required="">
-                </div>
-            </fieldset>
-                <button type="submit" class="btn" id="btnLogin">Login</button>
-                <div class="account-exist">
-                    Create a new account? <a href="#" id="signup">Signup</a>
-                </div>
-               
-            </div>
             <div class="next inActive">
                 <fieldset>
                 <legend>CONTACT DETAILS</legend>
                 <div class="form-group">
-                    <label>Enter your Enrollment Number</label>    <input type="text" placeholder="Enrollment no" required="">
+                    <label>Enter your Enrollment Number</label>    
+                    <input type="text" name="enrollment" id="enrollment" placeholder="Enrollment no" required="">
+                    <span id="enrollmentError" style="color: red" class="error1"></span>
                 </div>
 
                 <div class="form-group">
-                    <label>Enter your Date Of Birth</label>  <input type="date" placeholder="Date of Birth" required="">
+                    <label>Enter your Date Of Birth</label>  
+                    <input type="date" name="birthDate" placeholder="Date of Birth" required="">
                 </div>
 
                 <div class="form-group">
-                    <label>Enter Your Mobile number</label>    <input type="text" placeholder="Don't Use Area Code(+91)" required>
+                    <label>Enter Your Mobile number</label>    
+                    <input type="text" name="mobile" id="mobile" placeholder="Don't Use Area Code(+91)" required>
+                    <span id="mobileNumberError" style="color: red" class="error"></span>
                 </div>
             </fieldset>
             <button type="button" class="btn" id="btnPrev1">Go Back</button>
@@ -81,13 +77,19 @@
                     <legend>ACEDMIC INFORMATION</legend>
              
                     <div class="form-group">
-                        <label>Enter class 10th Marks</label> <input type="number" placeholder="Enter CGPA or PERCENTAGE" required>
+                        <label>Enter class 10th Marks</label> 
+                        <input type="float" name="marks10" id="marks" placeholder="Enter CGPA or PERCENTAGE" required>
+                        <span id="marksError" style="color: red" class="error"></span>
                     </div>
                     <div class="form-group">
-                        <label>Enter class 12th Marks</label>  <input type="number" placeholder="Enter CGPA or PERCENTAGE" required>
+                        <label>Enter class 12th Marks</label>  
+                        <input type="float" name="marks12" id="mark" placeholder="Enter CGPA or PERCENTAGE" required>
+                        <span id="markError" style="color: red" class="error"></span>
                     </div>
                     <div class="form-group">
-                        <label>Enter Your Current CGPA</label>  <input type="number" placeholder="Enter CGPA" required>
+                        <label>Enter Your Current CGPA</label>  
+                        <input type="float" name="cgpa" id="cgpa" placeholder="Enter CGPA" required>
+                        <span id="cgpaError" style="color: red" class="error"></span>
                     </div>
             
 
@@ -100,7 +102,7 @@
                 <legend>SKILLS</legend>
                 <div class="form-group">
                 <div id="inputContainer">
-                    <input type="text" placeholder="for Example: Web Develeper" required>
+                    <input type="text" name="skills" placeholder="for Example: Web Develeper" required>
                 </div>
                 <br>
                 <button type="button" id="addInputButton">
@@ -116,13 +118,17 @@
                 <fieldset>
                 <legend>Social Media</legend>
                 <div class="form-group">
-                    <label>Enter Your Linkedin ID</label>     <input type="text" placeholder="Linkedin id" required>
+                    <label>Enter Your Linkedin ID</label>     
+                    <input type="text" name="linkedin" id="linkedin" placeholder="Linkedin id" required>
+                    <span id="linkedinError" style="color: red" class="error"></span>
                 </div>
                 <div class="form-group">
-                    <label>Enter Your Github Id</label>     <input type="text" placeholder="Github" required>
+                    <label>Enter Your Github Id</label>     
+                    <input type="text" name="github" id="github" placeholder="Github" required>
+                    <span id="githubError" style="color: red" class="error"></span>
                 </div>
                 <div class="form-group">
-                    <label>Other</label>     <input type="text" placeholder="Twitter,Peerlist...">
+                    <label>Other</label>     <input type="text" name="otherid" placeholder="Twitter,Peerlist...">
                 </div>
             </fieldset>
             <button type="button" class="btn" id="btnPrev4">Go Back</button>
@@ -133,86 +139,371 @@
                 <legend>UPLOAD</legend>
                 <div class="form-group">
                     <label for="profilePhoto">Upload Your Profile Photo:</label>
-                    <input type="file" id="profilePhoto" accept="image/*" required>
+                    <input type="file" name="photo" id="profilePhoto" accept="image/*" required>
                 </div>
             
                 <div class="form-group">
                     <label for="pdfFile">Upload Your Resume(PDF):</label>
-                    <input type="file" id="pdfFile" accept=".pdf" required>
+                    <input type="file" name="resume" id="pdfFile" accept=".pdf" required>
                 </div>
             </fieldset>
             <button type="button" class="btn" id="btnPrev5">Go Back</button>
                 <button type="submit" class="btn">Submit</button>
             </div>
          </form>
+
+         <form action="/login" method="post">
+            <div class="signin"> 
+                <fieldset>
+                    <legend>ENTER LOGIN DETAILS</legend>
+                    <div class="form-group">
+                        <label>Enter Your Email</label><input type="email" name="email" placeholder="Email" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Your Password</label><input type="password" name="password" placeholder="Password" required="">
+                    </div>
+                </fieldset>
+
+                <button type="submit" class="btn" id="btnLogin">Login</button>
+                <div class="account-exist">
+                    Create a new account? <a href="#" id="signup">Signup</a>
+                </div>
+            </div>
+        </form>
+
      </div>
-<script>
-    // Get the necessary elements
-    const inputContainer = document.getElementById('inputContainer');
-    const addInputButton = document.getElementById('addInputButton');
-    let inputCount = 1;
-
-    // Function to add a new input field
-    function addInputField() {
-        inputCount++;
-        const newInput = document.createElement('input');
-        newInput.type = 'text';
-        newInput.placeholder = `Skill ${inputCount}`;
-        newInput.required = true;
-        inputContainer.appendChild(newInput);
-    }
-
-    // Event listener for the addInputButton click
-    addInputButton.addEventListener('click', addInputField);
-</script>
 
 
-<script>
-const sections = Array.from(document.querySelectorAll('.next'));
+    <script>
+        // Get the necessary elements
+        const inputContainer = document.getElementById('inputContainer');
+        const addInputButton = document.getElementById('addInputButton');
+        let inputCount = 1;
 
-function showSection(index) {
-    sections.forEach(section => section.classList.remove('active'));
-    sections[index].classList.add('active');
-}
+        // Function to add a new input field
+        function addInputField() {
+            inputCount++;
+            const newInput = document.createElement('input');
+            newInput.type = 'text';
+            newInput.name = "skills";
+            newInput.placeholder = `Skill ${inputCount}`;
+            newInput.required = true;
+            inputContainer.appendChild(newInput);
+        }
 
-
-
-function goToPreviousSection() {
-    const currentSection = sections.findIndex(section => section.classList.contains('active'));
-    if (currentSection > 0) {
-        showSection(currentSection - 1);
-    } else if (currentSection === 0) {
-        // signIn.classList.add('active');
-        signUp.classList.remove('inActive');
-        sections[currentSection].classList.remove('active');
-        sections[currentSection].classList.add('inActive');
-    }
-}
+        // Event listener for the addInputButton click
+        addInputButton.addEventListener('click', addInputField);
+    </script>
 
 
 
 
 
+    <script>
+        const sections = Array.from(document.querySelectorAll('.next'));
 
-
-const btnPrev1 = document.getElementById('btnPrev1');
-const btnPrev2 = document.getElementById('btnPrev2');
-const btnPrev3 = document.getElementById('btnPrev3');
-const btnPrev4 = document.getElementById('btnPrev4');
-const btnPrev5 = document.getElementById('btnPrev5');
-
-btnPrev1.addEventListener('click', goToPreviousSection);
-btnPrev2.addEventListener('click', goToPreviousSection);
-btnPrev3.addEventListener('click', goToPreviousSection);
-btnPrev4.addEventListener('click', goToPreviousSection);
-btnPrev5.addEventListener('click', goToPreviousSection);
+        function showSection(index) {
+            sections.forEach(section => section.classList.remove('active'));
+            sections[index].classList.add('active');
+        }
 
 
 
-</script>
+        function goToPreviousSection() {
+            const currentSection = sections.findIndex(section => section.classList.contains('active'));
+            if (currentSection > 0) {
+                showSection(currentSection - 1);
+            } 
+            else if (currentSection === 0) {
+                // signIn.classList.add('active');
+                signUp.classList.remove('inActive');
+                sections[currentSection].classList.remove('active');
+                sections[currentSection].classList.add('inActive');
+            }
+        }
+
+
+
+        const btnPrev1 = document.getElementById('btnPrev1');
+        const btnPrev2 = document.getElementById('btnPrev2');
+        const btnPrev3 = document.getElementById('btnPrev3');
+        const btnPrev4 = document.getElementById('btnPrev4');
+        const btnPrev5 = document.getElementById('btnPrev5');
+
+        btnPrev1.addEventListener('click', goToPreviousSection);
+        btnPrev2.addEventListener('click', goToPreviousSection);
+        btnPrev3.addEventListener('click', goToPreviousSection);
+        btnPrev4.addEventListener('click', goToPreviousSection);
+        btnPrev5.addEventListener('click', goToPreviousSection);
+
+    </script>
+
     <script src="js/Form.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- email -->
+
+    <script>
+        const emailInput = document.getElementById('email');
+        const emailError = document.getElementById('emailError');
+    
+        emailInput.addEventListener('input', () => {
+        const email = emailInput.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailRegex.test(email)) {
+            emailError.textContent = '';
+        } else {
+            emailError.textContent = 'Invalid email format';
+        }
+        });
+    </script>
+
+
+
+    <!-- //mobile -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var mobileNumberInput = document.getElementById('mobile');
+        var mobileNumberError = document.getElementById('mobileNumberError');
+    
+        mobileNumberInput.addEventListener('input', function() {
+            var mobileNumber = mobileNumberInput.value;
+            var numericRegex = /^[0-9]+$/;
+            var desiredLength = 10; // Desired length of the mobile number
+    
+            if (mobileNumber.trim() === "") {
+            mobileNumberError.textContent = "Please enter a mobile number.";
+            } else if (!numericRegex.test(mobileNumber)) {
+            mobileNumberError.textContent = "Mobile number should only contain numeric characters.";
+            } else if (mobileNumber.length !== desiredLength) {
+            mobileNumberError.textContent = "Mobile number should be " + desiredLength + " digits long.";
+            } else {
+            mobileNumberError.textContent = "";
+            }
+        });
+        });
+    </script>
+
+
+
+
+    <!-- //enrollment -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var mobileNumberInput = document.getElementById('enrollment');
+        var mobileNumberError = document.getElementById('enrollmentError');
+    
+        mobileNumberInput.addEventListener('input', function() {
+            var mobileNumber = mobileNumberInput.value;
+            var numericRegex = /^[0-9]+$/;
+            var desiredLength = 11; // Desired length of the mobile number
+    
+            if (mobileNumber.trim() === "") {
+            mobileNumberError.textContent = "Please enter a Enrollment.";
+            } else if (!numericRegex.test(mobileNumber)) {
+            mobileNumberError.textContent = "Enrollment should only contain numeric characters.";
+            } else if (mobileNumber.length !== desiredLength) {
+            mobileNumberError.textContent = "Enrollment should be " + desiredLength + " digits long.";
+            } else {
+            mobileNumberError.textContent = "";
+            }
+        });
+        });
+    </script>
+
+
+
+
+
+
+    <!-- //marks 10-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var marksInput = document.getElementById('marks');
+        var marksError = document.getElementById('marksError');
+    
+        marksInput.addEventListener('input', function() {
+            var marks = marksInput.value;
+            var numericRegex = /^\d*\.?\d+$/; // Regular expression to allow decimal values
+            var minMarks = 0; // Minimum marks allowed
+            var maxMarks = 100; // Maximum marks allowed
+    
+            if (marks.trim() === "") {
+            marksError.textContent = "Please enter the marks.";
+            } else if (!numericRegex.test(marks)) {
+            marksError.textContent = "Marks should be a valid numeric value.";
+            } else {
+            var marksValue = parseFloat(marks);
+            if (marksValue < minMarks || marksValue > maxMarks) {
+                marksError.textContent = "Marks should be between " + minMarks + " and " + maxMarks + ".";
+            } else {
+                marksError.textContent = "";
+            }
+            }
+        });
+        });
+    </script>
+
+
+
+
+
+    <!-- //marks 12 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var marksInput = document.getElementById('mark');
+        var marksError = document.getElementById('markError');
+    
+        marksInput.addEventListener('input', function() {
+            var marks = marksInput.value;
+            var numericRegex = /^\d*\.?\d+$/; // Regular expression to allow decimal values
+            var minMarks = 0; // Minimum marks allowed
+            var maxMarks = 100; // Maximum marks allowed
+    
+            if (marks.trim() === "") {
+            marksError.textContent = "Please enter the marks.";
+            } else if (!numericRegex.test(marks)) {
+            marksError.textContent = "Marks should be a valid numeric value.";
+            } else {
+            var marksValue = parseFloat(marks);
+            if (marksValue < minMarks || marksValue > maxMarks) {
+                marksError.textContent = "Marks should be between " + minMarks + " and " + maxMarks + ".";
+            } else {
+                marksError.textContent = "";
+            }
+            }
+        });
+        });
+    </script>
+
+
+
+
+
+
+    <!-- //cgpa-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var marksInput = document.getElementById('cgpa');
+        var marksError = document.getElementById('cgpaError');
+    
+        marksInput.addEventListener('input', function() {
+            var marks = marksInput.value;
+            var numericRegex = /^\d*\.?\d+$/; // Regular expression to allow decimal values
+            var minMarks = 0; // Minimum marks allowed
+            var maxMarks = 10; // Maximum marks allowed
+    
+            if (marks.trim() === "") {
+            marksError.textContent = "Please enter the cgpa.";
+            } else if (!numericRegex.test(marks)) {
+            marksError.textContent = "cgpa should be a valid numeric value.";
+            } else {
+            var marksValue = parseFloat(marks);
+            if (marksValue < minMarks || marksValue > maxMarks) {
+                marksError.textContent = "cgpa should be between " + minMarks + " and " + maxMarks + ".";
+            } else {
+                marksError.textContent = "";
+            }
+            }
+        });
+        });
+    </script>
+
+
+
+    <!-- linkedin -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var linkedinInput = document.getElementById('linkedin');
+        var linkedinError = document.getElementById('linkedinError');
+    
+        linkedinInput.addEventListener('input', function() {
+            var linkedin = linkedinInput.value;
+            var urlRegex = /^https?:\/\/(?:www\.)?linkedin\.com\/(?:in|company)\/[\w\-]+$/i;
+    
+            if (linkedin.trim() === "") {
+            linkedinError.textContent = "Please enter your LinkedIn account.";
+            } else if (!urlRegex.test(linkedin)) {
+            linkedinError.textContent = "Please enter a valid LinkedIn URL.";
+            } else {
+            linkedinError.textContent = "";
+            }
+        });
+        });
+    </script>
+
+
+
+    <!-- github -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var githubInput = document.getElementById('github');
+        var githubError = document.getElementById('githubError');
+    
+        githubInput.addEventListener('input', function() {
+            var github = githubInput.value;
+            var urlRegex = /^https?:\/\/(?:www\.)?github\.com\/[\w\-]+$/i;
+    
+            if (github.trim() === "") {
+            githubError.textContent = "Please enter your GitHub account.";
+            } else if (!urlRegex.test(github)) {
+            githubError.textContent = "Please enter a valid GitHub URL.";
+            } else {
+            githubError.textContent = "";
+            }
+        });
+        });
+    </script>
+
+
+
+
+    <!-- password & cpassword -->
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var passwordInput = document.getElementById('password');
+        var confirmPasswordInput = document.getElementById('cpassword');
+        var passwordError = document.getElementById('passwordError');
+        var confirmPasswordError = document.getElementById('cpasswordError');
+    
+        passwordInput.addEventListener('input', validatePassword);
+        confirmPasswordInput.addEventListener('input', validatePassword);
+    
+        function validatePassword() {
+            var password = passwordInput.value;
+            var confirmPassword = confirmPasswordInput.value;
+    
+            if (password.trim() === "") {
+            passwordError.textContent = "Please enter a password.";
+            } else {
+            passwordError.textContent = "";
+            }
+    
+            if (confirmPassword.trim() === "") {
+            confirmPasswordError.textContent = "Please confirm your password.";
+            } else if (confirmPassword !== password) {
+            confirmPasswordError.textContent = "Passwords do not match.";
+            } else {
+            confirmPasswordError.textContent = "";
+            }
+        }
+        });
+    </script>
+
 </body>
 </html>
 
 
-
+ 
