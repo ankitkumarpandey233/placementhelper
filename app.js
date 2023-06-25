@@ -20,7 +20,7 @@ const con ={
   host : "localhost",
   user : "root",
   password:"",
-  database: "college"
+  database: "collage"
 };
 
 //pool creation 
@@ -121,33 +121,33 @@ app.post("/login", function(req, res)
 
       dbPool.query('SELECT * FROM student WHERE email = ?', name, (err, results) => {
           if (err) {
-            console.error('Error querying the database:', err);
             res.redirect("/");
           }
         
           if (results.length === 0) 
           {
             console.log('Name and password do not match in the database.');
+            res.redirect("/");
           } 
-        
-          bcrypt.compare(password, results[0].password, (err, passwordMatch) => {
-            if (err) {
-              console.error('Error comparing passwords:', err);
-              return;
-            }
-        
-            if (passwordMatch) {
-              console.log('Password matched');
-              // emailc = name;
-              req.session.username = req.body.email;
-              res.redirect("/students");
-            } 
-            else {
-              console.log('Password does not match');
-              res.redirect("/");
-            }
+          else{
+            bcrypt.compare(password, results[0].password, (err, passwordMatch) => {
+              if (err) {
+                console.error('Error comparing passwords:', err);
+                return;
+              }
+          
+              if (passwordMatch) {
+                console.log('Password matched');
+                // emailc = name;
+                req.session.username = req.body.email;
+                res.redirect("/students");
+              } 
+              else {
+                console.log('Password does not match');
+                res.redirect("/");
+              }
           });
-
+        }
       });
 });
 
@@ -156,21 +156,21 @@ app.post("/login", function(req, res)
 
 //admin penal
 
-app.get("/admin", function(req, res)
-{   
-    if(!req.session || !req.session.username)
-    { 
-      res.redirect("/");
-    }
-    else{
-      dbPool.query('SELECT * FROM student WHERE email = ?', req.session.username , (err, results) => {
-        if (err) {
-          console.error('Error querying the database:', err);
-        }
-        res.render("admin.ejs" , {item: results});
-      });
-    }
-});
+// app.get("/admin", function(req, res)
+// {   
+//     if(!req.session || !req.session.username)
+//     { 
+//       res.redirect("/");
+//     }
+//     else{
+//       dbPool.query('SELECT * FROM student WHERE email = ?', req.session.username , (err, results) => {
+//         if (err) {
+//           console.error('Error querying the database:', err);
+//         }
+//         res.render("admin.ejs" , {item: results});
+//       });
+//     }
+// });
 
 
 
@@ -199,7 +199,14 @@ app.get('/logout', (req, res) => {
 const src = ["images/client-img/logo1.webp","images/client-img/logo2.webp","images/client-img/logo3.webp","images/client-img/logo4.webp","images/client-img/logo5.webp","images/client-img/logo6.webp","images/client-img/logo7.webp","images/client-img/logo8.webp","images/client-img/logo9.webp"]
 app.get("/", function(req, res)
 {
-  res.render("index.ejs",{photo: src});
+    if(req.session && req.session.username)
+    { 
+      res.redirect("/students");
+    }
+    else
+    {
+      res.render("index.ejs",{photo: src});
+    }
 });
 
 
