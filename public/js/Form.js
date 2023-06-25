@@ -1,7 +1,4 @@
 
-
-
-
 let signIn = document.querySelector(".signin");
 let signUp = document.querySelector(".signup");
 let nextSection = document.querySelectorAll(".next");
@@ -74,3 +71,6 @@ btnLogin.onclick = function() {
         // Add your login validation or API request logic here
     }
 };
+
+
+
