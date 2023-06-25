@@ -20,12 +20,31 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+        
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the app
+        run: npm run build
+
+      - name: Run tests
+        run: npm test
+
+      - name: Start the app
+        run: npm start &
+      
+      - name: Wait for the app to start
+        run: sleep 10
+
+      - name: Perform additional steps (if any)
+        # Add any additional steps you need, such as generating artifacts or deploying the app.
+
+      - name: Tear down the app
+        run: kill $(lsof -t -i:3000) || true
