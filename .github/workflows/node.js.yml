@@ -39,12 +39,11 @@ jobs:
 
       - name: Start the app
         run: npm start &
+        env:
+          PORT: 3000
       
       - name: Wait for the app to start
         run: sleep 10
-
-      - name: Perform additional steps (if any)
-        # Add any additional steps you need, such as generating artifacts or deploying the app.
 
       - name: Tear down the app
         run: kill $(lsof -t -i:3000) || true
