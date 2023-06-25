@@ -100,7 +100,7 @@ app.post("/register", function(req, res)
             console.log('Data inserted successfully!');
             req.session.username = req.body.email;
             // emailc = req.body.email;
-            res.redirect("/admin");
+            res.redirect("/students");
           });  
         });  
       }
@@ -140,7 +140,7 @@ app.post("/login", function(req, res)
               console.log('Password matched');
               // emailc = name;
               req.session.username = req.body.email;
-              res.redirect("/admin");
+              res.redirect("/students");
             } 
             else {
               console.log('Password does not match');
@@ -169,9 +169,7 @@ app.get("/admin", function(req, res)
         }
         res.render("admin.ejs" , {item: results});
       });
-  
     }
- 
 });
 
 
@@ -244,11 +242,23 @@ app.get("/notes", function(req, res)
 
 
 
-
-
-app.get('/student', (req, res) => {
-  res.render('student dashboard.ejs');
+app.get('/students', (req, res) => {
+  if(!req.session || !req.session.username)
+    { 
+      res.redirect("/form");
+    }
+    else{
+      dbPool.query('SELECT * FROM student WHERE email = ?', req.session.username , (err, results) => {
+        if (err) {
+          console.error('Error querying the database:', err);
+        }
+        res.render("studentD.ejs" , {item: results});
+      });
+    }
 });
+
+
+
 
 
 //form
@@ -257,7 +267,9 @@ app.get('/form', (req, res) => {
   res.render('form.ejs');
 });
 
-
+app.get('/student', (req, res) => {
+  res.render('student dashboard.ejs');
+});
 
 
 
