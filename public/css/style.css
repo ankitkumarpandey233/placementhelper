@@ -219,7 +219,7 @@ p {
     align-self: center;
 }
 
-.banner_wrapper .banner-content h2::after {
+/* .banner_wrapper .banner-content h2::after {
     content: '';
     width: 60%;
     height: 0.125rem;
@@ -228,7 +228,7 @@ p {
     left: 25%;
     background: var(--bg-black);
     overflow-x: hidden;
-}
+} */
 
 /* 4 About */
 .about_wrapper .single-logo-item {
