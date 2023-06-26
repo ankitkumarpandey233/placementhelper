@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Placemebt </title>
+    <title>Placement </title>
 
     <!-- FAVICON -->
     <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
@@ -10,157 +11,161 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="css/Form.css">
 </head>
-<body> 
-     <div class="wrapper">
-         <div class="headline">
-             <h1 style="text-transform: uppercase;"> Welcome to placement helper</h1><br>
-             <h3 style="text-transform: uppercase; color: red"> Kindally login or signup here</h3>
-         </div>
-         <form class="form" method="post" action="/register">
+
+<body>
+    <div class="wrapper">
+        <div class="headline">
+            <h1 style="text-transform: uppercase;"> Welcome to placement helper</h1><br>
+            <h3 style="text-transform: uppercase; color: red"> Kindally login or signup here</h3>
+        </div>
+        <form class="form" method="post" action="/register">
             <div class="signup">
                 <fieldset>
                     <legend>ENTER SIGNUP DETAILS</legend>
-                <div class="form-group">
-                 <label>Enter Your Full Name</label>  
-                 <input type="text" name="name" placeholder="Full name" required="">
-                </div>
-                <div class="form-group">
-                    <label>Enter Your Email address </label>   
-                    <input type="email" name="email" id="email" placeholder="random@gnu.ac.in" required="">
-                    <span id="emailError" style="color: red;"></span>
-                </div>
+                    <div class="form-group">
+                        <label>Enter Your Full Name</label>
+                        <input type="text" name="name" placeholder="Full name" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Your Email address </label>
+                        <input type="email" name="email" id="email" placeholder="random@gnu.ac.in" required="">
+                        <span id="emailError" style="color: red;"></span>
+                    </div>
 
 
-                <div class="form-group">
-                    <label>Enter Secure Password</label>    
-                    <input type="password" name="password" id="password" placeholder="Password" required="">
-                    <span id="passwordError" style="color: red" class="error"></span>
-                </div>
-                <div class="form-group">
-                    <label>Confirm password</label>    
-                    <input type="password" name="cpassword" id="cpassword" placeholder=" confirm Password" required="">
-                    <span id="cpasswordError" style="color: red" class="error"></span>
-                </div>
-            </fieldset>
-                <button type="button" class="btn" id="btnNextSignup" style="width: 100%;">Next</button>
+                    <div class="form-group">
+                        <label>Enter Secure Password</label>
+                        <input type="password" name="password" id="password" placeholder="Password" required="">
+                        <span id="passwordError" style="color: red" class="error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm password</label>
+                        <input type="password" name="cpassword" id="cpassword" placeholder=" confirm Password"
+                            required="">
+                        <span id="cpasswordError" style="color: red" class="error"></span>
+                    </div>
+                </fieldset>
+                <button type="button" class="btn" id="btnNextSignup" style="width: 100%;" disabled>Next</button>
                 <div class="account-exist">
                     Already have an account? <a href="#" id="login">Login</a>
                 </div>
             </div>
-            
+
             <div class="next inActive">
                 <fieldset>
-                <legend>CONTACT DETAILS</legend>
-                <div class="form-group">
-                    <label>Enter your Enrollment Number</label>    
-                    <input type="text" name="enrollment" id="enrollment" placeholder="Enrollment no" required="">
-                    <span id="enrollmentError" style="color: red" class="error1"></span>
-                </div>
+                    <legend>CONTACT DETAILS</legend>
+                    <div class="form-group">
+                        <label>Enter your Enrollment Number</label>
+                        <input type="text" name="enrollment" id="enrollment" placeholder="Enrollment no" required="">
+                        <span id="enrollmentError" style="color: red" class="error1"></span>
+                    </div>
 
-                <div class="form-group">
-                    <label>Enter your Date Of Birth</label>  
-                    <input type="date" name="birthDate" placeholder="Date of Birth" required="">
-                </div>
+                    <div class="form-group">
+                        <label>Enter your Date Of Birth</label>
+                        <input type="date" name="birthDate" id="dob" placeholder="Date of Birth" required="">
+                        <span id="dobError" class="error-message" style="color: red;"></span>
+                    </div>
 
-                <div class="form-group">
-                    <label>Enter Your Mobile number</label>    
-                    <input type="text" name="mobile" id="mobile" placeholder="Don't Use Area Code(+91)" required>
-                    <span id="mobileNumberError" style="color: red" class="error"></span>
-                </div>
-            </fieldset>
-            <button type="button" class="btn" id="btnPrev1">Go Back</button>
-                <button type="button" class="btn" id="btnNext2">Next</button>
+                    <div class="form-group">
+                        <label>Enter Your Mobile number</label>
+                        <input type="text" name="mobile" id="mobile" placeholder="Don't Use Area Code(+91)" required>
+                        <span id="mobileNumberError" style="color: red" class="error"></span>
+                    </div>
+                </fieldset>
+                <button type="button" class="btn" id="btnPrev1">Go Back</button>
+                <button type="button" class="btn" id="btnNext2" disabled>Next</button>
             </div>
-            
+
             <div class="next inActive">
                 <fieldset>
                     <legend>ACEDMIC INFORMATION</legend>
-             
+
                     <div class="form-group">
-                        <label>Enter class 10th Marks</label> 
+                        <label>Enter class 10th Marks</label>
                         <input type="float" name="marks10" id="marks" placeholder="Enter CGPA or PERCENTAGE" required>
                         <span id="marksError" style="color: red" class="error"></span>
                     </div>
                     <div class="form-group">
-                        <label>Enter class 12th Marks</label>  
+                        <label>Enter class 12th Marks</label>
                         <input type="float" name="marks12" id="mark" placeholder="Enter CGPA or PERCENTAGE" required>
                         <span id="markError" style="color: red" class="error"></span>
                     </div>
                     <div class="form-group">
-                        <label>Enter Your Current CGPA</label>  
+                        <label>Enter Your Current CGPA</label>
                         <input type="float" name="cgpa" id="cgpa" placeholder="Enter CGPA" required>
                         <span id="cgpaError" style="color: red" class="error"></span>
                     </div>
-            
 
-            </fieldset>
-            <button type="button" class="btn" id="btnPrev2">Go Back</button>
-                <button type="button" class="btn" id="btnNext3">Next</button>
+
+                </fieldset>
+                <button type="button" class="btn" id="btnPrev2">Go Back</button>
+                <button type="button" class="btn" id="btnNext3" disabled>Next</button>
             </div>
             <div class="next inActive">
                 <fieldset>
-                <legend>SKILLS</legend>
-                <div class="form-group">
-                <div id="inputContainer">
-                    <input type="text" name="skills" placeholder="for Example: Web Develeper" required>
-                </div>
-                <br>
-                <button type="button" id="addInputButton">
-                    <span class="plus">+</span>
-                </button>
-            </div>
+                    <legend>SKILLS</legend>
+                    <div class="form-group">
+                        <div id="inputContainer">
+                            <input type="text" name="skills" placeholder="for Example: Web Develeper" required>
+                        </div>
+                        <br>
+                        <button type="button" id="addInputButton">
+                            <span class="plus">+</span>
+                        </button>
+                    </div>
 
-            </fieldset>
-            <button type="button" class="btn" id="btnPrev3">Go Back</button>
+                </fieldset>
+                <button type="button" class="btn" id="btnPrev3">Go Back</button>
                 <button type="button" class="btn" id="btnNext4">Next</button>
             </div>
             <div class="next inActive">
                 <fieldset>
-                <legend>Social Media</legend>
-                <div class="form-group">
-                    <label>Enter Your Linkedin ID</label>     
-                    <input type="text" name="linkedin" id="linkedin" placeholder="Linkedin id" required>
-                    <span id="linkedinError" style="color: red" class="error"></span>
-                </div>
-                <div class="form-group">
-                    <label>Enter Your Github Id</label>     
-                    <input type="text" name="github" id="github" placeholder="Github" required>
-                    <span id="githubError" style="color: red" class="error"></span>
-                </div>
-                <div class="form-group">
-                    <label>Other</label>     <input type="text" name="otherid" placeholder="Twitter,Peerlist...">
-                </div>
-            </fieldset>
-            <button type="button" class="btn" id="btnPrev4">Go Back</button>
-                <button type="button" class="btn" id="btnNext5">Next</button>
+                    <legend>Social Media</legend>
+                    <div class="form-group">
+                        <label>Enter Your Linkedin ID</label>
+                        <input type="text" name="linkedin" id="linkedin" placeholder="Linkedin id" required>
+                        <span id="linkedinError" style="color: red" class="error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Your Github Id</label>
+                        <input type="text" name="github" id="github" placeholder="Github" required>
+                        <span id="githubError" style="color: red" class="error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Other</label> <input type="text" name="otherid" placeholder="Twitter,Peerlist...">
+                    </div>
+                </fieldset>
+                <button type="button" class="btn" id="btnPrev4">Go Back</button>
+                <button type="button" class="btn" id="btnNext5" disabled>Next</button>
             </div>
             <div class="next inActive">
                 <fieldset>
-                <legend>UPLOAD</legend>
-                <div class="form-group">
-                    <label for="profilePhoto">Upload Your Profile Photo:</label>
-                    <input type="file" name="photo" id="profilePhoto" accept="image/*" required>
-                </div>
-            
-                <div class="form-group">
-                    <label for="pdfFile">Upload Your Resume(PDF):</label>
-                    <input type="file" name="resume" id="pdfFile" accept=".pdf" required>
-                </div>
-            </fieldset>
-            <button type="button" class="btn" id="btnPrev5">Go Back</button>
+                    <legend>UPLOAD</legend>
+                    <div class="form-group">
+                        <label for="profilePhoto">Upload Your Profile Photo:</label>
+                        <input type="file" name="photo" id="profilePhoto" accept="image/*" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pdfFile">Upload Your Resume(PDF):</label>
+                        <input type="file" name="resume" id="pdfFile" accept=".pdf" required>
+                    </div>
+                </fieldset>
+                <button type="button" class="btn" id="btnPrev5">Go Back</button>
                 <button type="submit" class="btn">Submit</button>
             </div>
-         </form>
+        </form>
 
-         <form action="/login" method="post">
-            <div class="signin"> 
+        <form action="/login" method="post">
+            <div class="signin">
                 <fieldset>
                     <legend>ENTER LOGIN DETAILS</legend>
                     <div class="form-group">
                         <label>Enter Your Email</label><input type="email" name="email" placeholder="Email" required="">
                     </div>
                     <div class="form-group">
-                        <label>Enter Your Password</label><input type="password" name="password" placeholder="Password" required="">
+                        <label>Enter Your Password</label><input type="password" name="password" placeholder="Password"
+                            required="">
                     </div>
                 </fieldset>
 
@@ -171,7 +176,7 @@
             </div>
         </form>
 
-     </div>
+    </div>
 
 
     <script>
@@ -213,7 +218,7 @@
             const currentSection = sections.findIndex(section => section.classList.contains('active'));
             if (currentSection > 0) {
                 showSection(currentSection - 1);
-            } 
+            }
             else if (currentSection === 0) {
                 // signIn.classList.add('active');
                 signUp.classList.remove('inActive');
@@ -255,15 +260,15 @@
     <script>
         const emailInput = document.getElementById('email');
         const emailError = document.getElementById('emailError');
-    
+
         emailInput.addEventListener('input', () => {
-        const email = emailInput.value.trim();
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (emailRegex.test(email)) {
-            emailError.textContent = '';
-        } else {
-            emailError.textContent = 'Invalid email format';
-        }
+            const email = emailInput.value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailRegex.test(email)) {
+                emailError.textContent = '';
+            } else {
+                emailError.textContent = 'Invalid email format';
+            }
         });
     </script>
 
@@ -271,25 +276,29 @@
 
     <!-- //mobile -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        var mobileNumberInput = document.getElementById('mobile');
-        var mobileNumberError = document.getElementById('mobileNumberError');
-    
-        mobileNumberInput.addEventListener('input', function() {
-            var mobileNumber = mobileNumberInput.value;
-            var numericRegex = /^[0-9]+$/;
-            var desiredLength = 10; // Desired length of the mobile number
-    
-            if (mobileNumber.trim() === "") {
-            mobileNumberError.textContent = "Please enter a mobile number.";
-            } else if (!numericRegex.test(mobileNumber)) {
-            mobileNumberError.textContent = "Mobile number should only contain numeric characters.";
-            } else if (mobileNumber.length !== desiredLength) {
-            mobileNumberError.textContent = "Mobile number should be " + desiredLength + " digits long.";
-            } else {
-            mobileNumberError.textContent = "";
-            }
-        });
+        document.addEventListener('DOMContentLoaded', function () {
+            var mobileNumberInput = document.getElementById('mobile');
+            var mobileNumberError = document.getElementById('mobileNumberError');
+
+            mobileNumberInput.addEventListener('input', function () {
+                var mobileNumber = mobileNumberInput.value;
+                var numericRegex = /^[0-9]+$/;
+                var desiredLength = 10; // Desired length of the mobile number
+
+                if (mobileNumber.trim() === "") {
+                    mobileNumberError.textContent = "Please enter a mobile number.";
+                }
+                else if (mobileNumber[0] < 6) {
+                    mobileNumberError.textContent = "Enter correct mobile number";
+                }
+                else if (!numericRegex.test(mobileNumber)) {
+                    mobileNumberError.textContent = "Mobile number should only contain numeric characters.";
+                } else if (mobileNumber.length !== desiredLength) {
+                    mobileNumberError.textContent = "Mobile number should be " + desiredLength + " digits long.";
+                } else {
+                    mobileNumberError.textContent = "";
+                }
+            });
         });
     </script>
 
@@ -298,25 +307,25 @@
 
     <!-- //enrollment -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        var mobileNumberInput = document.getElementById('enrollment');
-        var mobileNumberError = document.getElementById('enrollmentError');
-    
-        mobileNumberInput.addEventListener('input', function() {
-            var mobileNumber = mobileNumberInput.value;
-            var numericRegex = /^[0-9]+$/;
-            var desiredLength = 11; // Desired length of the mobile number
-    
-            if (mobileNumber.trim() === "") {
-            mobileNumberError.textContent = "Please enter a Enrollment.";
-            } else if (!numericRegex.test(mobileNumber)) {
-            mobileNumberError.textContent = "Enrollment should only contain numeric characters.";
-            } else if (mobileNumber.length !== desiredLength) {
-            mobileNumberError.textContent = "Enrollment should be " + desiredLength + " digits long.";
-            } else {
-            mobileNumberError.textContent = "";
-            }
-        });
+        document.addEventListener('DOMContentLoaded', function () {
+            var mobileNumberInput = document.getElementById('enrollment');
+            var mobileNumberError = document.getElementById('enrollmentError');
+
+            mobileNumberInput.addEventListener('input', function () {
+                var mobileNumber = mobileNumberInput.value;
+                var numericRegex = /^[0-9]+$/;
+                var desiredLength = 11; // Desired length of the mobile number
+
+                if (mobileNumber.trim() === "") {
+                    mobileNumberError.textContent = "Please enter a Enrollment.";
+                } else if (!numericRegex.test(mobileNumber)) {
+                    mobileNumberError.textContent = "Enrollment should only contain numeric characters.";
+                } else if (mobileNumber.length !== desiredLength) {
+                    mobileNumberError.textContent = "Enrollment should be " + desiredLength + " digits long.";
+                } else {
+                    mobileNumberError.textContent = "";
+                }
+            });
         });
     </script>
 
@@ -327,29 +336,29 @@
 
     <!-- //marks 10-->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        var marksInput = document.getElementById('marks');
-        var marksError = document.getElementById('marksError');
-    
-        marksInput.addEventListener('input', function() {
-            var marks = marksInput.value;
-            var numericRegex = /^\d*\.?\d+$/; // Regular expression to allow decimal values
-            var minMarks = 0; // Minimum marks allowed
-            var maxMarks = 100; // Maximum marks allowed
-    
-            if (marks.trim() === "") {
-            marksError.textContent = "Please enter the marks.";
-            } else if (!numericRegex.test(marks)) {
-            marksError.textContent = "Marks should be a valid numeric value.";
-            } else {
-            var marksValue = parseFloat(marks);
-            if (marksValue < minMarks || marksValue > maxMarks) {
-                marksError.textContent = "Marks should be between " + minMarks + " and " + maxMarks + ".";
-            } else {
-                marksError.textContent = "";
-            }
-            }
-        });
+        document.addEventListener('DOMContentLoaded', function () {
+            var marksInput = document.getElementById('marks');
+            var marksError = document.getElementById('marksError');
+
+            marksInput.addEventListener('input', function () {
+                var marks = marksInput.value;
+                var numericRegex = /^\d*\.?\d+$/; // Regular expression to allow decimal values
+                var minMarks = 0; // Minimum marks allowed
+                var maxMarks = 100; // Maximum marks allowed
+
+                if (marks.trim() === "") {
+                    marksError.textContent = "Please enter the marks.";
+                } else if (!numericRegex.test(marks)) {
+                    marksError.textContent = "Marks should be a valid numeric value.";
+                } else {
+                    var marksValue = parseFloat(marks);
+                    if (marksValue < minMarks || marksValue > maxMarks) {
+                        marksError.textContent = "Marks should be between " + minMarks + " and " + maxMarks + ".";
+                    } else {
+                        marksError.textContent = "";
+                    }
+                }
+            });
         });
     </script>
 
@@ -359,29 +368,29 @@
 
     <!-- //marks 12 -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        var marksInput = document.getElementById('mark');
-        var marksError = document.getElementById('markError');
-    
-        marksInput.addEventListener('input', function() {
-            var marks = marksInput.value;
-            var numericRegex = /^\d*\.?\d+$/; // Regular expression to allow decimal values
-            var minMarks = 0; // Minimum marks allowed
-            var maxMarks = 100; // Maximum marks allowed
-    
-            if (marks.trim() === "") {
-            marksError.textContent = "Please enter the marks.";
-            } else if (!numericRegex.test(marks)) {
-            marksError.textContent = "Marks should be a valid numeric value.";
-            } else {
-            var marksValue = parseFloat(marks);
-            if (marksValue < minMarks || marksValue > maxMarks) {
-                marksError.textContent = "Marks should be between " + minMarks + " and " + maxMarks + ".";
-            } else {
-                marksError.textContent = "";
-            }
-            }
-        });
+        document.addEventListener('DOMContentLoaded', function () {
+            var marksInput = document.getElementById('mark');
+            var marksError = document.getElementById('markError');
+
+            marksInput.addEventListener('input', function () {
+                var marks = marksInput.value;
+                var numericRegex = /^\d*\.?\d+$/; // Regular expression to allow decimal values
+                var minMarks = 0; // Minimum marks allowed
+                var maxMarks = 100; // Maximum marks allowed
+
+                if (marks.trim() === "") {
+                    marksError.textContent = "Please enter the marks.";
+                } else if (!numericRegex.test(marks)) {
+                    marksError.textContent = "Marks should be a valid numeric value.";
+                } else {
+                    var marksValue = parseFloat(marks);
+                    if (marksValue < minMarks || marksValue > maxMarks) {
+                        marksError.textContent = "Marks should be between " + minMarks + " and " + maxMarks + ".";
+                    } else {
+                        marksError.textContent = "";
+                    }
+                }
+            });
         });
     </script>
 
@@ -392,29 +401,29 @@
 
     <!-- //cgpa-->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        var marksInput = document.getElementById('cgpa');
-        var marksError = document.getElementById('cgpaError');
-    
-        marksInput.addEventListener('input', function() {
-            var marks = marksInput.value;
-            var numericRegex = /^\d*\.?\d+$/; // Regular expression to allow decimal values
-            var minMarks = 0; // Minimum marks allowed
-            var maxMarks = 10; // Maximum marks allowed
-    
-            if (marks.trim() === "") {
-            marksError.textContent = "Please enter the cgpa.";
-            } else if (!numericRegex.test(marks)) {
-            marksError.textContent = "cgpa should be a valid numeric value.";
-            } else {
-            var marksValue = parseFloat(marks);
-            if (marksValue < minMarks || marksValue > maxMarks) {
-                marksError.textContent = "cgpa should be between " + minMarks + " and " + maxMarks + ".";
-            } else {
-                marksError.textContent = "";
-            }
-            }
-        });
+        document.addEventListener('DOMContentLoaded', function () {
+            var marksInput = document.getElementById('cgpa');
+            var marksError = document.getElementById('cgpaError');
+
+            marksInput.addEventListener('input', function () {
+                var marks = marksInput.value;
+                var numericRegex = /^\d*\.?\d+$/; // Regular expression to allow decimal values
+                var minMarks = 0; // Minimum marks allowed
+                var maxMarks = 10; // Maximum marks allowed
+
+                if (marks.trim() === "") {
+                    marksError.textContent = "Please enter the cgpa.";
+                } else if (!numericRegex.test(marks)) {
+                    marksError.textContent = "cgpa should be a valid numeric value.";
+                } else {
+                    var marksValue = parseFloat(marks);
+                    if (marksValue < minMarks || marksValue > maxMarks) {
+                        marksError.textContent = "cgpa should be between " + minMarks + " and " + maxMarks + ".";
+                    } else {
+                        marksError.textContent = "";
+                    }
+                }
+            });
         });
     </script>
 
@@ -422,22 +431,22 @@
 
     <!-- linkedin -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        var linkedinInput = document.getElementById('linkedin');
-        var linkedinError = document.getElementById('linkedinError');
-    
-        linkedinInput.addEventListener('input', function() {
-            var linkedin = linkedinInput.value;
-            var urlRegex = /^https?:\/\/(?:www\.)?linkedin\.com\/(?:in|company)\/[\w\-]+$/i;
-    
-            if (linkedin.trim() === "") {
-            linkedinError.textContent = "Please enter your LinkedIn account.";
-            } else if (!urlRegex.test(linkedin)) {
-            linkedinError.textContent = "Please enter a valid LinkedIn URL.";
-            } else {
-            linkedinError.textContent = "";
-            }
-        });
+        document.addEventListener('DOMContentLoaded', function () {
+            var linkedinInput = document.getElementById('linkedin');
+            var linkedinError = document.getElementById('linkedinError');
+
+            linkedinInput.addEventListener('input', function () {
+                var linkedin = linkedinInput.value;
+                var urlRegex = /^https?:\/\/(?:www\.)?linkedin\.com\/(?:in|company)\/[\w\-]+$/i;
+
+                if (linkedin.trim() === "") {
+                    linkedinError.textContent = "Please enter your LinkedIn account.";
+                } else if (!urlRegex.test(linkedin)) {
+                    linkedinError.textContent = "Please enter a valid LinkedIn URL.";
+                } else {
+                    linkedinError.textContent = "";
+                }
+            });
         });
     </script>
 
@@ -446,22 +455,22 @@
     <!-- github -->
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        var githubInput = document.getElementById('github');
-        var githubError = document.getElementById('githubError');
-    
-        githubInput.addEventListener('input', function() {
-            var github = githubInput.value;
-            var urlRegex = /^https?:\/\/(?:www\.)?github\.com\/[\w\-]+$/i;
-    
-            if (github.trim() === "") {
-            githubError.textContent = "Please enter your GitHub account.";
-            } else if (!urlRegex.test(github)) {
-            githubError.textContent = "Please enter a valid GitHub URL.";
-            } else {
-            githubError.textContent = "";
-            }
-        });
+        document.addEventListener('DOMContentLoaded', function () {
+            var githubInput = document.getElementById('github');
+            var githubError = document.getElementById('githubError');
+
+            githubInput.addEventListener('input', function () {
+                var github = githubInput.value;
+                var urlRegex = /^https?:\/\/(?:www\.)?github\.com\/[\w\-]+$/i;
+
+                if (github.trim() === "") {
+                    githubError.textContent = "Please enter your GitHub account.";
+                } else if (!urlRegex.test(github)) {
+                    githubError.textContent = "Please enter a valid GitHub URL.";
+                } else {
+                    githubError.textContent = "";
+                }
+            });
         });
     </script>
 
@@ -472,38 +481,187 @@
 
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        var passwordInput = document.getElementById('password');
-        var confirmPasswordInput = document.getElementById('cpassword');
-        var passwordError = document.getElementById('passwordError');
-        var confirmPasswordError = document.getElementById('cpasswordError');
-    
-        passwordInput.addEventListener('input', validatePassword);
-        confirmPasswordInput.addEventListener('input', validatePassword);
-    
-        function validatePassword() {
-            var password = passwordInput.value;
-            var confirmPassword = confirmPasswordInput.value;
-    
-            if (password.trim() === "") {
-            passwordError.textContent = "Please enter a password.";
-            } else {
-            passwordError.textContent = "";
+        document.addEventListener('DOMContentLoaded', function () {
+            var passwordInput = document.getElementById('password');
+            var confirmPasswordInput = document.getElementById('cpassword');
+            var passwordError = document.getElementById('passwordError');
+            var confirmPasswordError = document.getElementById('cpasswordError');
+
+            passwordInput.addEventListener('input', validatePassword);
+            confirmPasswordInput.addEventListener('input', validatePassword);
+
+            function validatePassword() {
+                var password = passwordInput.value;
+                var confirmPassword = confirmPasswordInput.value;
+
+                if (password.trim() === "") {
+                    passwordError.textContent = "Please enter a password.";
+                } else {
+                    passwordError.textContent = "";
+                }
+
+                if (confirmPassword.trim() === "") {
+                    confirmPasswordError.textContent = "Please confirm your password.";
+                } else if (confirmPassword !== password) {
+                    confirmPasswordError.textContent = "Passwords do not match.";
+                } else {
+                    confirmPasswordError.textContent = "";
+                }
             }
-    
-            if (confirmPassword.trim() === "") {
-            confirmPasswordError.textContent = "Please confirm your password.";
-            } else if (confirmPassword !== password) {
-            confirmPasswordError.textContent = "Passwords do not match.";
-            } else {
-            confirmPasswordError.textContent = "";
-            }
-        }
         });
     </script>
 
+
+    <script>
+        // Select the password and confirm password input fields
+        const passwordInput = document.getElementById("password");
+        const confirmPasswordInput = document.getElementById("cpassword");
+
+        // Select the next button
+        const nextButton = document.getElementById("btnNextSignup");
+
+        // Add event listener to the password and confirm password input fields
+        passwordInput.addEventListener("input", checkPasswordMatch);
+        confirmPasswordInput.addEventListener("input", checkPasswordMatch);
+
+        // Event handler function to check password match
+        function checkPasswordMatch() {
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            if (password === confirmPassword) {
+                nextButton.disabled = false; // Enable the next button
+            } else {
+                nextButton.disabled = true; // Disable the next button
+            }
+        };
+
+
+    </script>
+
+    <script>
+        const enrollmentInput = document.getElementById("enrollment");
+        const nextButton1 = document.getElementById("btnNext2");
+
+        enrollmentInput.addEventListener("input", function () {
+            const enrollmentNumber = enrollmentInput.value;
+
+            if (enrollmentNumber.length === 11) {
+                nextButton1.disabled = false;
+            } else {
+                nextButton1.disabled = true;
+            }
+        });
+    </script>
+
+    <script>
+        const dobInput = document.getElementById("dob");
+        const nextButton2 = document.getElementById("btnNext2");
+        const dobError = document.querySelector("#dobError");
+        const currentDate = new Date();
+        const maxDate = new Date(currentDate.getFullYear() - 15, currentDate.getMonth(), currentDate.getDate()); // Replace with your desired maximum date
+
+        dobInput.addEventListener("change", function () {
+            const dob = new Date(this.value);
+
+            if (dob <= maxDate) {
+                dobError.textContent = "";
+                nextButton2.disabled = false;
+            } else {
+                dobError.textContent = "Enter correct date";
+                nextButton2.disabled = true;
+            }
+        });
+
+    </script>
+
+    <script>
+        const mobileInput = document.getElementById("mobile");
+        const nextButton3 = document.getElementById("btnNext2");
+
+        mobileInput.addEventListener("input", function () {
+            const mobileNumber = this.value;
+            const isValidMobile = /^\d{10}$/.test(mobileNumber); // Check if the mobile number is exactly 10 digits
+
+            if (isValidMobile && mobileNumber[0] >= 6) {
+                nextButton3.disabled = false;
+            } else {
+                nextButton3.disabled = true;
+            }
+        });
+
+    </script>
+
+    <script>
+        const marks10Input = document.getElementById("marks");
+        const marks12Input = document.getElementById("mark");
+        const cgpa = document.getElementById("cgpa");
+        const nextButton4 = document.getElementById("btnNext3");
+
+        marks10Input.addEventListener("input", function () {
+            const marks10 = parseInt(this.value);
+            const isValidMarks10 = marks10 >= 0 && marks10 <= 100; // Check if marks are within the range of 0 to 100
+
+            if (isValidMarks10) {
+                nextButton4.disabled = false;
+            } else {
+                nextButton4.disabled = true;
+            }
+        });
+
+        marks12Input.addEventListener("input", function () {
+            const marks12 = parseInt(this.value);
+            const isValidMarks12 = marks12 >= 0 && marks12 <= 100; // Check if marks are within the range of 0 to 100
+
+            if (isValidMarks12) {
+                nextButton4.disabled = false;
+            } else {
+                nextButton4.disabled = true;
+            }
+        });
+
+        cgpa.addEventListener("input", function () {
+            const cgpa = parseInt(this.value);
+            const isValidcgpa = cgpa >= 0 && cgpa <= 10; // Check if marks are within the range of 0 to 100
+
+            if (isValidcgpa) {
+                nextButton4.disabled = false;
+            } else {
+                nextButton4.disabled = true;
+            }
+        });
+
+    </script>
+
+    <script>
+        const linkedinInput = document.getElementById("linkedin");
+        const githubInput = document.getElementById("github");
+        const nextButton5 = document.getElementById("btnNext5");
+
+            linkedinInput.addEventListener('input', function () {
+                var linkedin = linkedinInput.value;
+                var urlRegex = /^https?:\/\/(?:www\.)?linkedin\.com\/(?:in|company)\/[\w\-]+$/i;
+
+                if (urlRegex.test(linkedin)) {
+                    nextButton5.disabled = false;
+                } else {
+                    nextButton5.disabled = true;
+                }
+            });
+
+            githubInput.addEventListener('input', function () {
+                var github = githubInput.value;
+                var urlRegex = /^https?:\/\/(?:www\.)?github\.com\/[\w\-]+$/i;
+
+                if (urlRegex.test(github)) {
+                    nextButton5.disabled = false;
+                } else {
+                    nextButton5.disabled = true;
+                }
+            });
+
+    </script>
+
 </body>
+
 </html>
-
-
- 
