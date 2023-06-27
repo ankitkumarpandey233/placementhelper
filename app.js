@@ -20,7 +20,7 @@ const con ={
   host : "localhost",
   user : "root",
   password:"",
-  database: "collage"
+  database: "college"
 };
 
 //pool creation 
@@ -259,7 +259,7 @@ app.get('/students', (req, res) => {
         if (err) {
           console.error('Error querying the database:', err);
         }
-        res.render("studentD.ejs" , {item: results});
+        res.render("student-views/studentD.ejs" , {item: results});
       });
     }
 });
@@ -275,7 +275,7 @@ app.get('/form', (req, res) => {
 });
 
 app.get('/student', (req, res) => {
-  res.render('student dashboard.ejs');
+  res.render('student-views/student dashboard.ejs');
 });
 
 
