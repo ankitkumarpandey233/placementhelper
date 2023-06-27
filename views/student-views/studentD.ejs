@@ -1,434 +1,376 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="../../public/css/studentdash.css" />
+    <link rel="stylesheet" href="../../public/css/studentdash2.css" />
 
-  <!--
-    - favicon
-  -->
-  <link rel="shortcut icon" href="images/assets/images/logo.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      .progress {
+        display: block;
+      }
+      .explore {
+        display: none;
+      }
+    </style>
 
-  <!--
-    - custom css link
-  -->
-  <link rel="stylesheet" href="css/student.css">
 
-  <!--
-    - google font link
-  -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-</head>
+    <!-- <style>
+      @media (max-width: 768px) {
+  .fas fa-building {
+    font-size: 100px;
+    margin-left: 35%;
+  }
+}
 
-<body style="background-color: aliceblue;">
+@media (max-width: 576px) {
+  .fas fa-building {
+    font-size: 75px;
+    margin-left: 25%;
+  }
+}
 
-  <!--
-    - #MAIN
-  -->
+@media (min-width: 1200px) and (max-width: 1650px) {
+  .fas fa-building {
+    font-size: 125px;
+    margin-left: 40%;
+  }
+}
 
-  <main>
+    </style> -->
 
-    <!--
-      - #SIDEBAR
-    -->
-
-    <aside class="sidebar" data-sidebar style="background-color: rgb(255, 254, 251);">
-
-      <div class="sidebar-info">
-        <% for(var i=0; i<item.length; i++){ %>
-        <figure class="avatar-box">
-          <img src="images/assets/images/my-avatar.png" alt="Richard hanrick" width="80">
-        </figure>
-
-        <div class="info-content">
-          <h1 class="name" title="Richard hanrick"><%= item[i].name %></h1>
+  </head>
+  <body>
+    <div class="container">
+      <aside>
+        <div class="top">
+          <div class="logo">
+            <img src="../../public/images/images/favicon-16x16.png" alt="Logo" />
+            <h2><span class="danger">Placement Helper</span></h2>
+          </div>
+          <div class="close" id="close-btn">
+            <span class="material-icons-sharp"> close </span>
+          </div>
         </div>
 
-        <button class="info_more-btn" data-sidebar-btn>
-          <span>Show Contacts</span>
+        <div class="sidebar">
+          <a href="#" class="active">
+            <span class="material-icons-sharp"> dashboard </span>
+            <h3>Dashboard</h3>
+          </a>
+          <a href="#">
+            <span class="material-icons-sharp"> person_outline </span>
+            <h3>Update</h3>
+          </a>
+          <a href="#">
+            <span class="material-icons-sharp"> receipt_long </span>
+            <h3>FeedBack</h3>
+          </a>
+          <a href="#">
+            <span class="material-icons-sharp"> insights </span>
+            <h3>Applied</h3>
+          </a>
+          <a href="#">
+            <span class="material-icons-sharp"> logout </span>
+            <h3>Logout</h3>
+          </a>
+        </div>
+      </aside>
 
-          <ion-icon name="chevron-down"></ion-icon>
-        </button>
-        <% } %>
-      </div>
+      <main>
+        <h1>Dashboard</h1>
 
-      <div class="sidebar-info_more">
+        <div class="date">
+          <input type="date" />
+        </div>
 
-        <div class="separator"></div>
-        <% for(var i=0; i<item.length; i++){ %>
-        <ul class="contacts-list">
+        <div class="insights">
 
-          <li class="contact-item">
 
-            <div class="icon-box">
-              <ion-icon name="mail-outline"></ion-icon>
+
+          <div class="wrapper">
+            <div class="img-area">
+              <div class="inner-area">
+                <img src="https://images.unsplash.com/photo-1492288991661-058aa541ff43?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="">
+              </div>
             </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Email</p>
-
-              <a href="mailto:richard@example.com" class="contact-link"><%= item[i].email %></a>
+            <div class="icon dots"><i class="fas fa-ellipsis-v"></i></div>
+            <div class="name">UserName</div>
+            <div class="about">User@gmail.com</div>
+            <div class="social-icons">
+              <a href="#" class="fb"><i class="fab fa-github"></i></a>
+              <a href="#" class="yt"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="insta"><i class="fab fa-instagram"></i></a>
             </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="phone-portrait-outline"></ion-icon>
+          </div>
+          <!-- SALES -->
+          <!-- <div class="sales">
+            <span class="material-icons-sharp"> analytics </span>
+            <div class="middle">
+              <div class="left">
+                <h3>Total Sales</h3>
+                <h1>$25,024</h1>
+              </div>
+              <div class="progress">
+                <svg>
+                  <circle cx="38" cy="38" r="36"></circle>
+                </svg>
+                <div class="number">
+                  <p>81%</p>
+                </div>
+              </div>
             </div>
+            <small class="text-muted"> Last 24 hours </small>
+          </div> -->
 
-            <div class="contact-info">
-              <p class="contact-title">Phone</p>
-
-              <a href="tel:+12133522795" class="contact-link">+91 <%= item[i].mobile %></a>
+          <!-- EXPENSES -->
+          <div class="expenses">
+         
+            <span class="material-icons-sharp"> bar_chart </span>
+            <div class="middle">
+              <div class="left">
+                <h3>Total Availble Comapnies</h3>
+                <h1>110</h1>
+                <i class="fas fa-building" style="
+                font-size: 135px;
+                margin-left: 50%;
+                color: blue;
+            "></i>
+              </div>
             </div>
+            <small class="text-muted">This year</small>
+          </div>
 
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="calendar-outline"></ion-icon>
+          <!-- INCOME -->
+          <div class="income">
+            <span class="material-icons-sharp"> stacked_line_chart </span>
+            <div class="middle">
+              <div class="left">
+                <h3>Total Eligble Comapnies</h3>
+                <h1>88</h1>
+                <i class="fas fa-thumbs-up"style="
+                font-size: 135px;
+                margin-left: 50%;
+                color: blue;
+            "></i>
+              </div>
             </div>
+            <small class="text-muted"> This year </small>
+          </div>
 
-            <div class="contact-info">
-              <p class="contact-title">Birthday</p>
 
-              <time datetime="1982-06-23"><%= item[i].birthDate %></time>
+
+
+
+
+
+
+
+        </div>
+          <div class="recent-orders">
+            <h2>Companies</h2>
+            <div class="progress">
+            <div class="course-box">
+              <ul>
+                <li class="active">In progress</li>
+                <li id="exploreBtn">Explore</li>
+                <li>incoming</li>
+                <li>finished</li>
+                <li></li>
+                <li></li>
+                <li>Eligible only</li>
+                <li><label class="switch">
+                  <input type="checkbox" id="toggle" onclick="showEligibleJobs(this)">
+                  <span class="slider round"></span>
+                </label></li>
+              </ul>
+              <div class="course">
+                <div class="box">
+                  <h3>Google</h3>
+                  <p style="color: black;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat molestiae non assumenda facere, id omnis eius praesentium dignissimos alias qui. Mollitia non ut earum libero neque doloribus natus recusandae dolorum!</p><br>
+                  <strong >Role: Software Engineer</strong><br>
+                  <strong >Package: 10-30 lacs</strong><br>
+                  <button>Apply</button>
+                  <i class="fab fa-amazon" style="color: blue;"></i>
+                </div>
+              </div>
+              <div class="course">
+                <div class="box eligible">
+                  <h3>Google</h3>
+                  <p style="color: black;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat molestiae non assumenda facere, id omnis eius praesentium dignissimos alias qui. Mollitia non ut earum libero neque doloribus natus recusandae dolorum!</p><br>
+                  <strong >Role: Software Engineer</strong><br>
+                  <strong >Package: 10-30 lacs</strong><br>
+                  <button>Apply</button>
+                  <i class="fab fa-google" style="color: blue;"></i>
+                </div>
+              </div>
+
+              <div class="course">
+                <div class="box">
+                  <h3>Google</h3>
+                  <p style="color: black;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat molestiae non assumenda facere, id omnis eius praesentium dignissimos alias qui. Mollitia non ut earum libero neque doloribus natus recusandae dolorum!</p><br>
+                  <strong >Role: Software Engineer</strong><br>
+                  <strong >Package: 10-30 lacs</strong><br>
+                  <button>Apply</button>
+                  <i class="fab fa-apple" style="color: blue;"></i>
+                </div>
+              </div>
             </div>
+          </div>
 
-          </li>
+          <div class="explore">
+            <div class="course-box">
+              <ul>
+                <li id="progressbtn">In progress</li>
+                <li id="exploreBtn" class="active">Explore</li>
+                <li>incoming</li>
+                <li>finished</li>
+                <li></li>
+                <li></li>
+                <li>Eligible only</li>
+                <li><label class="switch">
+                  <input type="checkbox" id="toggle" onclick="showEligibleJobs(this)">
+                  <span class="slider round"></span>
+                </label></li>
+              </ul>
+              <div class="course">
+                <div class="box">
+                  <h3>Google</h3>
+                  <p style="color: black;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat molestiae non assumenda facere, id omnis eius praesentium dignissimos alias qui. Mollitia non ut earum libero neque doloribus natus recusandae dolorum!</p><br>
+                  <strong >Role: Software Engineer</strong><br>
+                  <strong >Package: 10-30 lacs</strong><br>
+                  <button>Apply</button>
+                  <i class="fab fa-apple" style="color: blue;"></i>
+                </div>
+              </div>
+              <div class="course">
+                <div class="box eligible">
+                  <h3>Google</h3>
+                  <p style="color: black;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat molestiae non assumenda facere, id omnis eius praesentium dignissimos alias qui. Mollitia non ut earum libero neque doloribus natus recusandae dolorum!</p><br>
+                  <strong >Role: Software Engineer</strong><br>
+                  <strong >Package: 10-30 lacs</strong><br>
+                  <button>Apply</button>
+                  <i class="fab fa-google" style="color: blue;"></i>
+                </div>
+              </div>
 
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="location-outline"></ion-icon>
+              <div class="course">
+                <div class="box">
+                  <h3>Google</h3>
+                  <p style="color: black;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat molestiae non assumenda facere, id omnis eius praesentium dignissimos alias qui. Mollitia non ut earum libero neque doloribus natus recusandae dolorum!</p><br>
+                  <strong >Role: Software Engineer</strong><br>
+                  <strong >Package: 10-30 lacs</strong><br>
+                  <button>Apply</button>
+                  <i class="fab fa-apple" style="color: blue;"></i>
+                </div>
+              </div>
             </div>
+          </div>
 
-            <div class="contact-info">
-              <p class="contact-title">Location</p>
 
-              <address>Sacramento, California, USA</address>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <a href="#">Show All</a>
+          </div>
+          
+      </main>
+
+      <div class="right">
+        <div class="top">
+          <button id="menu-btn">
+            <span class="material-icons-sharp"> menu </span>
+          </button>
+          <div class="profile">
+            <div class="info">
+              <p>Hey, <b>Username</b></p>
+              <small class="text-muted">Student</small>
             </div>
+            <div class="profile-photo">
+              <img src="https://images.unsplash.com/photo-1492288991661-058aa541ff43?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="profile photo">
+            </div>
+          </div>
+        </div>
 
-          </li>
-
-        </ul>
+        <div class="recent-updates">
+          <h2>Recent Updates</h2>
         
-        <div class="separator"></div>
+        </div>
 
-        <ul class="social-list">
-
-          <li class="social-item">
-            <a href="<%= item[i].linkedin %>" class="social-link">
-              <ion-icon name="logo-linkedin"></ion-icon>
-            </a>
-          </li>
-
-          <li class="social-item">
-            <a href="<%= item[i].github %>" class="social-link">
-              <ion-icon name="logo-github"></ion-icon>
-            </a>
-          </li>
-
-          <li class="social-item">
-            <a href="<%= item[i].other %>" class="social-link">
-              <ion-icon name="logo-twitter"></ion-icon>
-            </a>
-          </li>
-
-        </ul>
-
+        <div class="sales-analytics">
+          <h2>SKills</h2>
+          <div id="analytics">
+      
+          </div>
+          <div class="item add-product">
+            <div>
+              <span class="material-icons-sharp"> add </span>
+              <h3>Add Skills</h3>
+            </div>
+          </div>
+        </div>
       </div>
-      <% } %>
-
-    </aside>
-
-
-
-
-
-    <!--
-      - #main-content
-    -->
-
-    <div class="main-content" >
-
-      <!--
-        - #NAVBAR
-      -->
-
-      <nav class="navbar" style="background-color: #4458dc;">
-        <ul class="navbar-list">
-
-          <li class="navbar-item">
-            <button class="navbar-link  active" style="color: aliceblue;" data-nav-link>About</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" style="color: aliceblue;" data-nav-link>Resume</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" style="color: aliceblue;" data-nav-link>Portfolio</button>
-          </li>
-          <li class="navbar-item">
-            <a href="/logout"><button class="navbar-link" style="color: rgb(0, 0, 0);" onclick="">Log out</button></a>
-            
-          </li>
-        </ul>
-
-      </nav>
-
-
-
-
-
-      <!--
-        - #ABOUT
-      -->
-
-      <article class="about  active" data-page="about" style="background-color: rgb(255, 254, 251);">
-
-        <header>
-          <h2 class="h2 article-title">Companies</h2>
-        </header>
-
-        <section class="about-text">
-          <p>
-            
-           </p>
-
-        </section>
-
-
-        
-          <!-- - testimonials -->
-
-        <section class="testimonials">
-
-          <h3 class="h3 testimonials-title">Compnies you can apply</h3>
-
-          <ul class="testimonials-list has-scrollbar">
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="images/assets/images/tcs.jpg" alt="Daniel lewis" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title style="color: aliceblue;">Tata Consultency</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p">
-                    Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                    lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                    consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
-                  </p><br><br>
-                  <a href="http://www.google.com" ><h1 style="color: rgb(56, 88, 115);">Apply</h1></a>
-                  
-                </div><br><br>
-                <a href="http://www.google.com"><h1 style="color: aliceblue;">Apply</h1></a> 
-              </div>
-            </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="images/assets/images/tcs.jpg" alt="Daniel lewis" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title style="color: aliceblue;">Tata Consultency</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p">
-                    Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                    lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                    consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
-                  </p><br><br>
-                  <a href="http://www.google.com" ><h1 style="color: rgb(56, 88, 115);">Apply</h1></a>
-                  
-                </div><br><br>
-                <a href="http://www.google.com"><h1 style="color: aliceblue;">Apply</h1></a> 
-              </div>
-            </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="images/assets/images/tcs.jpg" alt="Daniel lewis" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title style="color: aliceblue;">Tata Consultency</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p">
-                    Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                    lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                    consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
-                  </p><br><br>
-                  <a href="http://www.google.com" ><h1 style="color: rgb(56, 88, 115);">Apply</h1></a>
-                  
-                </div><br><br>
-                <a href="http://www.google.com"><h1 style="color: aliceblue;">Apply</h1></a> 
-              </div>
-            </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="images/assets/images/tcs.jpg" alt="Daniel lewis" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title style="color: aliceblue;">Tata Consultency</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p">
-                    Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                    lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                    consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
-                  </p><br><br>
-                  <a href="http://www.google.com" ><h1 style="color: rgb(56, 88, 115);">Apply</h1></a>
-                  
-                </div><br><br>
-                <a href="http://www.google.com"><h1 style="color: aliceblue;">Apply</h1></a> 
-              </div>
-            </li>
-
-          </ul>
-
-        </section>
-
-
-
-        <div class="modal-container" data-modal-container>
-
-          <div class="overlay" data-overlay></div>
-
-          <section class="testimonials-modal">
-
-            <button class="modal-close-btn" data-modal-close-btn>
-              <ion-icon name="close-outline"></ion-icon>
-            </button>
-
-            <div class="modal-img-wrapper">
-              <figure class="modal-avatar-box">
-                <img src="/assets/images/avatar-1.png" alt="Daniel lewis" width="80" data-modal-img>
-              </figure>
-
-              <img src="/assets/images/icon-quote.svg" alt="quote icon">
-            </div>
-
-            <div class="modal-content">
-
-              <h4 class="h3 modal-title" data-modal-title>Daniel lewis</h4>
-
-              <time datetime="2021-06-14">14 June, 2021</time>
-
-              <div data-modal-text>
-                <p>
-                  Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                  lot of experience
-                  and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                  consectetur adipiscing
-                  elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
-                </p>
-              </div>
-
-            </div>
-
-          </section>
-
-        </div> 
-
-       <!-- <section class="clients">
-
-          <h3 class="h3 clients-title">Clients</h3>
-
-          <ul class="clients-list has-scrollbar">
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-1-color.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-2-color.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-3-color.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-4-color.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-5-color.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-6-color.png" alt="client logo">
-              </a>
-            </li>
-
-          </ul>
-
-        </section> -->
-
-      </article>
-
-
-
-
-
-
     </div>
 
-  </main>
+    <script src="../../public/js/constants/recent-order-data.js"></script>
+    <script src="../../public/js/constants/update-data.js"></script>
+    <script src="../../public/js/constants/sales-analytics-data.js"></script>
+    <script src="../../public/js/StudentDashboard.js"></script>
 
 
-
-
-
-
-
-  <script src="js/script.js"></script>
-
- 
-
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-</body>
-
+    <script>
+      function showEligibleJobs(toggle) {
+        if (toggle.checked) {
+          document.querySelectorAll(".box").forEach(function(box) {
+            if (box.classList.contains("eligible")) {
+              box.style.display = "block";
+            } else {
+              box.style.display = "none";
+            }
+          });
+        } else {
+          document.querySelectorAll(".box").forEach(function(box) {
+            box.style.display = "block";
+          });
+        }
+      }
+      </script>
+        <script>
+          $(document).ready(function() {
+            $('#exploreBtn').click(function() {
+              $('.progress').hide();
+              $('.explore').show();
+            });
+          });
+        </script>
+                <script>
+                  $(document).ready(function() {
+                    $('#progressbtn').click(function() {
+                      $('.explore').hide();
+                      $('.progress').show();
+                    });
+                  });
+                </script>
+  </body>
 </html>
