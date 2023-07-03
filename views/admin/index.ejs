@@ -195,6 +195,15 @@
                   <th class="sortable">Resume</th>
                   <th>Action</th>
                 </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Ankit</td>
+                  <td>10006</td>
+                  <td>Ap@gmai.com</td>
+                  <td><button class="detail-button">Resume</button></td>
+                  <td> <button class="add-button" onClick="alert('You clicked row id ${data[0]}')">&#10004;</button>
+                       <button class="remove-button" onClick="alert('You clicked row id ${data[0]}')">&#10008;</button></td>
+                </tr>
               </thead>
             </table>
             <a href="#">Show All</a>
@@ -324,27 +333,27 @@
       </div>
     </div>
     <script>
-const unverified = [
-  [1, "Ridham Khandar", '809878', "ridh@example.com", "images/profile-2.jpg", "Detail 1"],
-  [2, "Ankit Pandey", '808080', "ANkit@example.com", "images/profile-1.jpg", "Detail 2"],
-  [3, "Piyush Mohata", '9980808', "piyush@example.com", "images/profile-3.jpg", "Detail 3"],
-  [4, "Dhiraj Mohata", '797989', "dhiraj@example.com", "images/profile-1.jpg", "Detail 4"],
-  [5, "Julie Black", '1029898', "julie5@example.com", "images/profile-2.jpg", "Detail 5"],
-  // ...
-];
+// const unverified = [
+//   [1, "Ridham Khandar", '809878', "ridh@example.com", "images/profile-2.jpg", "Detail 1"],
+//   [2, "Ankit Pandey", '808080', "ANkit@example.com", "images/profile-1.jpg", "Detail 2"],
+//   [3, "Piyush Mohata", '9980808', "piyush@example.com", "images/profile-3.jpg", "Detail 3"],
+//   [4, "Dhiraj Mohata", '797989', "dhiraj@example.com", "images/profile-1.jpg", "Detail 4"],
+//   [5, "Julie Black", '1029898', "julie5@example.com", "images/profile-2.jpg", "Detail 5"],
+//   // ...
+// ];
 
 new simpleDataTable('unverified', unverified, {
-  onRowRender: function(data, column) {
-    column[1] = `<td style="display:flex; align-items:center;">
-      <img src="${data[4]}" style="width:30px; border-radius:50%; margin-right:5px;" /> <span>${data[1]}</span>
-      </td>`;
-    column[4] = `<td><button class="detail-button">Resume</button></td>`;
-    column[5] = `<td>
-      <button class="add-button" onClick="alert('You clicked row id ${data[0]}')">&#10004;</button>
-      <button class="remove-button" onClick="alert('You clicked row id ${data[0]}')">&#10008;</button>
-      </td>`;
-    return column;
-  },
+  // onRowRender: function(data, column) {
+  //   column[1] = `<td style="display:flex; align-items:center;">
+  //     <img src="${data[4]}" style="width:30px; border-radius:50%; margin-right:5px;" /> <span>${data[1]}</span>
+  //     </td>`;
+  //   column[4] = `<td><button class="detail-button">Resume</button></td>`;
+  //   column[5] = `<td>
+  //     <button class="add-button" onClick="alert('You clicked row id ${data[0]}')">&#10004;</button>
+  //     <button class="remove-button" onClick="alert('You clicked row id ${data[0]}')">&#10008;</button>
+  //     </td>`;
+  //   return column;
+  // },
   itemsPerPage: 5,
   pageSelection: [5, 10, 20, 50, 100],
   fontFamily: "'Segoe UI', arial, sans-serif",
