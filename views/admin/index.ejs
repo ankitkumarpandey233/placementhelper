@@ -57,6 +57,12 @@
     background-color: #1f5bcf; /* Darker shade of blue on hover */
     cursor: pointer;
   }
+
+
+
+  .recent-orders{
+    overflow: auto;
+  }
   </style>
   
   
@@ -183,7 +189,7 @@
             </div>
           </div>
   
-          <div class="recent-orders">
+          <div class="recent-orders" style="overflow: auto;">
             <h2>Recent Unverified Student</h2>
             <table id="unverified">
               <thead>
@@ -231,6 +237,15 @@
                 <th class="sortable">Resume</th>
                 <th>Action</th>
               </tr>
+              <tr>
+                <td>1</td>
+                <td>Ankit</td>
+                <td>10006</td>
+                <td>Ap@gmai.com</td>
+                <td><button class="detail-button">Resume</button></td>
+                <td> <button class="add-button" onClick="alert('You clicked row id ${data[0]}')">&#10004;</button>
+                     <button class="remove-button" onClick="alert('You clicked row id ${data[0]}')">&#10008;</button></td>
+              </tr>
             </thead>
           </table>
           <a href="#">Show All</a>
@@ -245,6 +260,13 @@
                 <th class="sortable">Enrollment No</th>
                 <th class="sortable">Email</th>
                 <th class="sortable">Resume</th>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Ankit</td>
+                <td>10006</td>
+                <td>Ap@gmai.com</td>
+                <td><button class="detail-button">Resume</button></td>
               </tr>
             </thead>
           </table>
@@ -273,6 +295,13 @@
                 <th class="sortable">Package</th>
                 <th class="sortable">Applied Student</th>
               </tr>
+              <tr>
+                <td>1</td>
+                <td>Googel</td>
+                <td>Ahmedabad</td>
+                <td>10 crore</td>
+                <td><button class="detail-button">Applied Students</button></td>
+              </tr>
             </thead>
           </table>
           <a href="#">Show All</a>
@@ -288,6 +317,13 @@
                 <th class="sortable">Package</th>
                 <th class="sortable">Dates</th>
               </tr>
+              <tr>
+                <td>1</td>
+                <td>Googel</td>
+                <td>Ahmedabad</td>
+                <td>10 crore</td>
+                <td>10/02/2024</td>
+              </tr>
             </thead>
           </table>
           <a href="#">Show All</a>
@@ -301,6 +337,13 @@
               <th class="sortable">Location</th>
               <th class="sortable">No Of hired Student</th>
               <th class="sortable">See Placed Student </th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Googel</td>
+              <td>Ahmedabad</td>
+              <td>10</td>
+              <td><button class="detail-button">Placed Students</button></td>
             </tr>
           </thead>
         </table>
@@ -333,176 +376,6 @@
       </div>
     </div>
     <script>
-// const unverified = [
-//   [1, "Ridham Khandar", '809878', "ridh@example.com", "images/profile-2.jpg", "Detail 1"],
-//   [2, "Ankit Pandey", '808080', "ANkit@example.com", "images/profile-1.jpg", "Detail 2"],
-//   [3, "Piyush Mohata", '9980808', "piyush@example.com", "images/profile-3.jpg", "Detail 3"],
-//   [4, "Dhiraj Mohata", '797989', "dhiraj@example.com", "images/profile-1.jpg", "Detail 4"],
-//   [5, "Julie Black", '1029898', "julie5@example.com", "images/profile-2.jpg", "Detail 5"],
-//   // ...
-// ];
-
-// new simpleDataTable('unverified', unverified, {
-//   onRowRender: function(data, column) {
-//     column[1] = `<td style="display:flex; align-items:center;">
-//       <img src="${data[4]}" style="width:30px; border-radius:50%; margin-right:5px;" /> <span>${data[1]}</span>
-//       </td>`;
-//     column[4] = `<td><button class="detail-button">Resume</button></td>`;
-//     column[5] = `<td>
-//       <button class="add-button" onClick="alert('You clicked row id ${data[0]}')">&#10004;</button>
-//       <button class="remove-button" onClick="alert('You clicked row id ${data[0]}')">&#10008;</button>
-//       </td>`;
-//     return column;
-//   },
-//   itemsPerPage: 5,
-//   pageSelection: [5, 10, 20, 50, 100],
-//   fontFamily: "'Segoe UI', arial, sans-serif",
-//   title: '',
-//   height: '17rem',
-//   searchableColumns: [],
-// });
-
-
-
-
-
-new simpleDataTable('unverified2', unverified, {
-  onRowRender: function(data, column) {
-    column[1] = `<td style="display:flex; align-items:center;">
-      <img src="${data[4]}" style="width:30px; border-radius:50%; margin-right:5px;" /> <span>${data[1]}</span>
-      </td>`;
-    column[4] = `<td><button class="detail-button">Resume</button></td>`;
-    column[5] = `<td>
-      <button class="add-button" onClick="alert('You clicked row id ${data[0]}')">&#10004;</button>
-      <button class="remove-button" onClick="alert('You clicked row id ${data[0]}')">&#10008;</button>
-      </td>`;
-    return column;
-  },
-  itemsPerPage: 5,
-  pageSelection: [5, 10, 20, 50, 100],
-  fontFamily: "'Segoe UI', arial, sans-serif",
-  title: '',
-  height: '17rem',
-  searchableColumns: [],
-});
-
-
-const verified = [
-  [1, "John Doe", '809878', "john1@example.com", "avatar1.png", "Detail 1"],
-  [2, "Jane Smith", '808080', "jane2@example.com", "avatar2.png", "Detail 2"],
-  [3, "Jim Brown", '9980808', "jim3@example.com", "avatar3.png", "Detail 3"],
-  [4, "Jake White", '797989', "jake4@example.com", "avatar4.png", "Detail 4"],
-  [5, "Julie Black", '1029898', "julie5@example.com", "avatar5.png", "Detail 5"],
-  // ...
-];
-
-new simpleDataTable('verified', verified, {
-  onRowRender: function(data, column) {
-    column[1] = `<td style="display:flex; align-items:center;">
-      <img src="${data[4]}" style="width:30px; border-radius:50%; margin-right:5px;" /> <span>${data[1]}</span>
-      </td>`;
-    column[4] = `<td><button class="detail-button">Resume</button></td>`;
-    // Remove column[5] since it's no longer needed
-    return column;
-  },
-  itemsPerPage: 5,
-  pageSelection: [5, 10, 20, 50, 100],
-  fontFamily: "'Segoe UI', arial, sans-serif",
-  title: '',
-  height: '17rem',
-  searchableColumns: [],
-});
-
-const totalcomapny = [
-  [1, "Googel", 'Banglore', "50 laks", "avatar1.png", "Detail 1"],
-  [2, "Amazon", 'Ahmedabad', "50 crore", "avatar2.png", "Detail 2"],
-  [3, "Apple", 'Chennai', "100 crore", "avatar3.png", "Detail 3"],
-  [4, "Facebook", 'Delhi', "4 thousand", "avatar4.png", "Detail 4"],
-  [5, "Microsoft", 'Mumbai', "4 Hundred", "avatar5.png", "Detail 5"],
-  // ...
-];
-
-new simpleDataTable('totalCompanylist', totalcomapny, {
-  onRowRender: function(data, column) {
-    column[1] = `<td style="display:flex; align-items:center;">
-      <img src="${data[4]}" style="width:30px; border-radius:50%; margin-right:5px;" /> <span>${data[1]}</span>
-      </td>`;
-    column[4] = `<td><button class="detail-button">Applied Students</button></td>`;
-    // Remove column[5] since it's no longer needed
-    return column;
-  },
-  itemsPerPage: 5,
-  pageSelection: [5, 10, 20, 50, 100],
-  fontFamily: "'Segoe UI', arial, sans-serif",
-  title: '',
-  height: '17rem',
-  searchableColumns: [],
-});
-
-
-
-const upcomingcomapny = [
-  [1, "Google", 'Banglore', "50 lakh",  "20/02/2024","avatar1.png"],
-  [2, "Amazon", 'Ahmedabad', "50 crore", "24/03/2024","avatar2.png",],
-  [3, "Apple", 'Chennai', "100 crore",  "12/04/2024","avatar3.png",],
-  [4, "Facebook", 'Delhi', "4 thousand", "22/05/2024","avatar4.png",],
-  [5, "Microsoft", 'Mumbai', "4 Hundred",  "28/05/2024","avatar4.png",],
-  // ...
-];
-
-new simpleDataTable('Upcompanies', upcomingcomapny, {
-  onRowRender: function(data, column) {
-    column[1] = `<td style="display:flex; align-items:center;">
-      <img src="${data[4]}" style="width:30px; border-radius:50%; margin-right:5px;" /> <span>${data[1]}</span>
-      </td>`;
-    
-    // Remove column[5] since it's no longer needed
-    return column;
-  },
-  itemsPerPage: 5,
-  pageSelection: [5, 10, 20, 50, 100],
-  fontFamily: "'Segoe UI', arial, sans-serif",
-  title: '',
-  height: '17rem',
-  searchableColumns: [],
-});
-
-
-
-const Pastcomapny =  [
-  [1, "Googel", 'Banglore', "50", "avatar1.png", "Detail 1"],
-  [2, "Amazon", 'Ahmedabad', "20", "avatar2.png", "Detail 2"],
-  [3, "Apple", 'Chennai', "30", "avatar3.png", "Detail 3"],
-  [4, "Facebook", 'Delhi', "10", "avatar4.png", "Detail 4"],
-  [5, "Microsoft", 'Mumbai', "60", "avatar5.png", "Detail 5"],
-  // ...
-];
-
-new simpleDataTable('pastcompanies', Pastcomapny, {
-  onRowRender: function(data, column) {
-    column[1] = `<td style="display:flex; align-items:center;">
-      <img src="${data[4]}" style="width:30px; border-radius:50%; margin-right:5px;" /> <span>${data[1]}</span>
-      </td>`;
-    column[4] = `<td><button class="detail-button">See Placed</button></td>`;
-    return column;
-  },
-  itemsPerPage: 5,
-  pageSelection: [5, 10, 20, 50, 100],
-  fontFamily: "'Segoe UI', arial, sans-serif",
-  title: '',
-  height: '17rem',
-  searchableColumns: [],
-});
-
-
-
-
-
-    </script>
-
-
-
-<script>
   // Get the necessary elements
 const studentsLink = document.querySelector('.sidebar a:nth-child(2)');
 const studentsLink2 = document.querySelector('.sidebar a:nth-child(1)');
@@ -515,6 +388,7 @@ studentDetailsDiv.style.display = 'none';
 studentsLink.addEventListener('click', () => {
   // Hide the home div
   homeDiv.style.display = 'none';
+  companyDiv.style.display = 'none';
   
   // Show the student details div
   studentDetailsDiv.style.display = 'block';
@@ -524,6 +398,7 @@ studentsLink.addEventListener('click', () => {
 studentsLink2.addEventListener('click', () => {
   // Hide the home div
   studentDetailsDiv.style.display = 'none';
+  companyDiv.style.display = 'none';
   // Show the student details div
   homeDiv.style.display = 'block';
 });
