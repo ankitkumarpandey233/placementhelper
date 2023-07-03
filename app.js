@@ -153,28 +153,6 @@ app.post("/login", function(req, res)
 
 
 
-
-//admin penal
-
-// app.get("/admin", function(req, res)
-// {   
-//     if(!req.session || !req.session.username)
-//     { 
-//       res.redirect("/");
-//     }
-//     else{
-//       dbPool.query('SELECT * FROM student WHERE email = ?', req.session.username , (err, results) => {
-//         if (err) {
-//           console.error('Error querying the database:', err);
-//         }
-//         res.render("admin.ejs" , {item: results});
-//       });
-//     }
-// });
-
-
-
-
 //logout session
 
 app.get('/logout', (req, res) => {
@@ -268,7 +246,7 @@ app.get('/students', (req, res) => {
 
 
 
-//form
+
 
 app.get('/form', (req, res) => {
   res.render('form.ejs');
@@ -279,131 +257,12 @@ app.get('/student', (req, res) => {
 });
 
 
+app.get('/admin', (req, res) => {
+  res.render('admin/index.ejs');
+});
 
-// to select port
 app.listen(3000, function() {
     console.log("Server started on port 3000");
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// mongoose.connect("mongodb+srv://mohatadhruv:123@cluster0.qw1uqgt.mongodb.net/?retryWrites=true&w=majority",{
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// });
-
-// const notice = {
-//   note: String
-// };
-
-// const student = {
-//   name: String,
-//   email: String,
-//   password: String,
-//   cpassword: String,
-//   enrollment: Number,
-//   birthDate: Date,
-//   mobile: Number,
-//   marks10 : mongoose.Types.Decimal128,
-//   marks12 : mongoose.Types.Decimal128,
-//   cgpa : mongoose.Types.Decimal128,
-//   skills : [String],
-//   linkedin : String,
-//   github : String,
-//   otherid : String,
-//   photo: {
-//     data: Buffer,
-//     contentType: {
-//       type: String,
-//       default: 'application/pdf'
-//     }
-//   },
-//   resume : {
-//       data: Buffer,
-//     contentType: {
-//       type: String,
-//       default: 'application/pdf'
-//     }
-//   }
-// };
-
-// const Notice = mongoose.model("Notice" , notice);
-// const Student = mongoose.model("Student" , student);
-
-
-
-
-
-
-
-
-// admin panel
-
-// app.get("/admin", function(req, res)
-// {
-//   Notice.find()
-//       .then((item) => {
-//         res.render("admin.ejs",{addNotice: item});
-//       })
-//       .catch((error) => {
-//         console.error('Error saving data:', error);
-//       });
-// });
-
-// app.post('/admin',function(req,res)
-// {
-//     const text = req.body.Add;
-//     const item1 = new Notice({
-//       note : text
-//     });
-//     item1.save();
-//     res.redirect("/admin");
-// });
-
-// app.post('/delete',function(req,res)
-// {
-//     const checked = req.body.checkbox;
-
-//     Notice.findByIdAndRemove(checked)
-//       .then(() => {
-//         res.redirect("/admin");
-//       })
-//       .catch((error) => {
-//         console.error('Error saving data:', error);
-//       });
-    
-// });
-
-
-
-// Notice.find()
-// .then((item) => {
-//   res.render("index.ejs",{photo: src , addNotice: item});
-// })
-// .catch((error) => {
-//   console.error('Error saving data:', error);
-// });

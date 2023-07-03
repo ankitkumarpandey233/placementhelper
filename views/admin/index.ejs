@@ -10,9 +10,9 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./Admin.css" />
-    <link rel="stylesheet" href="simple-datatable-main/simple-datatable-main/src/css/simple-datatable.css" />
-  <script src="simple-datatable-main/simple-datatable-main/src/js/simple-datatable.js"></script>
+    <link rel="stylesheet" href="css/Admin.css" />
+    <link rel="stylesheet" href="css/simple-datatable.css" />
+  <script src="js/simple-datatable.js"></script>
   <style>
     .add-button, .remove-button {
       width: 50px;
@@ -60,7 +60,7 @@
   </style>
   
   
-  
+  profile
   
   </head>
   <body>
@@ -68,7 +68,7 @@
       <aside>
         <div class="top">
           <div class="logo">
-            <img src="./images/favicon-16x16.png" alt="Logo" />
+            <img src="images/favicon-16x16.png" alt="Logo" />
             <h2 style="
             font-size: 17px;
             font-weight: bold;
@@ -127,7 +127,7 @@
               <span class="material-icons-sharp"> analytics </span>
               <div class="middle">
                 <div class="left">
-                  <h3>Total verfied Students</h3>
+                  <h3>Total Verified Students</h3>
                   <h1>600</h1>
                 </div>
                 <div class="progress">
@@ -227,7 +227,7 @@
           <a href="#">Show All</a>
         </div>
         <div class="recent-orders">
-          <h2>verified Student</h2>
+          <h2>Verified Student</h2>
           <table id="verified">
             <thead>
               <tr>
@@ -311,7 +311,7 @@
               <small class="text-muted">Admin</small>
             </div>
             <div class="profile-photo">
-              <img src="./images/profile-1.jpg" alt="Profile Picture" />
+              <img src="images/profile-1.jpg" alt="Profile Picture" />
             </div>
           </div>
         </div>
@@ -325,11 +325,11 @@
     </div>
     <script>
 const unverified = [
-  [1, "John Doe", '809878', "john1@example.com", "avatar1.png", "Detail 1"],
-  [2, "Jane Smith", '808080', "jane2@example.com", "avatar2.png", "Detail 2"],
-  [3, "Jim Brown", '9980808', "jim3@example.com", "avatar3.png", "Detail 3"],
-  [4, "Jake White", '797989', "jake4@example.com", "avatar4.png", "Detail 4"],
-  [5, "Julie Black", '1029898', "julie5@example.com", "avatar5.png", "Detail 5"],
+  [1, "Ridham Khandar", '809878', "ridh@example.com", "images/profile-2.jpg", "Detail 1"],
+  [2, "Ankit Pandey", '808080', "ANkit@example.com", "images/profile-1.jpg", "Detail 2"],
+  [3, "Piyush Mohata", '9980808', "piyush@example.com", "images/profile-3.jpg", "Detail 3"],
+  [4, "Dhiraj Mohata", '797989', "dhiraj@example.com", "images/profile-1.jpg", "Detail 4"],
+  [5, "Julie Black", '1029898', "julie5@example.com", "images/profile-2.jpg", "Detail 5"],
   // ...
 ];
 
@@ -433,7 +433,7 @@ new simpleDataTable('totalCompanylist', totalcomapny, {
 
 
 const upcomingcomapny = [
-  [1, "Googel", 'Banglore', "50 lakh",  "20/02/2024","avatar1.png"],
+  [1, "Google", 'Banglore', "50 lakh",  "20/02/2024","avatar1.png"],
   [2, "Amazon", 'Ahmedabad', "50 crore", "24/03/2024","avatar2.png",],
   [3, "Apple", 'Chennai', "100 crore",  "12/04/2024","avatar3.png",],
   [4, "Facebook", 'Delhi', "4 thousand", "22/05/2024","avatar4.png",],
@@ -540,8 +540,8 @@ studentsLink3.addEventListener('click', () => {
 
 </script>
 
-    <script src="./constants/recent-order-data2.js"></script>
-    <script src="./constants/update-data2.js"></script>
-    <script src="./index.js"></script>
+    <script src="js/constants/recent-order-data2.js"></script>
+    <script src="js/constants/update-data2.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>
