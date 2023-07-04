@@ -5,7 +5,6 @@ const mysql = require("mysql");
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
-const multer = require("multer");
 
 const app = express();
 
@@ -13,14 +12,13 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-const upload = multer({storage: multer.memoryStorage()});
 
 //database connection
 const con ={
   host : "localhost",
   user : "root",
   password:"",
-  database: "college"
+  database: "collage"
 };
 
 //pool creation 
@@ -43,6 +41,8 @@ app.use(session({
 
 
 
+
+// login formss
 
 //register
 
@@ -135,12 +135,20 @@ app.post("/login", function(req, res)
                 console.error('Error comparing passwords:', err);
                 return;
               }
-          
-              if (passwordMatch) {
-                console.log('Password matched');
-                // emailc = name;
-                req.session.username = req.body.email;
-                res.redirect("/students");
+              
+              if (passwordMatch) 
+              {
+                if(results[0].allow === 0)
+                {
+                  console.log("Please wait for verification of your account ! ");
+                  res.redirect("/form");
+                }
+                else
+                {
+                  console.log('Password matched');
+                  req.session.username = req.body.email;
+                  res.redirect("/");
+                }
               } 
               else {
                 console.log('Password does not match');
@@ -166,32 +174,6 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
   });
 });
-
-
-
-
-
-
-//home
-
-const src = ["images/client-img/logo1.webp","images/client-img/logo2.webp","images/client-img/logo3.webp","images/client-img/logo4.webp","images/client-img/logo5.webp","images/client-img/logo6.webp","images/client-img/logo7.webp","images/client-img/logo8.webp","images/client-img/logo9.webp"]
-app.get("/", function(req, res)
-{
-    if(req.session && req.session.username)
-    { 
-      res.redirect("/students");
-    }
-    else
-    {
-      res.render("index.ejs",{photo: src});
-    }
-});
-
-
-
-
-
-
 
 
 
@@ -227,19 +209,101 @@ app.get("/notes", function(req, res)
 
 
 
-app.get('/students', (req, res) => {
-  if(!req.session || !req.session.username)
-    { 
-      res.redirect("/form");
+
+
+
+
+// admin panel
+
+
+
+
+
+app.get('/admin', (req, res) => {
+  dbPool.query('SELECT * FROM student WHERE allow = 0', (err, student) => {
+    if (err) {
+      res.redirect("/");
     }
-    else{
-      dbPool.query('SELECT * FROM student WHERE email = ?', req.session.username , (err, results) => {
+      dbPool.query('SELECT * FROM student WHERE allow = 1', (err, verified) => {
         if (err) {
-          console.error('Error querying the database:', err);
+          res.redirect("/");
         }
-        res.render("student-views/studentD.ejs" , {item: results});
-      });
+
+        dbPool.query('SELECT * FROM companies', (err, companies) => {
+          if (err) {
+            res.redirect("/");
+          }
+          res.render("admin/index.ejs" , {student : student, verified : verified , companies: companies});
+        });
+    });
+  });
+});
+
+
+// student section
+
+app.post("/accept/:email", function(req, res)
+{   
+    dbPool.query('UPDATE student SET ? WHERE email = ?', [{allow : 1} , req.params.email] , (err, results) => {
+      if (err) {
+        res.redirect("/");
+      }
+      res.redirect("/admin");
+  });
+});
+
+app.post("/reject/:email", function(req, res)
+{   
+    dbPool.query('DELETE FROM student WHERE email = ?', req.params.email , (err, results) => {
+      if (err) {
+        res.redirect("/");
+      }
+      res.redirect("/admin");
+  });
+});
+
+
+//company section
+
+app.get('/cRegister', (req, res) => {
+  res.render("admin/companyDetails.ejs")
+});
+
+
+app.post('/cRegister', (req, res) => {
+
+  const plainPassword = req.body.password;
+  const saltRounds = 10;
+
+
+  bcrypt.hash(plainPassword, saltRounds, (err, hashedPassword) => {
+    if (err) {
+      console.error('Error hashing password:', err);
+      return;
     }
+    const company1 ={
+      name: req.body.name,
+      email: req.body.email,
+      password: hashedPassword,
+      marks10: req.body.marks10,
+      marks12 : req.body.marks12,
+      cgpa : req.body.cgpa,
+      description : req.body.description,
+      location : req.body.location,
+      package : req.body.package,
+      startingDate	: req.body.startingDate,
+      endingDate	: req.body.endingDate
+    };
+    dbPool.query('INSERT INTO companies SET ?', company1, (err, result) => {
+      if (err) {
+        console.error('Error inserting data:', err);
+        res.redirect("/");
+      }
+      console.log('Data inserted successfully!');
+      res.redirect("/admin")
+    });  
+  
+  });
 });
 
 
@@ -247,19 +311,122 @@ app.get('/students', (req, res) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+// students panel
+
+
+function requireAuth(req, res, next) {
+  if (req.session && req.session.username) {
+    next();
+  } else {
+    res.redirect('/');
+  }
+}
+
+app.get('/students', requireAuth ,(req, res) => {
+
+      dbPool.query('SELECT * FROM student WHERE email = ?', req.session.username , (err, results) => {
+        if (err) {
+          console.error('Error querying the database:', err);
+        }
+        var current = new Date();
+        dbPool.query('SELECT * FROM companies WHERE cgpa <= ? AND marks10 <= ? AND marks12 <= ? AND startingDate <= ? AND endingDate >= ?', [results[0].cgpa , results[0].marks10 , results[0].marks12 , current , current], (err, company) => {
+          if (err) {
+            res.redirect("/");
+          }
+          dbPool.query('SELECT * FROM companies WHERE cgpa <= ? AND marks10 <= ? AND marks12 <= ? AND (startingDate > ? OR endingDate < ?)', [results[0].cgpa , results[0].marks10 , results[0].marks12 , current , current], (err, companyPast) => {
+            if (err) {
+              res.redirect("/");
+            }
+            dbPool.query('SELECT * FROM companies WHERE cgpa > ? OR marks10 > ? OR marks12 > ?', [results[0].cgpa , results[0].marks10 , results[0].marks12], (err, companyNot) => {
+              if (err) {
+                res.redirect("/");
+              }
+
+            res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast});
+            });
+          });
+        });
+      });
+});
+
+
+app.post("/applied/:email", function(req, res)
+{   
+  dbPool.query('SELECT * FROM student WHERE email = ?', req.session.username , (err, results) => {
+    if (err) {
+      res.redirect("/students");
+    }
+    
+    dbPool.query('SELECT * FROM companies WHERE email = ?', req.params.email , (err, compan) => {
+      if (err) {
+        res.redirect("/students");
+      }
+      const applied1 = {
+        studentEmail : req.session.username,
+        studentName : results[0].name,
+        companyEmail : compan[0].email,
+        companyName : compan[0].name,
+        studentEnrollment : results[0].enrollment
+      };
+
+      dbPool.query('INSERT INTO applied SET ?', applied1 , (err, result) => {
+        if (err) {
+          res.redirect("/");
+        }
+        res.redirect("/students");
+      });
+    });
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+// front panel
+
+//home
+
+const src = ["images/client-img/logo1.webp","images/client-img/logo2.webp","images/client-img/logo3.webp","images/client-img/logo4.webp","images/client-img/logo5.webp","images/client-img/logo6.webp","images/client-img/logo7.webp","images/client-img/logo8.webp","images/client-img/logo9.webp"]
+app.get("/", function(req, res)
+{
+    if(req.session && req.session.username)
+    { 
+      res.redirect("/students");
+    }
+    else
+    {
+      res.render("index.ejs",{photo: src});
+    }
+});
 
 app.get('/form', (req, res) => {
   res.render('form.ejs');
 });
 
-app.get('/student', (req, res) => {
-  res.render('student-views/student dashboard.ejs');
-});
 
 
-app.get('/admin', (req, res) => {
-  res.render('admin/index.ejs');
-});
+
 
 app.listen(3000, function() {
     console.log("Server started on port 3000");

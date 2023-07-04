@@ -109,9 +109,9 @@
             <h3>Feedbacks</h3>
             <span class="message-count">26</span>
           </a>
-          <a href="#">
+          <a href="/cRegister">
             <span class="material-icons-sharp"> add </span>
-            <h3>Add Company</h3>
+            <h3>  Add Company</h3>
           </a>
           <a href="#">
             <span class="material-icons-sharp"> logout </span>
@@ -134,7 +134,7 @@
               <div class="middle">
                 <div class="left">
                   <h3>Total Verified Students</h3>
-                  <h1>600</h1>
+                  <h1><%= verified.length %></h1>
                 </div>
                 <div class="progress">
                   <svg>
@@ -154,7 +154,7 @@
               <div class="middle">
                 <div class="left">
                   <h3>Total unverfied students</h3>
-                  <h1>100</h1>
+                  <h1><%= student.length %></h1>
                 </div>
                 <div class="progress">
                   <svg>
@@ -174,7 +174,7 @@
               <div class="middle">
                 <div class="left">
                   <h3>Total Companies</h3>
-                  <h1>60</h1>
+                  <h1><%= companies.length %></h1>
                 </div>
                 <div class="progress">
                   <svg>
@@ -201,15 +201,27 @@
                   <th class="sortable">Resume</th>
                   <th>Action</th>
                 </tr>
+                <% for(var i=0; i<student.length; i++){ %>
                 <tr>
-                  <td>1</td>
-                  <td>Ankit</td>
-                  <td>10006</td>
-                  <td>Ap@gmai.com</td>
+                  <td><%= i+1 %></td>
+                  <td><%= student[i].name %></td>
+                  <td><%= student[i].enrollment %></td>
+                  <td><%= student[i].email %></td>
                   <td><button class="detail-button">Resume</button></td>
-                  <td> <button class="add-button" onClick="alert('You clicked row id ${data[0]}')">&#10004;</button>
-                       <button class="remove-button" onClick="alert('You clicked row id ${data[0]}')">&#10008;</button></td>
+
+                  <td> 
+                    <form action="/accept/<%= student[i].email %>" method="post">
+                        <button class="add-button" type="submit">&#10004;</button>
+                    </form>
+                  </td>
+                  <td>
+                    <form action="/reject/<%= student[i].email %>" method="post">
+                      <button class="remove-button" type="submit">&#10008;</button>
+                  </form>
+                  </td>
+                       
                 </tr>
+                <% } %>
               </thead>
             </table>
             <a href="#">Show All</a>
@@ -237,15 +249,25 @@
                 <th class="sortable">Resume</th>
                 <th>Action</th>
               </tr>
+              <% for(var i=0; i<student.length; i++){ %>
               <tr>
-                <td>1</td>
-                <td>Ankit</td>
-                <td>10006</td>
-                <td>Ap@gmai.com</td>
+                <td><%= i+1 %></td>
+                <td><%= student[i].name %></td>
+                <td><%= student[i].enrollment %></td>
+                <td><%= student[i].email %></td>
                 <td><button class="detail-button">Resume</button></td>
-                <td> <button class="add-button" onClick="alert('You clicked row id ${data[0]}')">&#10004;</button>
-                     <button class="remove-button" onClick="alert('You clicked row id ${data[0]}')">&#10008;</button></td>
+                <td> 
+                  <form action="/accept/<%= student[i].email %>" method="post">
+                      <button class="add-button" type="submit">&#10004;</button>
+                  </form>
+                </td>
+                <td>
+                  <form action="/reject/<%= student[i].email %>" method="post">
+                    <button class="remove-button" type="submit">&#10008;</button>
+                </form>
+                </td>
               </tr>
+              <% } %>
             </thead>
           </table>
           <a href="#">Show All</a>
@@ -261,13 +283,15 @@
                 <th class="sortable">Email</th>
                 <th class="sortable">Resume</th>
               </tr>
-              <tr>
-                <td>1</td>
-                <td>Ankit</td>
-                <td>10006</td>
-                <td>Ap@gmai.com</td>
+              <% for(var i=0; i<verified.length; i++){ %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <td><%= verified[i].name %></td>
+                  <td><%= verified[i].enrollment %></td>
+                  <td><%= verified[i].email %></td>
                 <td><button class="detail-button">Resume</button></td>
               </tr>
+              <% } %>
             </thead>
           </table>
           <a href="#">Show All</a>
@@ -295,13 +319,32 @@
                 <th class="sortable">Package</th>
                 <th class="sortable">Applied Student</th>
               </tr>
-              <tr>
-                <td>1</td>
-                <td>Googel</td>
-                <td>Ahmedabad</td>
-                <td>10 crore</td>
-                <td><button class="detail-button">Applied Students</button></td>
-              </tr>
+              <% for(var i=0; i<companies.length; i++){ %>
+                <% var ending = new Date(companies[i].endingDate); %>
+                <% var starting = new Date(companies[i].startingDate); %>
+                <% var current = new Date(); %>
+                <% var x = 0; %>
+                <% if(ending>current && current>=starting) { %>
+                  <% x++; %>
+                <tr>
+                  <td><%= i+1-x %></td>
+
+                  <td><%= companies[i].name %></td>
+
+                  <% if(companies[i].location!=0) { %>
+                    <td><%= companies[i].location %></td>
+                    <% } %>
+                  <% if(ending===0) {%>
+                    <td> NULL </td>
+                  <% } %>
+
+                  <td><%= companies[i].package %> LPA</td>
+
+                  <td><button class="detail-button">Applied Students</button></td>
+
+                </tr>
+                <% } %>
+              <% } %>
             </thead>
           </table>
           <a href="#">Show All</a>
@@ -317,40 +360,42 @@
                 <th class="sortable">Package</th>
                 <th class="sortable">Dates</th>
               </tr>
-              <tr>
-                <td>1</td>
-                <td>Googel</td>
-                <td>Ahmedabad</td>
-                <td>10 crore</td>
-                <td>10/02/2024</td>
-              </tr>
+              <% for(var i=0; i<companies.length; i++){ %>
+                <% var ending = new Date(companies[i].startingDate); %>
+                <% var current = new Date(); %>
+                <% if(ending>current) { %>
+                <tr>
+                  
+                  <td><%= i+1 %></td>
+
+                  <td><%= companies[i].name %></td>
+
+                  <% if(companies[i].location!=0) { %>
+                    <td><%= companies[i].location %></td>
+                    <% } %>
+                    <% if(ending===0) {%>
+                    <td> NULL </td>
+                    <% } %>
+
+                  <td><%= companies[i].package %> LPA</td>
+
+                  <% if(ending!="1970-01-01") { %>
+                  <td><%= ending.toISOString().slice(0, 10) %></td>
+                  <% } %>
+                  <% if(ending==="1970-01-01") {%>
+                  <td> NULL </td>
+                  <% } %>
+                </tr>
+                <% } %>
+              <% } %>
             </thead>
           </table>
           <a href="#">Show All</a>
         </div>
-        <h2>Past Companies</h2>
-        <table id="pastcompanies">
-          <thead>
-            <tr>
-              <th class="sortable">ID</th>
-              <th class="sortable">Name</th>
-              <th class="sortable">Location</th>
-              <th class="sortable">No Of hired Student</th>
-              <th class="sortable">See Placed Student </th>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Googel</td>
-              <td>Ahmedabad</td>
-              <td>10</td>
-              <td><button class="detail-button">Placed Students</button></td>
-            </tr>
-          </thead>
-        </table>
-        <a href="#">Show All</a>
       </main>
     </div>
 
+    
 
       <div class="right">
         <div class="top">
@@ -423,8 +468,6 @@ studentsLink3.addEventListener('click', () => {
 
 
 </script>
-
-    <script src="js/constants/recent-order-data2.js"></script>
     <script src="js/constants/update-data2.js"></script>
     <script src="js/index.js"></script>
   </body>

@@ -11,8 +11,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <link rel="stylesheet" href="../../public/css/studentdash.css" />
-    <link rel="stylesheet" href="../../public/css/studentdash2.css" />
+    <link rel="stylesheet" href="../css/studentdash.css" />
+    <link rel="stylesheet" href="../css/studentdash2.css" />
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
@@ -55,7 +55,7 @@
       <aside>
         <div class="top">
           <div class="logo">
-            <img src="../../public/images/images/favicon-16x16.png" alt="Logo" />
+            <img src="../images/favicon-16x16.png" alt="Logo" />
             <h2><span class="danger">Placement Helper</span></h2>
           </div>
           <div class="close" id="close-btn">
@@ -80,7 +80,7 @@
             <span class="material-icons-sharp"> insights </span>
             <h3>Applied</h3>
           </a>
-          <a href="#">
+          <a href="/logout">
             <span class="material-icons-sharp"> logout </span>
             <h3>Logout</h3>
           </a>
@@ -89,10 +89,6 @@
 
       <main>
         <h1>Dashboard</h1>
-
-        <div class="date">
-          <input type="date" />
-        </div>
 
         <div class="insights">
 
@@ -105,34 +101,14 @@
               </div>
             </div>
             <div class="icon dots"><i class="fas fa-ellipsis-v"></i></div>
-            <div class="name">UserName</div>
-            <div class="about">User@gmail.com</div>
+            <div class="name"><%= student[0].name %></div>
+            <div class="about"><%= student[0].email %></div>
             <div class="social-icons">
-              <a href="#" class="fb"><i class="fab fa-github"></i></a>
-              <a href="#" class="yt"><i class="fab fa-linkedin"></i></a>
-              <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
-              <a href="#" class="insta"><i class="fab fa-instagram"></i></a>
+              <a href="<%= student[0].github %>" class="fb"><i class="fab fa-github"></i></a>
+              <a href="<%= student[0].linkedin %>" class="yt"><i class="fab fa-linkedin"></i></a>
+              <a href="<%= student[0].other %>" class="twitter"><i class="fab fa-twitter"></i></a>
             </div>
           </div>
-          <!-- SALES -->
-          <!-- <div class="sales">
-            <span class="material-icons-sharp"> analytics </span>
-            <div class="middle">
-              <div class="left">
-                <h3>Total Sales</h3>
-                <h1>$25,024</h1>
-              </div>
-              <div class="progress">
-                <svg>
-                  <circle cx="38" cy="38" r="36"></circle>
-                </svg>
-                <div class="number">
-                  <p>81%</p>
-                </div>
-              </div>
-            </div>
-            <small class="text-muted"> Last 24 hours </small>
-          </div> -->
 
           <!-- EXPENSES -->
           <div class="expenses">
@@ -141,7 +117,7 @@
             <div class="middle">
               <div class="left">
                 <h3>Total Availble Comapnies</h3>
-                <h1>110</h1>
+                <h1><%= companies.length + companiesNot.length %></h1>
                 <i class="fas fa-building" style="
                 font-size: 135px;
                 margin-left: 50%;
@@ -158,7 +134,7 @@
             <div class="middle">
               <div class="left">
                 <h3>Total Eligble Comapnies</h3>
-                <h1>88</h1>
+                <h1><%= companies.length %></h1>
                 <i class="fas fa-thumbs-up"style="
                 font-size: 135px;
                 margin-left: 50%;
@@ -195,37 +171,38 @@
                   <span class="slider round"></span>
                 </label></li>
               </ul>
-              <div class="course">
-                <div class="box">
-                  <h3>Google</h3>
-                  <p style="color: black;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat molestiae non assumenda facere, id omnis eius praesentium dignissimos alias qui. Mollitia non ut earum libero neque doloribus natus recusandae dolorum!</p><br>
-                  <strong >Role: Software Engineer</strong><br>
-                  <strong >Package: 10-30 lacs</strong><br>
-                  <button>Apply</button>
-                  <i class="fab fa-amazon" style="color: blue;"></i>
-                </div>
-              </div>
-              <div class="course">
-                <div class="box eligible">
-                  <h3>Google</h3>
-                  <p style="color: black;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat molestiae non assumenda facere, id omnis eius praesentium dignissimos alias qui. Mollitia non ut earum libero neque doloribus natus recusandae dolorum!</p><br>
-                  <strong >Role: Software Engineer</strong><br>
-                  <strong >Package: 10-30 lacs</strong><br>
-                  <button>Apply</button>
-                  <i class="fab fa-google" style="color: blue;"></i>
-                </div>
-              </div>
+              <% for(var i=0; i<companies.length; i++){ %>
+                <div class="course">
+                  <div class="box eligible">
+                    <h3><%= companies[i].name %></h3>
+                    <p style="color: black;"><%= companies[i].description %></p><br>
+                    <strong >Role: Software Engineer</strong><br>
+                    <strong >Package: <%= companies[i].package %></strong><br>
 
-              <div class="course">
-                <div class="box">
-                  <h3>Google</h3>
-                  <p style="color: black;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat molestiae non assumenda facere, id omnis eius praesentium dignissimos alias qui. Mollitia non ut earum libero neque doloribus natus recusandae dolorum!</p><br>
-                  <strong >Role: Software Engineer</strong><br>
-                  <strong >Package: 10-30 lacs</strong><br>
-                  <button>Apply</button>
-                  <i class="fab fa-apple" style="color: blue;"></i>
+                    <form action="/applied/<%= companies[i].email %>" method="post">
+                      <button type="submit">Apply</button>
+                    </form>
+
+                    <i class="fab fa-google" style="color: blue;"></i>
+                  </div>
                 </div>
-              </div>
+                <% } %>
+                <% for(var i=0; i<companiesNot.length; i++){ %>
+                  <% var starting = new Date(companiesNot[i].startingDate); %>
+                  <% var ending = new Date(companiesNot[i].endingDate); %>
+                  <% var current = new Date(); %>
+                  <% if(starting>current || current>ending) { %>
+                  <div class="course">
+                    <div class="box">
+                      <h3><%= companiesNot[i].name %></h3>
+                      <p style="color: black;"><%= companiesNot[i].description %></p><br>
+                      <strong >Role: Software Engineer</strong><br>
+                      <strong >Package: <%= companiesNot[i].package %></strong><br>
+                      <i class="fab fa-google" style="color: blue;"></i>
+                    </div>
+                  </div>
+                  <% } %>
+                <% } %>
             </div>
           </div>
 
@@ -244,57 +221,49 @@
                   <span class="slider round"></span>
                 </label></li>
               </ul>
-              <div class="course">
-                <div class="box">
-                  <h3>Google</h3>
-                  <p style="color: black;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat molestiae non assumenda facere, id omnis eius praesentium dignissimos alias qui. Mollitia non ut earum libero neque doloribus natus recusandae dolorum!</p><br>
-                  <strong >Role: Software Engineer</strong><br>
-                  <strong >Package: 10-30 lacs</strong><br>
-                  <button>Apply</button>
-                  <i class="fab fa-apple" style="color: blue;"></i>
-                </div>
-              </div>
-              <div class="course">
-                <div class="box eligible">
-                  <h3>Google</h3>
-                  <p style="color: black;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat molestiae non assumenda facere, id omnis eius praesentium dignissimos alias qui. Mollitia non ut earum libero neque doloribus natus recusandae dolorum!</p><br>
-                  <strong >Role: Software Engineer</strong><br>
-                  <strong >Package: 10-30 lacs</strong><br>
-                  <button>Apply</button>
-                  <i class="fab fa-google" style="color: blue;"></i>
-                </div>
-              </div>
+              <% for(var i=0; i<companies.length; i++){ %>
+                <div class="course">
+                  <div class="box eligible">
+                    <h3><%= companies[i].name %></h3>
+                    <p style="color: black;"><%= companies[i].description %></p><br>
+                    <strong >Role: Software Engineer</strong><br>
+                    <strong >Package: <%= companies[i].package %></strong><br>
 
-              <div class="course">
-                <div class="box">
-                  <h3>Google</h3>
-                  <p style="color: black;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat molestiae non assumenda facere, id omnis eius praesentium dignissimos alias qui. Mollitia non ut earum libero neque doloribus natus recusandae dolorum!</p><br>
-                  <strong >Role: Software Engineer</strong><br>
-                  <strong >Package: 10-30 lacs</strong><br>
-                  <button>Apply</button>
-                  <i class="fab fa-apple" style="color: blue;"></i>
+                    <form action="/applied/<%= companies[i].email %>" method="post">
+                      <button type="submit">Apply</button>
+                    </form>
+
+                    <i class="fab fa-google" style="color: blue;"></i>
+                  </div>
                 </div>
-              </div>
+                <% } %>
+                <% for(var i=0; i<companiesNot.length; i++){ %>
+                  <div class="course">
+                    <div class="box">
+                      <h3><%= companiesNot[i].name %></h3>
+                      <p style="color: black;"><%= companiesNot[i].description %></p><br>
+                      <strong >Role: Software Engineer</strong><br>
+                      <strong >Package: <%= companiesNot[i].package %></strong><br>
+                      <i class="fab fa-google" style="color: blue;"></i>
+                    </div>
+                  </div>
+                  <% } %>
+                  <% for(var i=0; i<companyPast.length; i++){ %>
+                    <div class="course">
+                      <div class="box ">
+                        <h3><%= companyPast[i].name %></h3>
+                        <p style="color: black;"><%= companyPast[i].description %></p><br>
+                        <strong >Role: Software Engineer</strong><br>
+                        <strong >Package: <%= companyPast[i].package %></strong><br>
+                        
+                        <i class="fab fa-google" style="color: blue;"></i>
+                      </div>
+                    </div>
+                    <% } %>
             </div>
           </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <a href="#">Show All</a>
-          </div>
-          
+        </div>    
       </main>
 
       <div class="right">
@@ -317,27 +286,11 @@
           <h2>Recent Updates</h2>
         
         </div>
-
-        <div class="sales-analytics">
-          <h2>SKills</h2>
-          <div id="analytics">
-      
-          </div>
-          <div class="item add-product">
-            <div>
-              <span class="material-icons-sharp"> add </span>
-              <h3>Add Skills</h3>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
-
-    <script src="../../public/js/constants/recent-order-data.js"></script>
-    <script src="../../public/js/constants/update-data.js"></script>
-    <script src="../../public/js/constants/sales-analytics-data.js"></script>
-    <script src="../../public/js/StudentDashboard.js"></script>
-
+    <script src="js/constants/update-data2.js"></script>
+    <script src="../js/StudentDashboard.js"></script>
+    <script src="js/index.js"></script>
 
     <script>
       function showEligibleJobs(toggle) {
@@ -355,7 +308,7 @@
           });
         }
       }
-      </script>
+    </script>
         <script>
           $(document).ready(function() {
             $('#exploreBtn').click(function() {
