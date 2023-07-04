@@ -18,7 +18,7 @@ const con ={
   host : "localhost",
   user : "root",
   password:"",
-  database: "collage"
+  database: "college"
 };
 
 //pool creation 
