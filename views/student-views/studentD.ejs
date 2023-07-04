@@ -4,24 +4,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard</title>
+    <title>Student Dashboard</title>
 
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link rel="stylesheet" href="../css/studentdash.css" />
     <link rel="stylesheet" href="../css/studentdash2.css" />
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-      .progress {
+      .progress ,.explore,.incoming{
         display: block;
       }
-      .explore {
-        display: none;
-      }
+
+      
     </style>
 
 
@@ -161,7 +162,7 @@
               <ul>
                 <li class="active">In progress</li>
                 <li id="exploreBtn">Explore</li>
-                <li>incoming</li>
+                <li id="incomingbtn">incoming</li>
                 <li>finished</li>
                 <li></li>
                 <li></li>
@@ -206,12 +207,12 @@
             </div>
           </div>
 
-          <div class="explore">
+          <div class="explore" style="display: none;">
             <div class="course-box">
               <ul>
                 <li id="progressbtn">In progress</li>
                 <li id="exploreBtn" class="active">Explore</li>
-                <li>incoming</li>
+                <li id="incomingbtn">incoming</li>
                 <li>finished</li>
                 <li></li>
                 <li></li>
@@ -261,6 +262,40 @@
                     </div>
                     <% } %>
             </div>
+          </div>
+
+
+          <div class="incoming" style="display: none;">
+            <div class="course-box">
+              <ul>
+                <li id="progressbtn">In progress</li>
+                <li id="exploreBtn" >Explore</li>
+                <li id="incomingbtn" class="active">incoming</li>
+                <li>finished</li>
+                <li></li>
+                <li></li>
+                <li>Eligible only</li>
+                <li><label class="switch">
+                  <input type="checkbox" id="toggle" onclick="showEligibleJobs(this)">
+                  <span class="slider round"></span>
+                </label></li>
+              </ul>
+
+              <div class="course">
+                <div class="box eligible">
+                  <h3>hi there</h3>
+                  <p style="color: black;">Example past comapies</p><br>
+                  <strong >Role: Software Engineer</strong><br>
+                  <strong >Package: 800000</strong><br>
+
+                  <form action="example@mail.com" method="post">
+                    <button type="submit">Apply</button>
+                  </form>
+
+                  <i class="" style="color: blue;"></i>
+                </div>
+              </div>
+
           </div>
 
         </div>    
@@ -314,6 +349,7 @@
             $('#exploreBtn').click(function() {
               $('.progress').hide();
               $('.explore').show();
+              $('.incoming').hide();
             });
           });
         </script>
@@ -322,8 +358,20 @@
                     $('#progressbtn').click(function() {
                       $('.explore').hide();
                       $('.progress').show();
+                      $('.incoming').hide();
                     });
                   });
                 </script>
+
+
+<script>
+  $(document).ready(function() {
+    $('#incomingbtn').click(function() {
+      $('.explore').hide();
+      $('.progress').hide();
+      $('.incoming').show();
+    });
+  });
+</script>
   </body>
 </html>

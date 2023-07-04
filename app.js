@@ -92,6 +92,9 @@ app.post("/register", function(req, res)
             resume: req.body.resume
           };
       
+
+          const imageData = req.file.buffer;
+
           dbPool.query('INSERT INTO student SET ?', student1, (err, result) => {
             if (err) {
               console.error('Error inserting data:', err);
@@ -147,7 +150,7 @@ app.post("/login", function(req, res)
                 {
                   console.log('Password matched');
                   req.session.username = req.body.email;
-                  res.redirect("/");
+                  res.redirect("/students");
                 }
               } 
               else {
@@ -266,7 +269,7 @@ app.post("/reject/:email", function(req, res)
 //company section
 
 app.get('/cRegister', (req, res) => {
-  res.render("admin/companyDetails.ejs")
+  res.render("admin/index.ejs")
 });
 
 
@@ -422,6 +425,30 @@ app.get("/", function(req, res)
 
 app.get('/form', (req, res) => {
   res.render('form.ejs');
+});
+
+
+// Fetch and display the image
+app.get('/image', (req, res) => {
+  const sql = 'SELECT image FROM student ORDER BY id DESC LIMIT 1';
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.error('Failed to fetch the image: ', err);
+      res.status(500).send('Internal server error.');
+      return;
+    }
+
+    if (result.length === 0) {
+      res.status(404).send('No image found.');
+      return;
+    }
+
+    res.writeHead(200, {
+      'Content-Type': 'image/jpeg',
+      'Content-Length': result[0].image.length
+    });
+    res.end(result[0].image);
+  });
 });
 
 

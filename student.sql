@@ -44,7 +44,8 @@ CREATE TABLE `student` (
   `github` varchar(100) NOT NULL,
   `otherid` varchar(100) NOT NULL,
   `photo` blob NOT NULL,
-  `resume` blob NOT NULL
+  `resume` blob NOT NULL,
+  `allow` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
