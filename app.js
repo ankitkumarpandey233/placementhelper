@@ -103,7 +103,7 @@ app.post("/register", function(req, res)
             console.log('Data inserted successfully!');
             req.session.username = req.body.email;
             // emailc = req.body.email;
-            res.redirect("/students");
+            res.redirect("/");
           });  
         });  
       }
@@ -135,7 +135,7 @@ app.post("/login", function(req, res)
           else{
             bcrypt.compare(password, results[0].password, (err, passwordMatch) => {
               if (err) {
-                console.error('Error comparing passwords:', err);
+              console.log('Error comparing passwords:', err);
                 return;
               }
               
@@ -148,7 +148,7 @@ app.post("/login", function(req, res)
                 }
                 else
                 {
-                  console.log('Password matched');
+                  console.log('login succesfull');
                   req.session.username = req.body.email;
                   res.redirect("/students");
                 }

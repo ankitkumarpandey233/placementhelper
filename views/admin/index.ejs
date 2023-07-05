@@ -67,6 +67,11 @@
   .recent-orders{
     overflow: auto;
   }
+
+
+  .applied {
+      display: none;
+    }
   </style>
   
   
@@ -321,7 +326,7 @@
                 <th class="sortable">Name</th>
                 <th class="sortable">Location</th>
                 <th class="sortable">Package</th>
-                <th class="sortable">Applied Student</th>
+                <th class="sortable" onclick="toggleVisibility()">Applied Student</th>
               </tr>
               <% for(var i=0; i<companies.length; i++){ %>
                 <% var ending = new Date(companies[i].endingDate); %>
@@ -512,7 +517,7 @@
                 <th class="sortable">Name</th>
                 <th class="sortable">Location</th>
                 <th class="sortable">Package</th>
-                <th class="sortable">Applied Student</th>
+                <th class="sortable" >Applied Student</th>
               </tr>
             </thead>
           </table>
@@ -676,6 +681,20 @@ studentsLink6.addEventListener('click', () => {
     // Add "active" class to the clicked link
     link.classList.add("active");
   }
+</script>
+
+<script>
+  $(document).ready(function() {
+    $('.sortable').click(function() {
+      if ($(this).text() === 'Applied Student') {
+        $('.applied').show();
+        $('.home').hide();
+        $('.addcompany').hide();
+        $('.feedback').hide();
+        $('.companylist').hide();
+      }
+    });
+  });
 </script>
 
 

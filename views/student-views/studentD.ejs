@@ -64,32 +64,34 @@
           </div>
         </div>
 
-        <div class="sidebar">
+        <div class="sidebar"  onclick="changeActiveLink(this)">
           <a href="#" class="active">
             <span class="material-icons-sharp"> dashboard </span>
             <h3>Dashboard</h3>
           </a>
-          <a href="#">
+          <a href="#"  onclick="changeActiveLink(this)">
             <span class="material-icons-sharp"> person_outline </span>
             <h3>Update</h3>
+          </a>
+          <a href="#" onclick="changeActiveLink(this)">
+            <span class="material-icons-sharp"> receipt_long </span>
+            <h3>Applied</h3>
           </a>
           <a href="#">
             <span class="material-icons-sharp"> receipt_long </span>
             <h3>FeedBack</h3>
           </a>
-          <a href="#">
-            <span class="material-icons-sharp"> insights </span>
-            <h3>Applied</h3>
-          </a>
+
           <a href="/logout">
             <span class="material-icons-sharp"> logout </span>
             <h3>Logout</h3>
           </a>
         </div>
       </aside>
-
+      <div class="dashboard">
       <main>
         <h1>Dashboard</h1>
+
 
         <div class="insights">
 
@@ -111,6 +113,7 @@
             </div>
           </div>
 
+         
           <!-- EXPENSES -->
           <div class="expenses">
          
@@ -300,6 +303,47 @@
 
         </div>    
       </main>
+    </div>
+
+<div class="update">
+  <main>
+   <h1>Update form</h1>
+
+
+
+
+
+
+
+
+   
+  </main>
+</div>
+
+<div class="applied">
+  <main>
+    <h1>Applied companies</h1>
+ 
+    <div class="recent-orders">
+      <h2></h2>
+      <table id="verified">
+        <thead>
+          <tr>
+            <th class="sortable">ID</th>
+            <th class="sortable">comnpany Name</th>
+            <th class="sortable">role</th>
+            <th class="sortable">Package</th>
+            <th class="sortable">Applied date</th>
+            <th class="sortable">important dates</th>
+          </tr>
+        </thead>
+      </table>
+      <a href="#">Show All</a>
+    </div>  
+   </main>
+</div>
+
+
 
       <div class="right">
         <div class="top">
@@ -372,6 +416,68 @@
       $('.incoming').show();
     });
   });
+</script>
+
+
+<script>
+  function changeActiveLink(link) {
+    // Remove "active" class from all links
+    var links = document.getElementsByClassName("sidebar")[0].getElementsByTagName("a");
+    for (var i = 0; i < links.length; i++) {
+      links[i].classList.remove("active");
+    }
+
+    // Add "active" class to the clicked link
+    link.classList.add("active");
+  }
+</script>
+
+<script>
+const studentsLink = document.querySelector('.sidebar a:nth-child(2)');
+const studentsLink2 = document.querySelector('.sidebar a:nth-child(1)');
+const dashboardDiv = document.querySelector('.dashboard');
+const updateDiv = document.querySelector('.update');
+updateDiv.style.display = 'none';
+
+
+// Add click event listener to the students link
+studentsLink.addEventListener('click', () => {
+  // Hide the home div
+  dashboardDiv.style.display = 'none';
+  appliedDiv.style.display = 'none';
+
+  // Show the student details div
+  updateDiv.style.display = 'block';
+});
+
+
+studentsLink2.addEventListener('click', () => {
+  // Hide the home div
+  updateDiv.style.display = 'none';
+  appliedDiv.style.display = 'none';
+
+
+  // Show the student details div
+  dashboardDiv.style.display = 'block';
+});
+
+
+
+const studentsLink3 = document.querySelector('.sidebar a:nth-child(3)');
+const appliedDiv = document.querySelector('.applied');
+appliedDiv.style.display = 'none';
+
+studentsLink3.addEventListener('click', () => {
+  // Hide the home div
+  updateDiv.style.display = 'none';
+
+  dashboardDiv.style.display = 'none';
+
+  // Show the student details div
+  appliedDiv.style.display = 'block';
+});
+
+
 </script>
   </body>
 </html>
