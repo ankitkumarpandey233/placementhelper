@@ -222,22 +222,17 @@
                 <% } %>
               <% } %>
 
-                <% for(var i=0; i<companiesNot.length; i++){ %>
-                  <% var starting = new Date(companiesNot[i].startingDate); %>
-                  <% var ending = new Date(companiesNot[i].endingDate); %>
-                  <% var current = new Date(); %>
-                  <% if(starting>current || current>ending) { %>
-                  <div class="course">
-                    <div class="box">
-                      <h3><%= companiesNot[i].name %></h3>
-                      <p style="color: black;"><%= companiesNot[i].description %></p><br>
-                      <strong >Role: Software Engineer</strong><br>
-                      <strong >Package: <%= companiesNot[i].package %></strong><br>
-                      <button style="background-color: blue;">Not Eligible</button>
-                      <i class="fab fa-google" style="color: blue;"></i>
-                    </div>
+              <% for(var i=0; i<companiesNot.length; i++){ %>
+                <div class="course">
+                  <div class="box">
+                    <h3><%= companiesNot[i].name %></h3>
+                    <p style="color: black;"><%= companiesNot[i].description %></p><br>
+                    <strong >Role: Software Engineer</strong><br>
+                    <strong >Package: <%= companiesNot[i].package %></strong><br>
+                    <button style="background-color: blue;">Not Eligible</button>
+                    <i class="fab fa-google" style="color: blue;"></i>
                   </div>
-                  <% } %>
+                </div>
                 <% } %>
             </div>
           </div>
@@ -312,11 +307,12 @@
                       <p style="color: black;"><%= companiesNot[i].description %></p><br>
                       <strong >Role: Software Engineer</strong><br>
                       <strong >Package: <%= companiesNot[i].package %></strong><br>
-                      <button style="background-color: blue;">Not Available Now</button>
+                      <button style="background-color: blue;">Not Eligible</button>
                       <i class="fab fa-google" style="color: blue;"></i>
                     </div>
                   </div>
                   <% } %>
+
                   <% for(var i=0; i<companyPast.length; i++){ %>
                     <div class="course">
                       <div class="box ">

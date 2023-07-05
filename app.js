@@ -366,7 +366,7 @@ app.get('/students', requireAuth ,(req, res) => {
           if (err) {
             res.redirect("/");
           }
-            dbPool.query('SELECT * FROM companies WHERE (cgpa > ? OR marks10 > ? OR marks12) > ? AND startingDate <= ? AND endingDate >= ?', [results[0].cgpa , results[0].marks10 , results[0].marks12 , current , current], (err, companyNot) => {
+            dbPool.query('SELECT * FROM companies WHERE (cgpa > ? OR marks10 > ? OR marks12 > ?) AND startingDate <= ? AND endingDate >= ?', [results[0].cgpa , results[0].marks10 , results[0].marks12 , current , current], (err, companyNot) => {
               if (err) {
                 res.redirect("/");
               }
