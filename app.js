@@ -93,7 +93,7 @@ app.post("/register", function(req, res)
           };
       
 
-          const imageData = req.file.buffer;
+          // const imageData = req.file.buffer;
 
           dbPool.query('INSERT INTO student SET ?', student1, (err, result) => {
             if (err) {
