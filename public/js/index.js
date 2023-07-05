@@ -38,31 +38,31 @@ document.addEventListener("DOMContentLoaded", (ev) => {
 //   return tbody;
 // };
 
-const buildUpdatesList = () => {
-  const updateData = UPDATE_DATA;
+// const buildUpdatesList = () => {
+//   const updateData = UPDATE_DATA;
 
-  const div = document.createElement("div");
-  div.classList.add("updates");
+//   const div = document.createElement("div");
+//   div.classList.add("updates");
 
-  let updateContent = "";
-  for (const update of updateData) {
-    updateContent += `
-      <div class="update">
-        <div class="profile-photo">
-          <img src="${update.imgSrc}" />
-        </div>
-        <div class="message">
-          <p><b>${update.profileName}</b> ${update.message}</p>
-          <small class="text-muted">${update.updatedTime}</small>
-        </div>
-      </div>
-    `;
-  }
+//   let updateContent = "";
+//   for (const update of updateData) {
+//     updateContent += `
+//       <div class="update">
+//         <div class="profile-photo">
+//           <img src="${update.imgSrc}" />
+//         </div>
+//         <div class="message">
+//           <p><b>${update.profileName}</b> ${update.message}</p>
+//           <small class="text-muted">${update.updatedTime}</small>
+//         </div>
+//       </div>
+//     `;
+//   }
 
-  div.innerHTML = updateContent;
+//   div.innerHTML = updateContent;
 
-  return div;
-};
+//   return div;
+// };
 
 const buildSalesAnalytics = (element) => {
   const salesAnalyticsData = SALES_ANALYTICS_DATA;

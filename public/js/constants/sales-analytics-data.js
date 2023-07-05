@@ -1,3 +1,5 @@
+
+
 const SALES_ANALYTICS_DATA = [
   {
     itemClass: "Technical",
@@ -18,3 +20,4 @@ const SALES_ANALYTICS_DATA = [
     colorClass: "danger",
   },
 ];
+
