@@ -18,8 +18,8 @@ const con ={
   host : "localhost",
   user : "root",
   password:"",
-  database: "collage"
-};
+  database: "college"
+}
 
 //pool creation 
 const dbPool = mysql.createPool(con);
@@ -141,8 +141,7 @@ app.post("/login", function(req, res)
               {
                 if(results[0].allow === 0)
                 {
-                  console.log("Please wait for verification of your account ! ");
-                  res.redirect("/form");
+                  res.render("verification.ejs");
                 }
                 else
                 {
