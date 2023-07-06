@@ -64,16 +64,6 @@ The placement process at our college follows a systematic approach to ensure fai
 
 Please note that the exact process may vary for different companies, and it's essential to stay updated through the website's announcements and notifications.
 
-## 5. Contact Information
-
-For any further assistance or queries, please feel free to reach out to the College Placement Cell. Here are the contact details:
-
-- Email: placement@college.edu
-
-- Phone: +1 123-456-7890
-
-- Office Hours: Monday to Friday, 9:00 AM to 5:00 PM
-
 We hope this website proves to be a valuable resource in your journey towards a successful career. Good luck with your placements!
 
 
