@@ -148,22 +148,15 @@
             </div>
             <small class="text-muted"> This year </small>
           </div>
-
-
-
-
-
-
-
-
-
         </div>
+
+        
           <div class="recent-orders">
             <h2>Companies</h2>
             <div class="progress">
             <div class="course-box">
               <ul>
-                <li class="active">In progress</li>
+                <li id="progressbtn" class="active">In progress</li>
                 <li id="exploreBtn">Explore</li>
                 <li id="incomingbtn">Incoming</li>
                 <li>Finished</li>
@@ -176,6 +169,13 @@
                 </label></li>
               </ul>
               <% for(var i=0; i<companies.length; i++){ %>
+                <% var flag = 0; %>
+                <% for(var j=0; j<cStudent.length; j++){ %>
+                  <% if(companies[i].name === cStudent[j].name) { %>
+                    <% flag = 1; %>
+                  <% } %>
+                <% } %>
+                <% if(flag === 0) { %>
                 <div class="course">
                   <div class="box eligible">
                     <h3><%= companies[i].name %></h3>
@@ -191,21 +191,41 @@
                   </div>
                 </div>
                 <% } %>
-                <% for(var i=0; i<companiesNot.length; i++){ %>
-                  <% var starting = new Date(companiesNot[i].startingDate); %>
-                  <% var ending = new Date(companiesNot[i].endingDate); %>
-                  <% var current = new Date(); %>
-                  <% if(starting>current || current>ending) { %>
-                  <div class="course">
-                    <div class="box">
-                      <h3><%= companiesNot[i].name %></h3>
-                      <p style="color: black;"><%= companiesNot[i].description %></p><br>
-                      <strong >Role: Software Engineer</strong><br>
-                      <strong >Package: <%= companiesNot[i].package %></strong><br>
-                      <i class="fab fa-google" style="color: blue;"></i>
-                    </div>
-                  </div>
+              <% } %>
+
+              <% for(var i=0; i<companies.length; i++){ %>
+                <% var flag = 0; %>
+                <% for(var j=0; j<cStudent.length; j++){ %>
+                  <% if(companies[i].name === cStudent[j].name) { %>
+                    <% flag = 1; %>
                   <% } %>
+                <% } %>
+                <% if(flag === 1) { %>
+                <div class="course">
+                  <div class="box">
+                    <h3><%= companies[i].name %></h3>
+                    <p style="color: black;"><%= companies[i].description %></p><br>
+                    <strong >Role: Software Engineer</strong><br>
+                    <strong >Package: <%= companies[i].package %></strong><br>
+                    <button style="background-color: blue;">Already Applied</button>
+
+                    <i class="fab fa-google" style="color: blue;"></i>
+                  </div>
+                </div>
+                <% } %>
+              <% } %>
+
+              <% for(var i=0; i<companiesNot.length; i++){ %>
+                <div class="course">
+                  <div class="box">
+                    <h3><%= companiesNot[i].name %></h3>
+                    <p style="color: black;"><%= companiesNot[i].description %></p><br>
+                    <strong >Role: Software Engineer</strong><br>
+                    <strong >Package: <%= companiesNot[i].package %></strong><br>
+                    <button style="background-color: blue;">Not Eligible</button>
+                    <i class="fab fa-google" style="color: blue;"></i>
+                  </div>
+                </div>
                 <% } %>
             </div>
           </div>
@@ -226,6 +246,13 @@
                 </label></li>
               </ul>
               <% for(var i=0; i<companies.length; i++){ %>
+                <% var flag = 0; %>
+                <% for(var j=0; j<cStudent.length; j++){ %>
+                  <% if(companies[i].name === cStudent[j].name) { %>
+                    <% flag = 1; %>
+                  <% } %>
+                <% } %>
+                <% if(flag === 0) { %>
                 <div class="course">
                   <div class="box eligible">
                     <h3><%= companies[i].name %></h3>
@@ -241,6 +268,31 @@
                   </div>
                 </div>
                 <% } %>
+              <% } %>
+
+              <% for(var i=0; i<companies.length; i++){ %>
+                <% var flag = 0; %>
+                <% for(var j=0; j<cStudent.length; j++){ %>
+                  <% if(companies[i].name === cStudent[j].name) { %>
+                    <% flag = 1; %>
+                  <% } %>
+                <% } %>
+                <% if(flag === 1) { %>
+                <div class="course">
+                  <div class="box">
+                    <h3><%= companies[i].name %></h3>
+                    <p style="color: black;"><%= companies[i].description %></p><br>
+                    <strong >Role: Software Engineer</strong><br>
+                    <strong >Package: <%= companies[i].package %></strong><br>
+                    <button style="background-color: blue;">Already Applied</button>
+
+                    <i class="fab fa-google" style="color: blue;"></i>
+                  </div>
+                </div>
+                <% } %>
+              <% } %>
+
+
                 <% for(var i=0; i<companiesNot.length; i++){ %>
                   <div class="course">
                     <div class="box">
@@ -248,10 +300,12 @@
                       <p style="color: black;"><%= companiesNot[i].description %></p><br>
                       <strong >Role: Software Engineer</strong><br>
                       <strong >Package: <%= companiesNot[i].package %></strong><br>
+                      <button style="background-color: blue;">Not Eligible</button>
                       <i class="fab fa-google" style="color: blue;"></i>
                     </div>
                   </div>
                   <% } %>
+
                   <% for(var i=0; i<companyPast.length; i++){ %>
                     <div class="course">
                       <div class="box ">
@@ -259,7 +313,7 @@
                         <p style="color: black;"><%= companyPast[i].description %></p><br>
                         <strong >Role: Software Engineer</strong><br>
                         <strong >Package: <%= companyPast[i].package %></strong><br>
-                        
+                        <button style="background-color: blue;">Not Available Now</button>
                         <i class="fab fa-google" style="color: blue;"></i>
                       </div>
                     </div>
@@ -283,22 +337,21 @@
                   <span class="slider round"></span>
                 </label></li>
               </ul>
-
-              <div class="course">
-                <div class="box eligible">
-                  <h3>Hi there</h3>
-                  <p style="color: black;">Past Companies</p><br>
-                  <strong >Role: Software Engineer</strong><br>
-                  <strong >Package: 800000</strong><br>
-
-                  <form action="example@mail.com" method="post">
-                    <button type="submit">Apply</button>
-                  </form>
-
-                  <i class="" style="color: blue;"></i>
-                </div>
-              </div>
-
+                  <% for(var i=0; i<companyPast.length; i++){ %>
+                    <% var current = new Date(); %>
+                    <% if(companyPast[i].startingDate > current){ %>
+                      <div class="course">
+                        <div class="box ">
+                          <h3><%= companyPast[i].name %></h3>
+                          <p style="color: black;"><%= companyPast[i].description %></p><br>
+                          <strong >Role: Software Engineer</strong><br>
+                          <strong >Package: <%= companyPast[i].package %></strong><br>
+                          <button style="background-color: blue;">Not Available Now</button>
+                          <i class="fab fa-google" style="color: blue;"></i>
+                        </div>
+                      </div>
+                    <% } %>
+                    <% } %>
           </div>
 
         </div>    
@@ -333,9 +386,15 @@
             <th class="sortable">comnpany Name</th>
             <th class="sortable">role</th>
             <th class="sortable">Package</th>
-            <th class="sortable">Applied date</th>
-            <th class="sortable">important dates</th>
           </tr>
+          <% for(var i=0; i<cStudent.length; i++){ %>
+            <tr>
+              <td><%= i+1 %></td>
+              <td><%= cStudent[i].name %></td>
+              <td>Software Engineer</td>
+              <td><%= cStudent[i].package %></td>
+            </tr>
+            <% } %>
         </thead>
       </table>
       <a href="#">Show All</a>
@@ -363,7 +422,20 @@
 
         <div class="recent-updates">
           <h2>Recent Updates</h2>
-        
+          <div class="updates">
+            <%for(var i=0; i<notice.length; i++){ %>
+            <div class="update">
+              <div class="profile-photo">
+                <img src= "images/profile-1.jpg" />
+              </div>
+              <div class="message">
+                <p><b><%= notice[i].title %></b> <%= notice[i].notice %></p>
+                <small class="text-muted">2 Minutes Ago</small>
+              </div>
+            </div>
+          </div>
+          <% } %>
+        </div>
         </div>
       </div>
     </div>
@@ -411,9 +483,9 @@
 <script>
   $(document).ready(function() {
     $('#incomingbtn').click(function() {
+      $('.incoming').show();
       $('.explore').hide();
       $('.progress').hide();
-      $('.incoming').show();
     });
   });
 </script>

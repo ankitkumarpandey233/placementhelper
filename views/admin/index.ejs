@@ -13,7 +13,6 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
     <link rel="stylesheet" href="css/Admin.css" />
-    <link rel="stylesheet" href="css/Admin.css" />
     <link rel="stylesheet" href="css/simple-datatable.css" />
 
   <script src="js/simple-datatable.js"></script>
@@ -75,8 +74,6 @@
   </style>
   
   
-  profile
-  
   </head>
   <body>
     <div class="container">
@@ -122,7 +119,11 @@
             <span class="material-icons-sharp"> add </span>
             <h3>  Add Company</h3>
           </a>
-          <a href="/logout">
+          <a href="#" onclick="changeActiveLink(this)">
+            <span class="material-icons-sharp"> add </span>
+            <h3>  Add Notice</h3>
+          </a>
+          <a href="#">
             <span class="material-icons-sharp"> logout </span>
             <h3>Logout</h3>
           </a>
@@ -131,10 +132,6 @@
     <div class="home">
         <main>
           <h1>Dashboard</h1>
-  
-          <div class="date">
-            <input type="date" />
-          </div>
   
           <div class="insights">
             <!-- SALES -->
@@ -241,11 +238,6 @@
       <main>
         <h1>Student Details</h1>
 
-        <div class="date">
-          <input type="date" />
-        </div>
-
-
         <div class="recent-orders">
           <h2>Recent Unverified Student</h2>
           <table id="unverified2">
@@ -312,11 +304,6 @@
       <main>
         <h1>Total Companies</h1>
 
-        <div class="date">
-          <input type="date" />
-        </div>
-
-
         <div class="recent-orders">
           <h2>Total Companies</h2>
           <table id="totalCompanylist">
@@ -328,15 +315,16 @@
                 <th class="sortable">Package</th>
                 <th class="sortable" onclick="toggleVisibility()">Applied Student</th>
               </tr>
+              <% var x = 0; %>
               <% for(var i=0; i<companies.length; i++){ %>
                 <% var ending = new Date(companies[i].endingDate); %>
                 <% var starting = new Date(companies[i].startingDate); %>
                 <% var current = new Date(); %>
-                <% var x = 0; %>
+                
                 <% if(ending>current && current>=starting) { %>
                   <% x++; %>
                 <tr>
-                  <td><%= i+1-x %></td>
+                  <td><%= x %></td>
 
                   <td><%= companies[i].name %></td>
 
@@ -347,11 +335,17 @@
                     <td> NULL </td>
                   <% } %>
 
-                  <td><%= companies[i].package %> LPA</td>
+                  <% if(companies[i].package!=0) { %>
+                    <td><%= companies[i].package %> LPA</td>
+                    <% } %>
+                  <% if(ending===0) {%>
+                    <td> NULL </td>
+                  <% } %>
 
                   <td><button class="detail-button">Applied Students</button></td>
 
                 </tr>
+                
                 <% } %>
               <% } %>
             </thead>
@@ -369,13 +363,14 @@
                 <th class="sortable">Package</th>
                 <th class="sortable">Dates</th>
               </tr>
+              <% var y = 0; %>
               <% for(var i=0; i<companies.length; i++){ %>
                 <% var ending = new Date(companies[i].startingDate); %>
                 <% var current = new Date(); %>
                 <% if(ending>current) { %>
                 <tr>
                   
-                  <td><%= i+1 %></td>
+                  <td><%= ++y %></td>
 
                   <td><%= companies[i].name %></td>
 
@@ -386,7 +381,12 @@
                     <td> NULL </td>
                     <% } %>
 
-                  <td><%= companies[i].package %> LPA</td>
+                    <% if(companies[i].package!=0) { %>
+                      <td><%= companies[i].package %> LPA</td>
+                      <% } %>
+                    <% if(ending===0) {%>
+                      <td> NULL </td>
+                    <% } %>
 
                   <% if(ending!="1970-01-01") { %>
                   <td><%= ending.toISOString().slice(0, 10) %></td>
@@ -486,9 +486,36 @@
           </div>
         </div>
       </main>
-
-
     </div>
+
+    <div class="addNotice">
+
+      <main>
+        <div class="recent-orders" style="margin-top:200px;">
+          <div>
+            <section class="container-form">
+              <!-- <header>Registration Form</header> -->
+              <form action="/Notice" method="post" class="form" style="margin-top:0px;">
+
+                <div class="input-box">
+                  <label>Title</label>
+                  <input type="text" placeholder="Enter a Title" name="title" required />
+                </div>
+        
+                <div class="input-box">
+                  <label>Notice</label>
+                  <input type="text" id="email" placeholder="Enter Notice here" name = "notice" required />
+                  <span id="emailError" style="color: red;"></span>
+                </div>
+                <button id="submitBtn" type="submit">Submit</button>
+              </form>
+              </section>
+          </div>
+        </div>
+      </main>
+    </div>
+
+
 
     <div class="feedback">
       <main>
@@ -501,15 +528,11 @@
 
     <div class="applied">
       <main>
-        <h1>Applied students</h1>
-
-        <div class="date">
-          <input type="date" />
-        </div>
+        <h1>All Companies</h1>
 
 
         <div class="recent-orders">
-          <h2>Applied student</h2>
+          <h2>All Companies</h2>
           <table id="totalCompanylist">
             <thead>
               <tr>
@@ -519,6 +542,32 @@
                 <th class="sortable">Package</th>
                 <th class="sortable" >Applied Student</th>
               </tr>
+
+              <% for(var i=0; i<companies.length; i++){ %>
+                <tr>
+                  <td><%= i+1 %></td>
+
+                  <td><%= companies[i].name %></td>
+
+                  <% if(companies[i].location!=0) { %>
+                    <td><%= companies[i].location %></td>
+                    <% } %>
+                  <% if(ending===0) {%>
+                    <td> NULL </td>
+                  <% } %>
+
+                  <% if(companies[i].package!=0) { %>
+                    <td><%= companies[i].package %> LPA</td>
+                    <% } %>
+                  <% if(ending===0) {%>
+                    <td> NULL </td>
+                  <% } %>
+
+                  <td><button class="detail-button">Applied Students</button></td>
+
+                </tr>
+                
+                <% } %>
             </thead>
           </table>
           <a href="#">Show All</a>
@@ -547,9 +596,20 @@
 
         <div class="recent-updates">
           <h2>Recent Updates</h2>
-          <!-- Add updates div here | JS insertion -->
+          <div class="updates">
+          <%for(var i=0; i<notice.length; i++){ %>
+          <div class="update">
+            <div class="profile-photo">
+              <img src= "images/profile-1.jpg" />
+            </div>
+            <div class="message">
+              <p><b><%= notice[i].title %></b> <%= notice[i].notice %></p>
+              <small class="text-muted">2 Minutes Ago</small>
+            </div>
+          </div>
         </div>
-
+        <% } %>
+      </div>
       </div>
     </div>
     <script>
@@ -569,6 +629,7 @@ studentsLink.addEventListener('click', () => {
   addcompanyDiv.style.display = 'none';
   feedbackDiv.style.display='none';
   appliedDiv.style.display='none';
+  addNoticeDiv.style.display='none';
   // Show the student details div
   studentDetailsDiv.style.display = 'block';
 });
@@ -581,6 +642,7 @@ studentsLink2.addEventListener('click', () => {
   addcompanyDiv.style.display = 'none';
   feedbackDiv.style.display='none';
   appliedDiv.style.display='none';
+  addNoticeDiv.style.display='none';
   // Show the student details div
   homeDiv.style.display = 'block';
 });
@@ -601,6 +663,7 @@ studentsLink3.addEventListener('click', () => {
   addcompanyDiv.style.display = 'none';
   feedbackDiv.style.display='none';
   appliedDiv.style.display='none';
+  addNoticeDiv.style.display='none';
   // Show the student details div
   companyDiv.style.display = 'block';
 });
@@ -619,7 +682,7 @@ studentsLink4.addEventListener('click', () => {
   companyDiv.style.display='none';
   addcompanyDiv.style.display = 'none';
   feedbackDiv.style.display='none';
-
+  addNoticeDiv.style.display='none';
   // Show the student details div
  
   appliedDiv.style.display='block';
@@ -642,6 +705,7 @@ studentsLink5.addEventListener('click', () => {
   companyDiv.style.display='none';
   addcompanyDiv.style.display = 'none';
   appliedDiv.style.display='none';
+  addNoticeDiv.style.display='none';
   // Show the student details div
   feedbackDiv.style.display='block';
 });
@@ -663,9 +727,35 @@ studentsLink6.addEventListener('click', () => {
   companyDiv.style.display='none';
   feedbackDiv.style.display='none';
   appliedDiv.style.display='none';
+  addNoticeDiv.style.display='none';
   // Show the student details div
   addcompanyDiv.style.display = 'block';
 });
+
+
+
+
+
+
+const studentsLink7 = document.querySelector('.sidebar a:nth-child(7)');
+const addNoticeDiv = document.querySelector('.addNotice');
+
+addNoticeDiv.style.display = 'none';
+
+// Add click event listener to the students link
+studentsLink7.addEventListener('click', () => {
+  // Hide the home div
+  homeDiv.style.display = 'none';
+  studentDetailsDiv.style.display = 'none';
+  companyDiv.style.display='none';
+  feedbackDiv.style.display='none';
+  appliedDiv.style.display='none';
+  // Show the student details div
+  addcompanyDiv.style.display = 'none';
+  addNoticeDiv.style.display='block';
+});
+
+
 </script>
 
 

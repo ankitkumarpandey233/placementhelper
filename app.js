@@ -18,7 +18,7 @@ const con ={
   host : "localhost",
   user : "root",
   password:"",
-  database: "college"
+  database: "collage"
 };
 
 //pool creation 
@@ -101,8 +101,6 @@ app.post("/register", function(req, res)
               res.redirect("/");
             }
             console.log('Data inserted successfully!');
-            req.session.username = req.body.email;
-            // emailc = req.body.email;
             res.redirect("/");
           });  
         });  
@@ -236,7 +234,12 @@ app.get('/admin', (req, res) => {
           if (err) {
             res.redirect("/");
           }
-          res.render("admin/index.ejs" , {student : student, verified : verified , companies: companies});
+          dbPool.query('SELECT * FROM notice', (err, notice) => {
+            if (err) {
+              res.redirect("/");
+            }
+          res.render("admin/index.ejs" , {student : student, verified : verified , companies: companies , notice: notice});
+          });
         });
     });
   });
@@ -267,11 +270,6 @@ app.post("/reject/:email", function(req, res)
 
 
 //company section
-
-app.get('/cRegister', (req, res) => {
-  res.render("admin/index.ejs")
-});
-
 
 app.post('/cRegister', (req, res) => {
 
@@ -308,6 +306,26 @@ app.post('/cRegister', (req, res) => {
   
   });
 });
+
+
+//Notice board section
+
+app.post('/Notice', (req, res) => {
+  const notice1 ={
+    title : req.body.title,
+    notice : req.body.notice
+  };
+
+  dbPool.query('INSERT INTO notice SET ?', notice1, (err, result) => {
+    if (err) {
+      console.error('Error inserting data:', err);
+      res.redirect("/");
+    }
+    console.log('Data inserted successfully!');
+    res.redirect("/admin")
+  });  
+});
+
 
 
 
@@ -348,16 +366,49 @@ app.get('/students', requireAuth ,(req, res) => {
           if (err) {
             res.redirect("/");
           }
-          dbPool.query('SELECT * FROM companies WHERE cgpa <= ? AND marks10 <= ? AND marks12 <= ? AND (startingDate > ? OR endingDate < ?)', [results[0].cgpa , results[0].marks10 , results[0].marks12 , current , current], (err, companyPast) => {
-            if (err) {
-              res.redirect("/");
-            }
-            dbPool.query('SELECT * FROM companies WHERE cgpa > ? OR marks10 > ? OR marks12 > ?', [results[0].cgpa , results[0].marks10 , results[0].marks12], (err, companyNot) => {
+            dbPool.query('SELECT * FROM companies WHERE (cgpa > ? OR marks10 > ? OR marks12 > ?) AND startingDate <= ? AND endingDate >= ?', [results[0].cgpa , results[0].marks10 , results[0].marks12 , current , current], (err, companyNot) => {
               if (err) {
                 res.redirect("/");
               }
-
-            res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast});
+              dbPool.query('SELECT * FROM companies WHERE  startingDate > ? OR endingDate < ?', [ current , current], (err, companyPast) => {
+              if (err) {
+                res.redirect("/");
+              }
+              dbPool.query('SELECT * FROM notice', (err, notice) => {
+                if (err) {
+                  res.redirect("/");
+                }
+              dbPool.query('SELECT * FROM applied WHERE studentEmail = ?',req.session.username , (err, c) => {
+                if (err) {
+                  res.redirect("/");
+                }
+                var cStudent = [];
+                for(var i=0; i<c.length; i++)
+                {
+                  cStudent.push(c[i].companyName);
+                }
+                
+                if(cStudent.length != 0)
+                {
+                  dbPool.query('SELECT * FROM companies WHERE name IN (?)', [cStudent] , (err, comp) => {
+                    if (err) {
+                      res.redirect("/");
+                    }
+                    else{
+                      if(comp != undefined)
+                      {
+                        cStudent = comp;
+                      }
+                      console.log(cStudent);
+                      res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , notice: notice});   
+                    } 
+                  });
+                }
+                else{
+                  res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , sCompanies: c , notice: notice});
+                }
+              });
+            });
             });
           });
         });
