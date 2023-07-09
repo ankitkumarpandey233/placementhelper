@@ -18,7 +18,7 @@ const con ={
   host : "localhost",
   user : "root",
   password:"",
-  database: "college"
+  database: "collage"
 }
 
 //pool creation 
@@ -101,7 +101,7 @@ app.post("/register", function(req, res)
               res.redirect("/");
             }
             console.log('Data inserted successfully!');
-            res.redirect("/");
+            res.redirect("/verified");
           });  
         });  
       }
@@ -110,7 +110,9 @@ app.post("/register", function(req, res)
 
 
 
-
+app.get("/verified" , function(req , res){
+  res.render("verification.ejs");
+});
 
 
 //login
@@ -141,7 +143,7 @@ app.post("/login", function(req, res)
               {
                 if(results[0].allow === 0)
                 {
-                  res.render("verification.ejs");
+                  res.redirect("/");
                 }
                 else
                 {
@@ -170,7 +172,6 @@ app.get('/logout', (req, res) => {
       
       console.log('Error ending session:', err);
     }
-    // emailc=" ";
     res.redirect('/');
   });
 });
