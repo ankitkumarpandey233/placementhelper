@@ -6,9 +6,12 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 var cookieParser = require('cookie-parser');
+const nocache = require('nocache');
+
 
 
 const app = express();
+app.use(nocache());
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
@@ -122,6 +125,10 @@ app.get("/verified" , function(req , res){
 
 //login
 
+app.get("/login", function(req,res){
+  res.render("form")
+})
+
 app.post("/login", function(req, res)
 {
       const name = req.body.email;
@@ -177,6 +184,9 @@ app.get('/logout', (req, res) => {
       
       console.log('Error ending session:', err);
     }
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.header('Expires', '-1');
+    res.header('Pragma', 'no-cache');
     res.clearCookie('user_sid');
     res.redirect('/');
   });
@@ -408,7 +418,7 @@ app.get('/students', requireAuth ,(req, res) => {
                       {
                         cStudent = comp;
                       }
-                      console.log(cStudent);
+                      //console.log(cStudent);
                       res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , notice: notice});   
                     } 
                   });
