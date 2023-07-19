@@ -5,6 +5,8 @@ const mysql = require("mysql");
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
+var cookieParser = require('cookie-parser');
+
 
 const app = express();
 
@@ -21,17 +23,20 @@ const con ={
   database: "college"
 }
 
+app.use(cookieParser());
+
 //pool creation 
 const dbPool = mysql.createPool(con);
 
 // Create a MySQL session store
 const sessionStore = new MySQLStore({
-  expiration: 86400000, // Session expiration time in milliseconds (e.g., 1 day)
+  expiration: 8640000   , // Session expiration time in milliseconds (e.g., 1 day)
   createDatabaseTable: true, // Create the session table if it doesn't exist
 }, dbPool);
 
 // Configure session middleware
 app.use(session({
+  key: 'user_sid',
   secret: 'your_session_secret',
   resave: false,
   saveUninitialized: false,
@@ -172,6 +177,7 @@ app.get('/logout', (req, res) => {
       
       console.log('Error ending session:', err);
     }
+    res.clearCookie('user_sid');
     res.redirect('/');
   });
 });
@@ -356,6 +362,9 @@ function requireAuth(req, res, next) {
 }
 
 app.get('/students', requireAuth ,(req, res) => {
+  
+  
+  
 
       dbPool.query('SELECT * FROM student WHERE email = ?', req.session.username , (err, results) => {
         if (err) {
