@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Dashboard</title>
 
+    <!-- <script type = "text/javascript" >
+      function preventBack(){window.history.forward();}
+       setTimeout("preventBack()");
+       window.onunload=function(){null};
+   </script> -->
+
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
       rel="stylesheet"
@@ -549,9 +555,12 @@ studentsLink3.addEventListener('click', () => {
   appliedDiv.style.display = 'block';
 });
 
-setTimeout(() => {
+function reloadPageAfterDelay(delayInMilliseconds) {
+  setTimeout(() => {
     window.location.reload();
-  }, 500);
+  }, delayInMilliseconds);
+}
+
 
 </script>
   </body>
