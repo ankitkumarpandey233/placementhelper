@@ -51,4 +51,9 @@ The Placement Cell at our college is dedicated to bridging the gap between stude
 
 
 
+<a href="https://github.com/ankitkumarpandey233/placementhelper/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ankitkumarpandey233/placementhelper" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
 
