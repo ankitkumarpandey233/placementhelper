@@ -23,7 +23,9 @@ Welcome to the U V Patel College Placement Cell website! This website is designe
 
 1. About the Placement Cell
 
-2. Installation
+2. Features
+
+3. Installation 
 
 ## 1. About the Placement Cell
 
@@ -34,6 +36,26 @@ The Placement Cell at our college is dedicated to bridging the gap between stude
 <p align="left"> <a href="https://getbootstrap.com" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/> </a> <a href="https://www.w3schools.com/css/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://expressjs.com" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> <a href="https://nodejs.org" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> </a>  </p>
 
 
+
+
+## Features 
+
+1. Landing Page
+   - Landing page with `Login` and `Register`
+     
+     ![Screenshot 2023-07-21 095946](https://github.com/ankitkumarpandey233/placementhelper/assets/95532666/1cadb111-99ae-46a0-9eb2-a0a136efc97e)
+
+2. Student Dashboard
+   - Student Dashboard where they where they can apply to companies and check apply status
+     
+      ![Screenshot 2023-07-21 100515](https://github.com/ankitkumarpandey233/placementhelper/assets/95532666/9915066a-02a6-4bf3-b885-ec2afe5fa247)
+
+3. Admin Dashboard
+
+   ![Screenshot 2023-07-21 100847](https://github.com/ankitkumarpandey233/placementhelper/assets/95532666/e1666001-99ad-4d3d-b628-774575eb1609)
+
+   
+   
 ## Instructions
 
 
