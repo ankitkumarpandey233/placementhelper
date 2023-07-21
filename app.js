@@ -501,7 +501,7 @@ app.get('/form', (req, res) => {
 // Fetch and display the image
 app.get('/image', (req, res) => {
   const sql = 'SELECT image FROM student ORDER BY id DESC LIMIT 1';
-  db.query(sql, (err, result) => {
+  dbPool.query(sql, (err, result) => {
     if (err) {
       console.error('Failed to fetch the image: ', err);
       res.status(500).send('Internal server error.');
