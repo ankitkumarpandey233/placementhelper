@@ -30,6 +30,7 @@ Welcome to the U V Patel College Placement Cell website! This website is designe
 ## 1. About the Placement Cell
 
 The Placement Cell at our college is dedicated to bridging the gap between students and potential employers. Our mission is to assist students in securing excellent job opportunities and internships by organizing various activities such as campus placements, recruitment drives, and career development programs. Through this website, we aim to provide you with easy access to essential resources and information related to placements.
+Explore our extensive database of internships and job openings from leading companies in various industries. You'll find opportunities that cater to different academic backgrounds and interests, ensuring that there's something for everyone. Stay up to date with the latest trends, industry insights, and valuable resouces. Here are some study materials you can go through
 
 
 ### Tools and Languages: 
@@ -51,8 +52,9 @@ The Placement Cell at our college is dedicated to bridging the gap between stude
       ![Screenshot 2023-07-21 100515](https://github.com/ankitkumarpandey233/placementhelper/assets/95532666/9915066a-02a6-4bf3-b885-ec2afe5fa247)
 
 3. Admin Dashboard
+   - Admin Dashboard for managing students and companies
 
-   ![Screenshot 2023-07-21 100847](https://github.com/ankitkumarpandey233/placementhelper/assets/95532666/e1666001-99ad-4d3d-b628-774575eb1609)
+      ![Screenshot 2023-07-21 100847](https://github.com/ankitkumarpandey233/placementhelper/assets/95532666/e1666001-99ad-4d3d-b628-774575eb1609)
 
    
    
