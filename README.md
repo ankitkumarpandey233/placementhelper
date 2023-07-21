@@ -57,5 +57,4 @@ The Placement Cell at our college is dedicated to bridging the gap between stude
   <img src="https://contrib.rocks/image?repo=ankitkumarpandey233/placementhelper" />
 </a>
 
-Made with [contrib.rocks](https://contrib.rocks).
 
