@@ -331,15 +331,15 @@
                   <% if(companies[i].location!=0) { %>
                     <td><%= companies[i].location %></td>
                     <% } %>
-                  <% if(ending===0) {%>
-                    <td> NULL </td>
+                  <% if(companies[i].location===0) {%>
+                    <td> N/A </td>
                   <% } %>
 
                   <% if(companies[i].package!=0) { %>
                     <td><%= companies[i].package %> LPA</td>
                     <% } %>
-                  <% if(ending===0) {%>
-                    <td> NULL </td>
+                  <% if(companies[i].package===0) {%>
+                    <td> N/A </td>
                   <% } %>
 
                   <td><button class="detail-button">Applied Students</button></td>
@@ -377,16 +377,16 @@
                   <% if(companies[i].location!=0) { %>
                     <td><%= companies[i].location %></td>
                     <% } %>
-                    <% if(ending===0) {%>
-                    <td> NULL </td>
-                    <% } %>
+                  <% if(companies[i].location===0) {%>
+                    <td> N/A </td>
+                  <% } %>
 
-                    <% if(companies[i].package!=0) { %>
-                      <td><%= companies[i].package %> LPA</td>
-                      <% } %>
-                    <% if(ending===0) {%>
-                      <td> NULL </td>
+                  <% if(companies[i].package!=0) { %>
+                    <td><%= companies[i].package %> LPA</td>
                     <% } %>
+                  <% if(companies[i].package===0) {%>
+                    <td> N/A </td>
+                  <% } %>
 
                   <% if(ending!="1970-01-01") { %>
                   <td><%= ending.toISOString().slice(0, 10) %></td>
@@ -551,15 +551,15 @@
                   <% if(companies[i].location!=0) { %>
                     <td><%= companies[i].location %></td>
                     <% } %>
-                  <% if(ending===0) {%>
-                    <td> NULL </td>
+                  <% if(companies[i].location===0) {%>
+                    <td> N/A </td>
                   <% } %>
 
                   <% if(companies[i].package!=0) { %>
                     <td><%= companies[i].package %> LPA</td>
                     <% } %>
-                  <% if(ending===0) {%>
-                    <td> NULL </td>
+                  <% if(companies[i].package===0) {%>
+                    <td> N/A </td>
                   <% } %>
 
                   <td><button class="detail-button">Applied Students</button></td>

@@ -38,7 +38,8 @@ CREATE TABLE `companies` (
   `location` varchar(200) NOT NULL,
   `package` int(11)  NOT 0,
   `startingDate` date NOT NULL,
-  `endingDate` date NOT NULL
+  `endingDate` date NOT NULL,
+  `round` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
