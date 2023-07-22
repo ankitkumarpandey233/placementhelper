@@ -32,7 +32,10 @@ CREATE TABLE `applied` (
   `studentName` varchar(100) DEFAULT NULL,
   `companyEmail` varchar(100) DEFAULT NULL,
   `companyName` varchar(100) DEFAULT NULL,
-  `studentEnrollment` varchar(100) DEFAULT NULL
+  `studentEnrollment` varchar(100) DEFAULT NULL,
+  `next` int(11) NOT NULL DEFAULT 0,
+  `round` int(11) NOT NULL DEFAULT 0,
+  `selected` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

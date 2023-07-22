@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard</title>
 
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
-      rel="stylesheet"
-    />
-    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
-    <link rel="stylesheet" href="css/Admin.css" />
-    <link rel="stylesheet" href="css/simple-datatable.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+  <link rel="stylesheet" href="css/Admin.css" />
+  <link rel="stylesheet" href="css/simple-datatable.css" />
 
   <script src="js/simple-datatable.js"></script>
   <style>
-    .add-button, .remove-button {
+    .add-button,
+    .remove-button {
       width: 50px;
       padding: 8px 16px;
       border-radius: 4px;
@@ -25,22 +24,24 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       margin-right: 10px;
     }
-  
-    .add-button:last-child, .remove-button:last-child {
+
+    .add-button:last-child,
+    .remove-button:last-child {
       margin-right: 0;
     }
-  
+
     .add-button {
       background-color: #4CAF50;
       color: white;
     }
-  
+
     .remove-button {
       background-color: #FF5722;
       color: white;
     }
-  
-    .add-button:hover, .remove-button:hover {
+
+    .add-button:hover,
+    .remove-button:hover {
       background-color: #45a049;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
       cursor: pointer;
@@ -48,169 +49,340 @@
 
 
     .detail-button {
-    background-color: #4287f5; /* Lighter blue color */
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-  }
+      background-color: #4287f5;
+      /* Lighter blue color */
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
 
-  .detail-button:hover{
-    background-color: #1f5bcf; /* Darker shade of blue on hover */
-    cursor: pointer;
-  }
-
-
-
-  .recent-orders{
-    overflow: auto;
-  }
+    .detail-button:hover {
+      background-color: #1f5bcf;
+      /* Darker shade of blue on hover */
+      cursor: pointer;
+    }
 
 
-  .applied {
+
+    .recent-orders {
+      overflow: auto;
+    }
+
+
+    .applied {
       display: none;
     }
   </style>
-  
-  
-  </head>
-  <body>
-    <div class="container">
-      <aside>
-        <div class="top">
-          <div class="logo">
-            <img src="images/favicon-16x16.png" alt="Logo" />
-            <h2 style="
+
+
+</head>
+
+<body>
+  <div class="container">
+    <aside>
+      <div class="top">
+        <div class="logo">
+          <img src="images/favicon-16x16.png" alt="Logo" />
+          <h2 style="
             font-size: 17px;
             font-weight: bold;
             color: blue;
         ">Placement Helper</h2>
-          </div>
-          <div class="close" id="close-btn">
-            <span class="material-icons-sharp"> close </span>
-          </div>
         </div>
-
-        <div class="sidebar">
-          <a href="#" class="active" onclick="changeActiveLink(this)">
-            <span class="material-icons-sharp"> dashboard </span>
-            <h3>Dashboard</h3>
-          </a>
-          <a href="#">
-            <span class="material-icons-sharp"> person_outline </span>
-            <h3>Students</h3>
-          </a>
-
-          <a href="#">
-            <span class="material-icons-sharp"> insights </span>
-            <h3>Company Details</h3>
-          </a>
+        <div class="close" id="close-btn">
+          <span class="material-icons-sharp"> close </span>
         </div>
-      </aside>
+      </div>
+
+      <div class="sidebar">
+        <a href="#" class="active" onclick="changeActiveLink(this)">
+          <span class="material-icons-sharp"> dashboard </span>
+          <h3>Dashboard</h3>
+        </a>
+        <a href="#" onclick="changeActiveLink(this)">
+          <span class="material-icons-sharp"> person_outline </span>
+          <h3>Students</h3>
+        </a>
+
+        <a href="#" onclick="changeActiveLink(this)">
+          <span class="material-icons-sharp"> insights </span>
+          <h3>Next Round</h3>
+        </a>
+      </div>
+    </aside>
     <div class="home">
-        <main>
-          <h1>Dashboard</h1>
-  
-          <div class="insights">
-            <!-- SALES -->
-            <div class="sales">
-              <span class="material-icons-sharp"> analytics </span>
-              <div class="middle">
-                <div class="left">
-                  <h3>Total Verified Students</h3>
-                  <h1>8</h1>
-                </div>
-                <div class="progress">
-                  <svg>
-                    <circle cx="38" cy="38" r="36"></circle>
-                  </svg>
-                  <div class="number">
-                    <p>81%</p>
-                  </div>
+      <main>
+        <h1>Dashboard</h1>
+
+        <div class="insights">
+          <!-- SALES -->
+          <div class="sales">
+            <span class="material-icons-sharp"> analytics </span>
+            <div class="middle">
+              <div class="left">
+                <h3>Total Verified Students</h3>
+                <h1>8</h1>
+              </div>
+              <div class="progress">
+                <svg>
+                  <circle cx="38" cy="38" r="36"></circle>
+                </svg>
+                <div class="number">
+                  <p>81%</p>
                 </div>
               </div>
-              <small class="text-muted">This Year</small>
             </div>
-  
-            <!-- EXPENSES -->
-            <div class="expenses">
-              <span class="material-icons-sharp"> bar_chart </span>
-              <div class="middle">
-                <div class="left">
-                  <h3>Total Unverified students</h3>
-                  <h1>9</h1>
-                </div>
-                <div class="progress">
-                  <svg>
-                    <circle cx="38" cy="38" r="36"></circle>
-                  </svg>
-                  <div class="number">
-                    <p>62%</p>
-                  </div>
-                </div>
-              </div>
-              <small class="text-muted">This Year</small>
-            </div>
-  
-            <!-- INCOME -->
-            <div class="income">
-              <span class="material-icons-sharp"> stacked_line_chart </span>
-              <div class="middle">
-                <div class="left">
-                  <h3>Total Companies</h3>
-                  <h1>70</h1>
-                </div>
-                <div class="progress">
-                  <svg>
-                    <circle cx="38" cy="38" r="36"></circle>
-                  </svg>
-                  <div class="number">
-                    <p>44%</p>
-                  </div>
-                </div>
-              </div>
-              <small class="text-muted">This Year</small>
-            </div>
+            <small class="text-muted">This Year</small>
           </div>
-  
-          <div class="recent-orders" style="overflow: auto;">
-            <h2>Unverified Student</h2>
-            <table id="unverified">
-              <thead>
-                <tr>
-                  <th class="sortable">ID</th>
-                  <th class="sortable">Name</th>
-                  <th class="sortable">Enrollment No</th>
-                  <th class="sortable">Email</th>
-                  <th class="sortable">Resume</th>
-                  <th>Action</th>
-                </tr>
-                <% for(var i=0; i<10; i++){ %>
 
-                <tr>
-                  <td><%= i+1 %></td>
-                  <td>Dhiraj</td>
-                  <td>21012011053</td>
-                  <td>dhirajmohata86@gmail.com</td>
-                  <td><button class="detail-button">Resume</button></td>
+          <!-- EXPENSES -->
+          <div class="expenses">
+            <span class="material-icons-sharp"> bar_chart </span>
+            <div class="middle">
+              <div class="left">
+                <h3>Total Unverified students</h3>
+                <h1>9</h1>
+              </div>
+              <div class="progress">
+                <svg>
+                  <circle cx="38" cy="38" r="36"></circle>
+                </svg>
+                <div class="number">
+                  <p>62%</p>
+                </div>
+              </div>
+            </div>
+            <small class="text-muted">This Year</small>
+          </div>
 
-                  <td>
+          <!-- INCOME -->
+          <div class="income">
+            <span class="material-icons-sharp"> stacked_line_chart </span>
+            <div class="middle">
+              <div class="left">
+                <h3>Total Companies</h3>
+                <h1>70</h1>
+              </div>
+              <div class="progress">
+                <svg>
+                  <circle cx="38" cy="38" r="36"></circle>
+                </svg>
+                <div class="number">
+                  <p>44%</p>
+                </div>
+              </div>
+            </div>
+            <small class="text-muted">This Year</small>
+          </div>
+        </div>
+
+        <div class="recent-orders" style="overflow: auto;">
+          <h2>Applied Student</h2>
+          <table id="unverified">
+            <thead>
+              <tr>
+                <th class="sortable" style="font-size: 18px;">ID</th>
+                <th class="sortable" style="font-size: 18px;">Name</th>
+                <th class="sortable" style="font-size: 18px;">Enrollment No</th>
+                <th class="sortable" style="font-size: 18px;">Email</th>
+                <th class="sortable" style="font-size: 18px;">Resume</th>
+                <th class="sortable" style="font-size: 18px;">Accept</th>
+                <th class="sortable" style="font-size: 18px;">Reject</th>
+              </tr>
+              <tr>
+                <td style="color: white;">1</td>
+              </tr>
+              <% for(var i=0; i<students.length; i++){ %>
+                <% if(students[i].selected===0) {%>
+                  <tr>
+                    <td>
+                      <%= i+1 %>
+                    </td>
+                    <td>
+                      <%= students[i].studentName %>
+                    </td>
+                    <td>
+                      <%= students[i].studentEnrollment %>
+                    </td>
+                    <td>
+                      <%= students[i].studentEmail %>
+                    </td>
+                    <td><button class="detail-button">Resume</button></td>
+
+                    <td>
+                      <form action="/accepted/<%= students[i].studentEmail %>" method="post">
                         <button class="add-button" type="submit">&#10004;</button>
+                      </form>
+                    </td>
+                    <td>
+                      <form action="/rejected/<%= students[i].studentEmail %>" method="post">
+                        <button class="remove-button" type="submit">&#10008;</button>
+                      </form>
+                    </td>
+                  </tr>
+                  <% } %>
+                    <% } %>
+            </thead>
+          </table>
+          <a href="#">Show All</a>
+        </div>
+        <% if(students.length===0) {%>
+          <div class="recent-orders" style="overflow: auto;">
+            <h2>Ready To Go To Next Round</h2>
+            <br><br>
+            <form action="/next" method="post">
+              <button class="detail-button" type="submit" style="font-size: 50px;">Next Round</button>
+            </form>
+            <p style="color: red;">*It will node come to this round again please think before.</p>
+
+            <form action="/selected %>" method="post">
+              <button class="add-button" type="submit">&#10004;</button>
+            </form>
+          </div>
+          <% } %>
+      </main>
+    </div>
+
+    <div class="studentdetails">
+      <main>
+        <h1>Student Details</h1>
+
+        <div class="recent-orders" style="overflow: auto;">
+          <h2>Rejected Student</h2>
+          <table id="unverified">
+            <thead>
+              <tr>
+                <th class="sortable" style="font-size: 18px;">ID</th>
+                <th class="sortable" style="font-size: 18px;">Name</th>
+                <th class="sortable" style="font-size: 18px;">Email</th>
+                <th class="sortable" style="font-size: 18px;">Resume</th>
+                <th class="sortable" style="font-size: 18px;">Round</th>
+                <th class="sortable" style="font-size: 18px;">Accept</th>
+              </tr>
+              <tr>
+                <td style="color: white;">1</td>
+              </tr>
+              <% for(var i=0; i<rejected.length; i++){ %>
+
+                <tr>
+                  <td>
+                    <%= i+1 %>
                   </td>
                   <td>
-                      <button class="remove-button" type="submit">&#10008;</button>
+                    <%= rejected[i].studentName %>
                   </td>
-                       
+                  <td>
+                    <%= rejected[i].studentEmail %>
+                  </td>
+                  <td><button class="detail-button">Resume</button></td>
+                  <td>
+                    <%= rejected[i].round %>
+                  </td>
+                  <td>
+                    <button class="add-button" type="submit">&#10004;</button>
+                  </td>
+
                 </tr>
                 <% } %>
-              </thead>
-            </table>
-            <a href="#">Show All</a>
-          </div>
-        </main>
-      </div>
-    
+            </thead>
+          </table>
+          <a href="#">Show All</a>
+        </div>
+
+        <div class="recent-orders" style="overflow: auto;">
+          <h2>Verified Student</h2>
+          <table id="unverified">
+            <thead>
+              <tr>
+                <th class="sortable" style="font-size: 18px;">ID</th>
+                <th class="sortable" style="font-size: 18px;">Name</th>
+                <th class="sortable" style="font-size: 18px;">Enrollment No</th>
+                <th class="sortable" style="font-size: 18px;">Email</th>
+                <th class="sortable" style="font-size: 18px;">Resume</th>
+                <th class="sortable" style="font-size: 18px;">Reject</th>
+              </tr>
+              <tr>
+                <td style="color: white;">1</td>
+              </tr>
+
+              <% for(var i=0; i<accepted.length; i++){ %>
+                <% if(accepted[i].selected===0) {%>
+                  <tr>
+                    <td>
+                      <%= i+1 %>
+                    </td>
+                    <td>
+                      <%= accepted[i].studentName %>
+                    </td>
+                    <td>
+                      <%= accepted[i].studentEnrollment %>
+                    </td>
+                    <td>
+                      <%= accepted[i].studentEmail %>
+                    </td>
+                    <td>
+                      <button class="detail-button">Resume</button>
+                    </td>
+                    <td>
+                      <form action="/rejected/<%= accepted[i].studentEmail %>" method="post">
+                        <button class="remove-button" type="submit">&#10008;</button>
+                      </form>
+                    </td>
+                  </tr>
+                  <% } %>
+                    <% } %>
+            </thead>
+          </table>
+          <a href="#">Show All</a>
+        </div>
+      </main>
+    </div>
+
+    <div class="companylist">
+      <main>
+        <h1>SELECTED STUDENTS</h1>
+        <div class="recent-orders" style="overflow: auto;">
+          <table id="unverified">
+            <thead>
+              <tr>
+                <th class="sortable" style="font-size: 18px;">ID</th>
+                <th class="sortable" style="font-size: 18px;">Name</th>
+                <th class="sortable" style="font-size: 18px;">Enrollment No</th>
+                <th class="sortable" style="font-size: 18px;">Email</th>
+                <th class="sortable" style="font-size: 18px;">Resume</th>
+              </tr>
+              <tr>
+                <td style="color: white;">1</td>
+              </tr>
+
+              <% for(var i=0; i<selected.length; i++){ %>
+                <tr>
+                  <td>
+                    <%= i+1 %>
+                  </td>
+                  <td>
+                    <%= selected[i].studentName %>
+                  </td>
+                  <td>
+                    <%= selected[i].studentEnrollment %>
+                  </td>
+                  <td>
+                    <%= selected[i].studentEmail %>
+                  </td>
+                  <td>
+                    <button class="detail-button">Resume</button>
+                  </td>
+                </tr>
+                <% } %>
+            </thead>
+          </table>
+          <a href="#">Show All</a>
+        </div>
+      </main>
+    </div>
+
 
       <div class="right">
         <div class="top">
@@ -219,7 +391,7 @@
           </button>
           <div class="profile">
             <div class="info">
-              <p>Hey, <b>Placment Cordinator</b></p>
+              <p>Hey, <b>Placement Cordinator</b></p>
               <small class="text-muted">Admin</small>
             </div>
             <div class="profile-photo">
@@ -227,25 +399,64 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="recent-updates">
-          <h2>Recent Updates</h2>
-          <div class="updates">
-            <div class="update">
-            <%for(var i=0; i<2; i++){ %>
-              <div class="profile-photo">
-                <img src= "images/profile-1.jpg" />
-              </div>
-              <div class="message">
-                <p><b>google</b> you have got to google!!!</p>
-                <small class="text-muted">2 Minutes Ago</small>
-              </div>
-          <% } %>
-        </div>
-        </div>
+      <div class="recent-updates">
+        <h2>Recent Updates</h2>
+        <div class="updates">
+          <div class="update">
+          <%for(var i=0; i<2; i++){ %>
+            <div class="profile-photo">
+              <img src="images/profile-1.jpg" />
+            </div>
+            <div class="message">
+              <p><b>google</b> you have got to google!!!</p>
+              <small class="text-muted">2 Minutes Ago</small>
+            </div>
+        <% } %>
+      </div>
       </div>
     </div>
+  </div>
+  
+    <script>
+      // Get the necessary elements
+      const studentsLink = document.querySelector('.sidebar a:nth-child(2)');
+      const studentsLink2 = document.querySelector('.sidebar a:nth-child(1)');
+      const studentsLink3 = document.querySelector('.sidebar a:nth-child(3)');
+      const homeDiv = document.querySelector('.home');
+      const studentDetailsDiv = document.querySelector('.studentdetails');
+      const companyDiv = document.querySelector('.companylist');
+      studentDetailsDiv.style.display = 'none';
+      companyDiv.style.display = 'none';
+
+
+      // Add click event listener to the students link
+      studentsLink.addEventListener('click', () => {
+        // Hide the home div
+        homeDiv.style.display = 'none';
+        companyDiv.style.display = 'none';
+        studentDetailsDiv.style.display = 'block';
+      });
+
+      // Add click event listener to the students link
+      studentsLink2.addEventListener('click', () => {
+        // Hide the home div
+        studentDetailsDiv.style.display = 'none';
+        companyDiv.style.display = 'none';
+        homeDiv.style.display = 'block';
+      });
+
+      studentsLink3.addEventListener('click', () => {
+        // Hide the home div
+        studentDetailsDiv.style.display = 'none';
+        companyDiv.style.display = 'block';
+        homeDiv.style.display = 'none';
+      });
+
+    </script>
     <script src="js/constants/update-data2.js"></script>
     <script src="js/index.js"></script>
-  </body>
+</body>
+
 </html>
