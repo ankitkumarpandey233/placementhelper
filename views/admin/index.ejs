@@ -159,7 +159,7 @@
               <span class="material-icons-sharp"> bar_chart </span>
               <div class="middle">
                 <div class="left">
-                  <h3>Total unverfied students</h3>
+                  <h3>Total Unverified students</h3>
                   <h1><%= student.length %></h1>
                 </div>
                 <div class="progress">
@@ -196,7 +196,7 @@
           </div>
   
           <div class="recent-orders" style="overflow: auto;">
-            <h2>Recent Unverified Student</h2>
+            <h2>Unverified Student</h2>
             <table id="unverified">
               <thead>
                 <tr>
@@ -239,7 +239,7 @@
         <h1>Student Details</h1>
 
         <div class="recent-orders">
-          <h2>Recent Unverified Student</h2>
+          <h2>Unverified Student</h2>
           <table id="unverified2">
             <thead>
               <tr>
@@ -305,7 +305,7 @@
         <h1>Total Companies</h1>
 
         <div class="recent-orders">
-          <h2>Total Companies</h2>
+          <h2>Ongoing Companies</h2>
           <table id="totalCompanylist">
             <thead>
               <tr>
@@ -532,7 +532,6 @@
 
 
         <div class="recent-orders">
-          <h2>All Companies</h2>
           <table id="totalCompanylist">
             <thead>
               <tr>
@@ -597,19 +596,18 @@
         <div class="recent-updates">
           <h2>Recent Updates</h2>
           <div class="updates">
-          <%for(var i=0; i<notice.length; i++){ %>
-          <div class="update">
-            <div class="profile-photo">
-              <img src= "images/profile-1.jpg" />
-            </div>
-            <div class="message">
-              <p><b><%= notice[i].title %></b> <%= notice[i].notice %></p>
-              <small class="text-muted">2 Minutes Ago</small>
-            </div>
-          </div>
+            <div class="update">
+            <%for(var i=0; i<notice.length; i++){ %>
+              <div class="profile-photo">
+                <img src= "images/profile-1.jpg" />
+              </div>
+              <div class="message">
+                <p><b><%= notice[i].title %></b> <%= notice[i].notice %></p>
+                <small class="text-muted">2 Minutes Ago</small>
+              </div>
+          <% } %>
         </div>
-        <% } %>
-      </div>
+        </div>
       </div>
     </div>
     <script>

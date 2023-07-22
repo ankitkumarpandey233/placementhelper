@@ -475,6 +475,24 @@ app.post("/applied/:email", function(req, res)
 
 
 
+//companies panel
+
+app.get('/company', (req, res) => {
+  res.render('company/company.ejs');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // front panel
 
