@@ -413,14 +413,22 @@ app.get('/students', requireAuth ,(req, res) => {
                     if (err) {
                       res.redirect("/");
                     }
-                    else{
                       if(comp != undefined)
                       {
                         cStudent = comp;
                       }
-                      //console.log(cStudent);
-                      res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , notice: notice});   
-                    } 
+                      dbPool.query('SELECT * FROM rejected WHERE studentEmail = ?',req.session.username , (err, co) => {
+                        if (err) {
+                          res.redirect("/");
+                        }
+                        var sCompany = [];
+                        for(var i=0; i<co.length; i++)
+                        {
+                          sCompany.push(co[i].companyName);
+                        }
+                        // console.log(sCompany);
+                        res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , notice: notice , sCompany: sCompany});   
+                      });
                   });
                 }
                 else{
