@@ -10,6 +10,7 @@ const nocache = require('nocache');
 
 
 
+
 const app = express();
 app.use(nocache());
 
@@ -406,6 +407,15 @@ app.get('/students', requireAuth ,(req, res) => {
                 {
                   cStudent.push(c[i].companyName);
                 }
+                dbPool.query('SELECT * FROM rejected WHERE studentEmail = ?',req.session.username , (err, co) => {
+                  if (err) {
+                    res.redirect("/");
+                  }
+                  var sCompany = [];
+                  for(var i=0; i<co.length; i++)
+                  {
+                    sCompany.push(co[i].companyName);
+                  }
                 
                 if(cStudent.length != 0)
                 {
@@ -417,24 +427,17 @@ app.get('/students', requireAuth ,(req, res) => {
                       {
                         cStudent = comp;
                       }
-                      dbPool.query('SELECT * FROM rejected WHERE studentEmail = ?',req.session.username , (err, co) => {
-                        if (err) {
-                          res.redirect("/");
-                        }
-                        var sCompany = [];
-                        for(var i=0; i<co.length; i++)
-                        {
-                          sCompany.push(co[i].companyName);
-                        }
+                      
                         // console.log(sCompany);
                         res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , notice: notice , sCompany: sCompany});   
                       });
-                  });
+                  
                 }
                 else{
-                  res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , sCompanies: c , notice: notice});
+                  res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , sCompanies: sCompany , notice: notice});
                 }
               });
+            });
             });
             });
           });
