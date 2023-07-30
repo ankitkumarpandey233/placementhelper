@@ -9,8 +9,6 @@ var cookieParser = require('cookie-parser');
 const nocache = require('nocache');
 
 
-
-
 const app = express();
 app.use(nocache());
 
@@ -590,6 +588,24 @@ app.post('/next', (req, res) => {
 
 
 
+const notes = [
+  {
+    title: 'Mathematics',
+    content: 'This is a note about mathematics.'
+  },
+  {
+    title: 'History',
+    content: 'This is a note about history.'
+  },
+  {
+    title: 'Science',
+    content: 'This is a note about science.'
+  }
+];
+
+app.get('/notes1', (req, res) => {
+  res.render('notes1.ejs');
+});
 
 
 
@@ -626,6 +642,8 @@ app.get("/", function(req, res)
 app.get('/form', (req, res) => {
   res.render('form.ejs');
 });
+
+
 
 
 
