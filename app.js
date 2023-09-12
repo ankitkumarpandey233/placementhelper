@@ -9,8 +9,6 @@ var cookieParser = require('cookie-parser');
 const nocache = require('nocache');
 
 
-
-
 const app = express();
 app.use(nocache());
 
@@ -551,6 +549,7 @@ app.post('/next', (req, res) => {
 });
 });
 
+
 // front panel
 
 //home
@@ -571,6 +570,8 @@ app.get("/", function(req, res)
 app.get('/form', (req, res) => {
   res.render('form.ejs');
 });
+
+
 
 
 
