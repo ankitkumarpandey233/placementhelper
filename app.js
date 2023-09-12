@@ -223,16 +223,7 @@ app.get("/notes", function(req, res)
 
 
 
-
-
-
-
-
-
 // admin panel
-
-
-
 
 
 app.get('/admin', (req, res) => {
@@ -343,22 +334,6 @@ app.post('/Notice', (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // students panel
 
 
@@ -432,7 +407,7 @@ app.get('/students', requireAuth ,(req, res) => {
                   
                 }
                 else{
-                  res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , sCompanies: sCompany , notice: notice});
+                  res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , sCompany: sCompany , notice: notice});
                 }
               });
             });
@@ -474,16 +449,6 @@ app.post("/applied/:email", function(req, res)
 });
 
 
-
-
-
-
-
-
-
-
-
-
 //companies panel
 
 app.get('/company', (req, res) => {
@@ -503,7 +468,7 @@ app.get('/cLogin', (req, res) => {
 });
 
 app.post("/cLogin",(req,res)=>{
-  if(req.body.email === "hp@gmail.com" && req.body.password === "123")
+  if(req.body.email === "dell@gmail.com" && req.body.password === "123")
   {
       req.session.company = req.body.email;
       res.redirect("/company");
@@ -583,43 +548,6 @@ app.post('/next', (req, res) => {
     });
 });
 });
-
-
-
-
-
-const notes = [
-  {
-    title: 'Mathematics',
-    content: 'This is a note about mathematics.'
-  },
-  {
-    title: 'History',
-    content: 'This is a note about history.'
-  },
-  {
-    title: 'Science',
-    content: 'This is a note about science.'
-  }
-];
-
-app.get('/notes1', (req, res) => {
-  res.render('notes1.ejs');
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // front panel
