@@ -572,7 +572,9 @@ app.get('/form', (req, res) => {
 });
 
 
-
+app.get('/notes1', (req, res) => {
+  res.render('notes1.ejs');
+});
 
 
 
