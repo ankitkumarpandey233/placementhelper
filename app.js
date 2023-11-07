@@ -67,11 +67,7 @@ app.use(session({
 
 //register
 
-app.post("/register",upload.fields([
-  { name: 'photo', maxCount: 1 },
-  { name: 'resume', maxCount: 1 },
-]), function(req, res)
-{
+app.post("/register",upload.fields([{ name: 'photo', maxCount: 1 } , { name: 'resume', maxCount: 1 }]), function(req, res)  {
 
     var skills = req.body.skills;
     const serializedArray = JSON.stringify(skills);
@@ -436,34 +432,29 @@ app.get('/students', requireAuth ,(req, res) => {
                     if (err) {
                       res.redirect("/");
                     }
-                      if(comp != undefined)
-                      {
-                        cStudent = comp;
-                      }
+                    if(comp != undefined)
+                    {
+                      cStudent = comp;
+                    }
                       
 
-                        res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , notice: notice , sCompany: sCompany});   
-                      });
-
-                        // console.log(sCompany);
-                        res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , notice: notice , sCompany: sCompany});   
-                      });
-                  
-
+                    res.render("studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , notice: notice , sCompany: sCompany});   
+                  });
                 }
                 else{
-                  res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , sCompany: sCompany , notice: notice});
+                  res.render("studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , sCompany: sCompany , notice: notice});
                 }
               });
               });
             });
             });
             });
-          });
         });
-      });
+    });
 });
 
+
+app.post
 
 app.post("/applied/:email", function(req, res)
 {   
@@ -515,7 +506,7 @@ app.get('/cLogin', (req, res) => {
 
 app.post("/cLogin",(req,res)=>{
 
-  if(req.body.email === "dell@gmail.com" && req.body.password === "123")
+  if(req.body.email === "ola@gmail.com" && req.body.password === "123")
 
   {
       req.session.company = req.body.email;
