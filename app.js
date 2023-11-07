@@ -12,7 +12,6 @@ const multer = require('multer');
 const path = require('path');
 
 
-
 const app = express();
 app.use(nocache());
 
@@ -241,7 +240,11 @@ app.get("/notes", function(req, res)
 });
 
 
+
 // admin panel
+
+
+
 
 app.get('/admin', (req, res) => {
   dbPool.query('SELECT * FROM student WHERE allow = 0', (err, student) => {
@@ -372,22 +375,6 @@ app.post('/Notice', (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // students panel
 
 
@@ -440,7 +427,9 @@ app.get('/students', requireAuth ,(req, res) => {
                   {
                     sCompany.push(co[i].companyName);
                   }
-                  // console.log(sCompany);
+
+                  // console.log(sCompany);                
+
                 if(cStudent.length != 0)
                 {
                   dbPool.query('SELECT * FROM companies WHERE name IN (?)', [cStudent] , (err, comp) => {
@@ -452,14 +441,22 @@ app.get('/students', requireAuth ,(req, res) => {
                         cStudent = comp;
                       }
                       
+
                         res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , notice: notice , sCompany: sCompany});   
                       });
+
+                        // console.log(sCompany);
+                        res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , notice: notice , sCompany: sCompany});   
+                      });
+                  
+
                 }
                 else{
                   res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , sCompany: sCompany , notice: notice});
                 }
               });
               });
+            });
             });
             });
           });
@@ -498,16 +495,6 @@ app.post("/applied/:email", function(req, res)
 });
 
 
-
-
-
-
-
-
-
-
-
-
 //companies panel
 
 app.get('/company', (req, res) => {
@@ -527,7 +514,9 @@ app.get('/cLogin', (req, res) => {
 });
 
 app.post("/cLogin",(req,res)=>{
-  if(req.body.email === "xyz@gmail.com" && req.body.password === "123")
+
+  if(req.body.email === "dell@gmail.com" && req.body.password === "123")
+
   {
       req.session.company = req.body.email;
       res.redirect("/company");
@@ -609,25 +598,6 @@ app.post('/next', (req, res) => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // front panel
 
 //home
@@ -649,6 +619,10 @@ app.get('/form', (req, res) => {
   res.render('form.ejs');
 });
 
+
+app.get('/notes1', (req, res) => {
+  res.render('notes1.ejs');
+});
 
 
 

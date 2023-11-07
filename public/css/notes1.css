@@ -1,0 +1,97 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    color: #007bff;
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  p {
+    color: #666;
+  }
+  
+  .pdf-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .pdf-link:hover {
+    text-decoration: underline;
+  }
+  
+  .center-content {
+    text-align: center; /* This centers the content inside the container */
+  }
+
+  /* Background Image */
+.wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../images/bg-1.svg");
+  background-position:center;
+  background-repeat:no-repeat;
+  min-height: 100vh;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+
+
+
+
+/* Styles for website counter container */
+.website-counter {
+  background-color: #007bff;
+  width: 80px;
+  color: white;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 25px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Styles for reset button */
+#reset {
+  margin-top: 20px;
+  background-color: #008cba;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 8px 20px;
+  color: white;
+  border: 0;
+}
+
+.box {
+  background-color: #f5f5f5; /* Set the background color of the box */
+  border: 1px solid #ccc; /* Set the border of the box */
+  border-radius: 4px; /* Rounded corners for the box */
+  padding: 20px; /* Add padding inside the box */
+  margin-top: 20px; /* Add some spacing between the heading and the box */
+}
