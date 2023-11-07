@@ -213,7 +213,7 @@
                   <td><%= student[i].name %></td>
                   <td><%= student[i].enrollment %></td>
                   <td><%= student[i].email %></td>
-                  <td><button class="detail-button">Resume</button></td>
+                  <td><a href="/download-resume/<%= student[i].resume %>"><button class="detail-button">Resume</button></a></td>
 
                   <td> 
                     <form action="/accept/<%= student[i].email %>" method="post">
@@ -256,7 +256,7 @@
                 <td><%= student[i].name %></td>
                 <td><%= student[i].enrollment %></td>
                 <td><%= student[i].email %></td>
-                <td><button class="detail-button">Resume</button></td>
+                <td><a href="/download-resume/<%= student[i].resume %>"><button class="detail-button">Resume</button></a></td>
                 <td> 
                   <form action="/accept/<%= student[i].email %>" method="post">
                       <button class="add-button" type="submit">&#10004;</button>
@@ -290,7 +290,7 @@
                   <td><%= verified[i].name %></td>
                   <td><%= verified[i].enrollment %></td>
                   <td><%= verified[i].email %></td>
-                <td><button class="detail-button">Resume</button></td>
+                <td><a href="/download-resume/<%= verified[i].resume %>"><button class="detail-button">Resume</button></a></td>
               </tr>
               <% } %>
             </thead>
@@ -925,15 +925,24 @@ studentsLink7.addEventListener('click', () => {
   });
 </script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const resumeButtons = document.querySelectorAll(".download-resume");
 
-
-
-
-
-
-
-
-
+    resumeButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        const resumePath = button.getAttribute("data-resume");
+        const downloadLink = document.createElement("a");
+        downloadLink.style.display = "none";
+        downloadLink.href = resumePath;
+        downloadLink.download = "student_resume.pdf"; // Adjust the file name if needed
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+      });
+    });
+  });
+</script>
 
     <script src="js/constants/update-data2.js"></script>
     <script src="js/index.js"></script>

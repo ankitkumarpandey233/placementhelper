@@ -42,7 +42,7 @@
             <td><a href="#">GitHub</a></td>
             <td><%= item[i].otherid %></td>
             <td><a href="<%= item[i].photo %>">Resume</a></td>
-            <td><a href="<%= item[i].resume %>">Resume</a></td>
+            <td><a href="/download-resume/<%= item[i].resume %>">Download Resume</a></td>
             <tb><img src="/image/<%= item[i].photo %>" alt="Image"></tb>
             <tb><object width="100%" height="800" type="application/pdf" data="data:application/pdf;base64,<%= item[i].resume.toString('base64') %>"></object></tb>
           </tr>
