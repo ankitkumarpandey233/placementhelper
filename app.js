@@ -7,6 +7,9 @@ const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 var cookieParser = require('cookie-parser');
 const nocache = require('nocache');
+const fs = require('fs')
+const multer = require('multer');
+const path = require('path');
 
 
 const app = express();
@@ -16,6 +19,17 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/uploads/'); 
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+
+const upload = multer({ storage: storage, });
 
 //database connection
 const con ={
@@ -53,7 +67,10 @@ app.use(session({
 
 //register
 
-app.post("/register", function(req, res)
+app.post("/register",upload.fields([
+  { name: 'photo', maxCount: 1 },
+  { name: 'resume', maxCount: 1 },
+]), function(req, res)
 {
 
     var skills = req.body.skills;
@@ -75,11 +92,14 @@ app.post("/register", function(req, res)
       }
       else
       {
-        bcrypt.hash(plainPassword, saltRounds, (err, hashedPassword) => {
+        bcrypt.hash(plainPassword, saltRounds, (err, hashedPassword) => {8
           if (err) {
             console.error('Error hashing password:', err);
             return;
           }
+
+          
+
           const student1 ={
             name: req.body.name,
             email: req.body.email,
@@ -96,11 +116,9 @@ app.post("/register", function(req, res)
             github : req.body.github,
             otherid : req.body.otherid,
             photo: req.body.photo,
-            resume: req.body.resume
+            resume : req.files['resume'][0].originalname
           };
-      
-
-          // const imageData = req.file.buffer;
+          
 
           dbPool.query('INSERT INTO student SET ?', student1, (err, result) => {
             if (err) {
@@ -226,6 +244,8 @@ app.get("/notes", function(req, res)
 // admin panel
 
 
+
+
 app.get('/admin', (req, res) => {
   dbPool.query('SELECT * FROM student WHERE allow = 0', (err, student) => {
     if (err) {
@@ -250,6 +270,27 @@ app.get('/admin', (req, res) => {
     });
   });
 });
+
+// Resume Download
+
+app.get('/download-resume/:resumePath', (req, res) => {
+  const file = req.params.resumePath;
+  console.log(file);
+  const resumeFilePath = path.join('./public/uploads/', file);
+  console.log(resumeFilePath);
+  if (!fs.existsSync(resumeFilePath)) {
+    res.status(404).send('The resume file does not exist.');
+    return;
+  }
+
+  res.set({
+    'Content-Type': 'application/octet-stream',
+    'Content-Disposition': `attachment; filename=${file}`,
+  });
+
+  res.download(resumeFilePath);
+});
+
 
 
 // student section
@@ -346,9 +387,6 @@ function requireAuth(req, res, next) {
 }
 
 app.get('/students', requireAuth ,(req, res) => {
-  
-  
-  
 
       dbPool.query('SELECT * FROM student WHERE email = ?', req.session.username , (err, results) => {
         if (err) {
@@ -389,7 +427,9 @@ app.get('/students', requireAuth ,(req, res) => {
                   {
                     sCompany.push(co[i].companyName);
                   }
-                
+
+                  // console.log(sCompany);                
+
                 if(cStudent.length != 0)
                 {
                   dbPool.query('SELECT * FROM companies WHERE name IN (?)', [cStudent] , (err, comp) => {
@@ -401,14 +441,20 @@ app.get('/students', requireAuth ,(req, res) => {
                         cStudent = comp;
                       }
                       
+
+                        res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , notice: notice , sCompany: sCompany});   
+                      });
+
                         // console.log(sCompany);
                         res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , notice: notice , sCompany: sCompany});   
                       });
                   
+
                 }
                 else{
                   res.render("student-views/studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , sCompany: sCompany , notice: notice});
                 }
+              });
               });
             });
             });
@@ -468,7 +514,9 @@ app.get('/cLogin', (req, res) => {
 });
 
 app.post("/cLogin",(req,res)=>{
+
   if(req.body.email === "dell@gmail.com" && req.body.password === "123")
+
   {
       req.session.company = req.body.email;
       res.redirect("/company");
