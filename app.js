@@ -46,7 +46,7 @@ const dbPool = mysql.createPool(con);
 
 // Create a MySQL session store
 const sessionStore = new MySQLStore({
-  expiration: 8640000   , // Session expiration time in milliseconds (e.g., 1 day)
+  expiration: 8640000, // Session expiration time in milliseconds (e.g., 1 day)
   createDatabaseTable: true, // Create the session table if it doesn't exist
 }, dbPool);
 
