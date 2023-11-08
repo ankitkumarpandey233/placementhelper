@@ -91,7 +91,11 @@
           <div class="wrapper">
             <div class="img-area">
               <div class="inner-area">
-                <img src="https://images.unsplash.com/photo-1492288991661-058aa541ff43?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="">
+                <% if (student[0].photo) { %>
+                  <img src="/uploads/<%= student[0].photo %>" alt="">
+                <% } else { %>
+                  <img src="https://images.unsplash.com/photo-1492288991661-058aa541ff43?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Default Avatar">
+                <% } %>
               </div>
             </div>
             <div class="icon dots"><i class="fas fa-ellipsis-v"></i></div>
@@ -427,7 +431,7 @@
                 <div class="mainDiv">
                   <div class="cardStyle">
                     <form action="" method="post" name="signupForm" id="signupForm">
-                      <img src="" id="signupLogo"/>
+                      <img src="" id="signupLogo" />
                       <h2 class="formTitle">
                         Change Personnel information
                       </h2>
@@ -536,15 +540,15 @@
       </div>
       <div class="applied">
         <main>
-          <h1>Applied companies</h1>
+          <h1>Applied Companies</h1>
           <div class="recent-orders">
             <h2></h2>
             <table id="verified">
               <thead>
                 <tr>
                   <th class="sortable">ID</th>
-                  <th class="sortable">comnpany Name</th>
-                  <th class="sortable">role</th>
+                  <th class="sortable">Company Name</th>
+                  <th class="sortable">Role</th>
                   <th class="sortable">Package</th>
                 </tr>
                 <% for(var i=0; i<cStudent.length; i++){ %>
@@ -572,7 +576,9 @@
               <small class="text-muted">Student</small>
             </div>
             <div class="profile-photo">
-              <img src="https://images.unsplash.com/photo-1492288991661-058aa541ff43?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="profile photo">
+              <img
+                src="https://images.unsplash.com/photo-1492288991661-058aa541ff43?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                alt="profile photo">
             </div>
           </div>
         </div>
