@@ -490,9 +490,21 @@ app.post("/applied/:email", function(req, res)
 
 app.get('/company', (req, res) => {
   dbPool.query("SELECT * from applied where companyEmail = ? && next = 0",req.session.company,(err,data) => {
+    if (err) {
+      res.redirect("/cLogin");
+    }
     dbPool.query("SELECT * from applied where companyEmail = ? && next = 1",req.session.company,(err,results) => {
+      if (err) {
+        res.redirect("/cLogin");
+      }
       dbPool.query("SELECT * from rejected where companyEmail = ?",req.session.company,(err,rejected) => {
+        if (err) {
+          res.redirect("/cLogin");
+        }
         dbPool.query("SELECT * from applied where companyEmail = ? && selected = 1",req.session.company,(err,selected) => {
+          if (err) {
+            res.redirect("/cLogin");
+          }
           res.render("company/company.ejs",{students: data , accepted: results , rejected: rejected , selected: selected});
         });
       });
@@ -504,19 +516,39 @@ app.get('/cLogin', (req, res) => {
   res.render('cLogin.ejs');
 });
 
-app.post("/cLogin",(req,res)=>{
+app.post("/cLogin",(req,res) => {
 
-  if(req.body.email === "ola@gmail.com" && req.body.password === "123")
-
-  {
-      req.session.company = req.body.email;
-      res.redirect("/company");
-  } 
-  else{
-    res.redirect("/cLogin")
-  }
+  dbPool.query("SELECT * from companies where email = ?" , req.body.email , (err,result) => {
+    if (err) {
+      res.redirect("/cLogin");
+    }
   
+    if(result.length === 0)
+    {
+      res.redirect("/cLogin")
+    }
+    else
+    {
+      bcrypt.compare(req.body.password , result[0].password, (err, passwordMatch) => {
+        if (err) {
+          console.log('Error comparing passwords:', err);
+          res.redirect("/cLogin");
+        }
+        
+        if (passwordMatch) 
+        {
+          req.session.company = req.body.email;
+          res.redirect("/company");
+        } 
+        else {
+          console.log('Password does not match');
+          res.redirect("/cLogin");
+        }
+      });
+    }
+    });
 });
+
 app.post("/accepted/:email", function(req, res)
 {   
     dbPool.query("UPDATE applied SET ? WHERE companyEmail = ? && studentEmail = ?",[{next: 1}, req.session.company, req.params.email] , (err, results) => {
