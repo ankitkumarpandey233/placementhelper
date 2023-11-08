@@ -335,16 +335,6 @@ app.post('/aRegister', (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
 // Resume Download
 
 app.get('/download-resume/:resumePath', (req, res) => {
@@ -563,21 +553,6 @@ app.post("/applied/:email", function(req, res)
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //companies panel
 
 app.get('/company', (req, res) => {
@@ -739,11 +714,52 @@ app.get('/notes1', (req, res) => {
   res.render('notes1.ejs');
 });
 
+app.post('/updatePassword', (req, res) => {
 
+  const email = req.session.username; 
 
+  const oldPassword = req.body.oldPassword;
+  const newPassword = req.body.newPassword;
 
+  dbPool.query('SELECT * FROM student WHERE email = ?', [email], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
 
+    bcrypt.compare(oldPassword, results[0].password, (err, passwordMatch) => {
+      if (err) {
+      console.log('Error comparing passwords:', err);
+        return;
+      }
 
+      if (passwordMatch) 
+      {
+        const saltRounds = 10;
+        bcrypt.hash(newPassword, saltRounds, (err, hashedPassword) => {
+          if (err) {
+            console.error('Error hashing password:', err);
+            return;
+          }
+          dbPool.query('UPDATE student SET password = ? WHERE email = ?', [hashedPassword, email], (err) => {
+            if (err) {
+              console.error(err);
+              return res.status(500).json({ error: 'Internal server error' });
+            }
+            //SHOW student that password has been updated
+            res.status(200).json({ message: 'Password updated successfully' });
+          });
+      });
+       
+      } 
+      else {
+        console.log('Password does not match');
+        res.redirect("/students");
+      }
+  });
+    
+  });
+});
 
 app.listen(3000, function() {
     console.log("Server started on port 3000");
