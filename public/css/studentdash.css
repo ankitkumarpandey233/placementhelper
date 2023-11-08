@@ -238,6 +238,7 @@ main .insights > div {
   margin-top: 1rem;
   box-shadow: var(--box-shadow);
   transition: all 300ms ease;
+  height: 295px;
 }
 main .insights > div:hover {
   cursor: pointer;

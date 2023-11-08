@@ -157,14 +157,16 @@
         </div>
 
         
-          <div class="recent-orders">
+    <div class="recent-orders">
             <h2>Companies</h2>
             <div class="progress">
             <div class="course-box">
               <ul>
-                <li id="progressbtn" class="active">In progress</li>
-                <li id="exploreBtn">Explore</li>
-                <li id="incomingbtn">Incoming</li>
+              
+                <li class="progressbtn active">Now loading</li>
+                <li class="exploreBtn">Explore</li>
+                <li class="incomingbtn">Incoming</li>
+                
                 <li>Finished</li>
                 <li></li>
                 <li></li>
@@ -270,9 +272,10 @@
           <div class="explore" style="display: none;">
             <div class="course-box">
               <ul>
-                <li id="progressbtn">In progress</li>
-                <li id="exploreBtn" class="active">Explore</li>
-                <li id="incomingbtn">Incoming</li>
+                <li class="progressbtn">In progress</li>
+                <li class="exploreBtn active">Explore</li>
+                <li class="incomingbtn ">Incoming</li>
+                
                 <li>Finished</li>
                 <li></li>
                 <li></li>
@@ -393,9 +396,10 @@
           <div class="incoming" style="display: none;">
             <div class="course-box">
               <ul>
-                <li id="progressbtn">In progress</li>
-                <li id="exploreBtn" >Explore</li>
-                <li id="incomingbtn" class="active">Incoming</li>
+                <li class="progressbtn">In progress</li>
+                <li class="exploreBtn">Explore</li>
+                <li class="incomingbtn active">Incoming</li>
+                
                 <li>Finished</li>
                 <li></li>
                 <li></li>
@@ -422,7 +426,8 @@
                     <% } %>
           </div>
 
-        </div>    
+        </div> 
+        </div>   
       </main>
     </div>
 
@@ -634,29 +639,38 @@
         }
       }
     </script>
-        <script>
-          $(document).ready(function() {
-            $('#exploreBtn').click(function() {
-              $('.progress').hide();
-              $('.explore').show();
-              $('.incoming').hide();
-            });
-          });
-          $(document).ready(function() {
-          $('#progressbtn').click(function() {
-          $('.explore').hide();
-         $('.progress').show();
-         $('.incoming').hide();
-          });
-        });
-      $(document).ready(function() {
-    $('#incomingbtn').click(function() {
+<script>
+  $(document).ready(function() {
+    $('.exploreBtn').click(function() {
+      $('.progress').hide();
+      $('.explore').show();
+      $('.incoming').hide();
+      $('.finished').hide();
+    });
+
+    $('.progressBtn').click(function() {
+      $('.explore').hide();
+      $('.progress').show();
+      $('.incoming').hide();
+      $('.finished').hide();
+    });
+
+    $('.incomingBtn').click(function() {
       $('.incoming').show();
       $('.explore').hide();
       $('.progress').hide();
+      $('.finished').hide();
+    });
+
+    $('.finishedBtn').click(function() {
+      $('.finished').show();
+      $('.explore').hide();
+      $('.progress').hide();
+      $('.incoming').hide();
     });
   });
-        </script>
+</script>
+
 
 
 
@@ -748,5 +762,7 @@ function reloadPageAfterDelay(delayInMilliseconds) {
 
 
 </script>
+
+
   </body>
 </html>
