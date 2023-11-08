@@ -111,7 +111,7 @@ app.post("/register",upload.fields([{ name: 'photo', maxCount: 1 } , { name: 're
             linkedin : req.body.linkedin,
             github : req.body.github,
             otherid : req.body.otherid,
-            photo: req.body.photo,
+            photo: req.files['photo'][0].originalname,
             resume : req.files['resume'][0].originalname
           };
           
@@ -757,7 +757,19 @@ app.post('/updatePassword', (req, res) => {
         res.redirect("/students");
       }
   });
-    
+  });
+});
+
+app.post('/updateResume', upload.single('resume'), (req, res) => {
+  const email = req.session.username; 
+
+  dbPool.query('UPDATE student SET resume = ? WHERE email = ?', [req.file.filename, email], (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+    //SHOW student that Resume has been updated
+    res.status(200).json({ message: 'Resume updated successfully' });
   });
 });
 
