@@ -515,3 +515,56 @@ color: #666666;
   text-align: center;
 } 
 
+/* Styles for mobile phones (up to 480px) */
+@media (max-width: 480px) {
+  .cardStyle {
+    width: 100%; /* Adjust the card width for smaller screens */
+  }
+  .formTitle {
+    font-size: 24px; /* Increase font size for the title on smaller screens */
+  }
+  .inputLabel {
+    font-size: 14px; /* Adjust font size for input labels on smaller screens */
+  }
+  .input {
+    font-size: 14px; /* Adjust font size for input fields on smaller screens */
+  }
+  .submitButton {
+    width: 100%; /* Adjust the button width for smaller screens */
+  }
+}
+
+/* Styles for tablets (from 481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .cardStyle {
+    width: 90%; /* Adjust the card width for tablet screens */
+  }
+  .inputDiv {
+    width: 80%; /* Adjust the input div width for tablet screens */
+  }
+  .submitButton {
+    width: 80%; /* Adjust the button width for tablet screens */
+  }
+}
+
+/* Styles for desktop screens (769px and above) */
+@media (min-width: 769px) {
+  .cardStyle {
+    width: 500px; /* Reset the card width for desktop screens */
+  }
+  .inputDiv {
+    width: 70%; /* Reset the input div width for desktop screens */
+  }
+  .submitButton {
+    width: 70%; /* Reset the button width for desktop screens */
+  }
+  .formTitle {
+    font-size: initial; /* Reset the font size for the title on desktop screens */
+  }
+  .inputLabel {
+    font-size: initial; /* Reset the font size for input labels on desktop screens */
+  }
+  .input {
+    font-size: initial; /* Reset the font size for input fields on desktop screens */
+  }
+}
