@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard</title>
+
+    <!-- <script type = "text/javascript" >
+      function preventBack(){window.history.forward();}
+       setTimeout("preventBack()");
+       window.onunload=function(){null};
+   </script> -->
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="../css/studentdash.css" />
+    <link rel="stylesheet" href="../css/studentdash2.css" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      .progress ,.explore,.incoming{
+        display: block;
+      }
+
+      
+    </style>
+
+
+    <!-- <style>
+      @media (max-width: 768px) {
+  .fas fa-building {
+    font-size: 100px;
+    margin-left: 35%;
+  }
+}
+
+@media (max-width: 576px) {
+  .fas fa-building {
+    font-size: 75px;
+    margin-left: 25%;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1650px) {
+  .fas fa-building {
+    font-size: 125px;
+    margin-left: 40%;
+  }
+}
+
+    </style> -->
+
+  </head>
+  <body>
+    <div class="container">
+      <aside>
+        <div class="top">
+          <div class="logo">
+            <img src="../images/favicon-16x16.png" alt="Logo" />
+            <h2><span class="danger">Placement Helper</span></h2>
+          </div>
+          <div class="close" id="close-btn">
+            <span class="material-icons-sharp"> close </span>
+          </div>
+        </div>
+
+        <div class="sidebar"  onclick="changeActiveLink(this)">
+          <a href="#" class="active">
+            <span class="material-icons-sharp"> dashboard </span>
+            <h3>Dashboard</h3>
+          </a>
+          <a href="#"  onclick="changeActiveLink(this)">
+            <span class="material-icons-sharp"> person_outline </span>
+            <h3>Update</h3>
+          </a>
+          <a href="#" onclick="changeActiveLink(this)">
+            <span class="material-icons-sharp"> receipt_long </span>
+            <h3>Applied</h3>
+          </a>
+          <a href="#">
+            <span class="material-icons-sharp"> receipt_long </span>
+            <h3>FeedBack</h3>
+          </a>
+
+          <a href="/logout">
+            <span class="material-icons-sharp"> logout </span>
+            <h3>Logout</h3>
+          </a>
+        </div>
+      </aside>
+      <div class="dashboard">
+      <main>
+        <h1>Dashboard</h1>
+
+
+        <div class="insights">
+
+
+
+          <div class="wrapper">
+            <div class="img-area">
+              <div class="inner-area">
+                <img src="https://images.unsplash.com/photo-1492288991661-058aa541ff43?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="">
+              </div>
+            </div>
+            <div class="icon dots"><i class="fas fa-ellipsis-v"></i></div>
+            <div class="name"><%= student[0].name %></div>
+            <div class="about"><%= student[0].email %></div>
+            <div class="social-icons">
+              <a href="<%= student[0].github %>" class="fb"><i class="fab fa-github"></i></a>
+              <a href="<%= student[0].linkedin %>" class="yt"><i class="fab fa-linkedin"></i></a>
+              <a href="<%= student[0].other %>" class="twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+
+         
+          <!-- EXPENSES -->
+          <div class="expenses">
+         
+            <span class="material-icons-sharp"> bar_chart </span>
+            <div class="middle">
+              <div class="left">
+                <h3>Total Available Comapnies</h3>
+                <h1><%= companies.length + companiesNot.length %></h1>
+                <i class="fas fa-building" style="
+                font-size: 135px;
+                margin-left: 50%;
+                color: blue;
+            "></i>
+              </div>
+            </div>
+            <small class="text-muted">This year</small>
+          </div>
+
+          <!-- INCOME -->
+          <div class="income">
+            <span class="material-icons-sharp"> stacked_line_chart </span>
+            <div class="middle">
+              <div class="left">
+                <h3>Total Eligible Companies</h3>
+                <h1><%= companies.length %></h1>
+                <i class="fas fa-thumbs-up"style="
+                font-size: 135px;
+                margin-left: 50%;
+                color: blue;
+            "></i>
+              </div>
+            </div>
+            <small class="text-muted"> This year </small>
+          </div>
+        </div>
+
+        
+          <div class="recent-orders">
+            <h2>Companies</h2>
+            <div class="progress">
+            <div class="course-box">
+              <ul>
+                <li id="progressbtn" class="active">In progress</li>
+                <li id="exploreBtn">Explore</li>
+                <li id="incomingbtn">Incoming</li>
+                <li>Finished</li>
+                <li></li>
+                <li></li>
+                <li>Eligible only</li>
+                <li><label class="switch">
+                  <input type="checkbox" id="toggle" onclick="showEligibleJobs(this)">
+                  <span class="slider round"></span>
+                </label></li>
+              </ul>
+              <% for(var i=0; i<companies.length; i++){ %>
+                <% var flag = 0; %>
+                <% var flag1 = 0; %>
+                <% for(var j=0; j<cStudent.length; j++){ %>
+                  <% if(companies[i].name === cStudent[j].name) { %>
+                    <% flag = 1; %>
+                  <% } %>
+                <% } %>
+                <% for(var j=0; j<sCompany.length; j++){ %>
+                  <% if(companies[i].name === sCompany[j]) { %>
+                    
+                    <% flag1 = 1; %>
+                  <% } %>
+                <% } %>
+                <% if(flag === 0 && flag1 === 0) { %>
+                <div class="course">
+                  <div class="box eligible">
+                    <h3><%= companies[i].name %></h3>
+                    <p style="color: black;"><%= companies[i].description %></p><br>
+                    <strong >Role: Software Engineer</strong><br>
+                    <strong >Package: <%= companies[i].package %></strong><br>
+
+                    <form action="/applied/<%= companies[i].email %>" method="post">
+                      <button type="submit">Apply</button>
+                    </form>
+
+                    <i class="fab fa-google" style="color: blue;"></i>
+                  </div>
+                </div>
+                <% } %>
+              <% } %>
+              <% for(var i=0; i<companies.length; i++){ %>
+                <% var flag1 = 0; %>
+                <% for(var j=0; j<sCompany.length; j++){ %>
+                  <% if(companies[i].name === sCompany[j]) { %>
+                    <% flag1 = 1; %>
+                  <% } %>
+                <% } %>
+                <% if(flag1 === 1) { %>
+                <div class="course">
+                  <div class="box eligible">
+                    <h3><%= companies[i].name %></h3>
+                    <p style="color: black;"><%= companies[i].description %></p><br>
+                    <strong >Role: Software Engineer</strong><br>
+                    <strong >Package: <%= companies[i].package %></strong><br>
+
+                    <form action="/applied/<%= companies[i].email %>" method="post">
+                      <button type="submit">Rejected</button>
+                    </form>
+
+                    <i class="fab fa-google" style="color: red;"></i>
+                  </div>
+                </div>
+                <% } %>
+              <% } %>
+
+              <% for(var i=0; i<companies.length; i++){ %>
+                <% var flag = 0; %>
+                <% for(var j=0; j<cStudent.length; j++){ %>
+                  <% if(companies[i].name === cStudent[j].name) { %>
+                    <% flag = 1; %>
+                  <% } %>
+                <% } %>
+                <% if(flag === 1) { %>
+                <div class="course">
+                  <div class="box">
+                    <h3><%= companies[i].name %></h3>
+                    <p style="color: black;"><%= companies[i].description %></p><br>
+                    <strong >Role: Software Engineer</strong><br>
+                    <strong >Package: <%= companies[i].package %></strong><br>
+                    <button style="background-color: blue;">Already Applied</button>
+
+                    <i class="fab fa-google" style="color: blue;"></i>
+                  </div>
+                </div>
+                <% } %>
+              <% } %>
+
+              <% for(var i=0; i<companiesNot.length; i++){ %>
+                <div class="course">
+                  <div class="box">
+                    <h3><%= companiesNot[i].name %></h3>
+                    <p style="color: black;"><%= companiesNot[i].description %></p><br>
+                    <strong >Role: Software Engineer</strong><br>
+                    <strong >Package: <%= companiesNot[i].package %></strong><br>
+                    <button style="background-color: blue;">Not Eligible</button>
+                    <i class="fab fa-google" style="color: blue;"></i>
+                  </div>
+                </div>
+                <% } %>
+            </div>
+          </div>
+
+          <div class="explore" style="display: none;">
+            <div class="course-box">
+              <ul>
+                <li id="progressbtn">In progress</li>
+                <li id="exploreBtn" class="active">Explore</li>
+                <li id="incomingbtn">Incoming</li>
+                <li>Finished</li>
+                <li></li>
+                <li></li>
+                <li>Eligible only</li>
+                <li><label class="switch">
+                  <input type="checkbox" id="toggle" onclick="showEligibleJobs(this)">
+                  <span class="slider round"></span>
+                </label></li>
+              </ul>
+              <% for(var i=0; i<companies.length; i++){ %>
+                <% var flag = 0; %>
+                <% var flag1 = 0; %>
+                <% for(var j=0; j<cStudent.length; j++){ %>
+                  <% if(companies[i].name === cStudent[j].name) { %>
+                    <% flag = 1; %>
+                  <% } %>
+                <% } %>
+                <% for(var j=0; j<sCompany.length; j++){ %>
+                  <% if(companies[i].name === sCompany[j]) { %>
+                    <% flag1 = 1; %>
+                  <% } %>
+                <% } %>
+                <% if(flag === 0 && flag1 === 0) { %>
+                <div class="course">
+                  <div class="box eligible">
+                    <h3><%= companies[i].name %></h3>
+                    <p style="color: black;"><%= companies[i].description %></p><br>
+                    <strong >Role: Software Engineer</strong><br>
+                    <strong >Package: <%= companies[i].package %></strong><br>
+
+                    <form action="/applied/<%= companies[i].email %>" method="post">
+                      <button type="submit">Apply</button>
+                    </form>
+
+                    <i class="fab fa-google" style="color: blue;"></i>
+                  </div>
+                </div>
+                <% } %>
+              <% } %>
+
+              <% for(var i=0; i<companies.length; i++){ %>
+                <% var flag1 = 0; %>
+                <% for(var j=0; j<sCompany.length; j++){ %>
+                  <% if(companies[i].name === sCompany[j]) { %>
+                    <% flag1 = 1; %>
+                  <% } %>
+                <% } %>
+                <% if(flag1 === 1) { %>
+                <div class="course">
+                  <div class="box eligible">
+                    <h3><%= companies[i].name %></h3>
+                    <p style="color: black;"><%= companies[i].description %></p><br>
+                    <strong >Role: Software Engineer</strong><br>
+                    <strong >Package: <%= companies[i].package %></strong><br>
+
+                    <form action="/applied/<%= companies[i].email %>" method="post">
+                      <button type="submit">Rejected</button>
+                    </form>
+
+                    <i class="fab fa-google" style="color: red;"></i>
+                  </div>
+                </div>
+                <% } %>
+              <% } %>
+
+              <% for(var i=0; i<companies.length; i++){ %>
+                <% var flag = 0; %>
+                <% for(var j=0; j<cStudent.length; j++){ %>
+                  <% if(companies[i].name === cStudent[j].name) { %>
+                    <% flag = 1; %>
+                  <% } %>
+                <% } %>
+                <% if(flag === 1) { %>
+                <div class="course">
+                  <div class="box">
+                    <h3><%= companies[i].name %></h3>
+                    <p style="color: black;"><%= companies[i].description %></p><br>
+                    <strong >Role: Software Engineer</strong><br>
+                    <strong >Package: <%= companies[i].package %></strong><br>
+                    <button style="background-color: blue;">Already Applied</button>
+
+                    <i class="fab fa-google" style="color: blue;"></i>
+                  </div>
+                </div>
+                <% } %>
+              <% } %>
+
+
+                <% for(var i=0; i<companiesNot.length; i++){ %>
+                  <div class="course">
+                    <div class="box">
+                      <h3><%= companiesNot[i].name %></h3>
+                      <p style="color: black;"><%= companiesNot[i].description %></p><br>
+                      <strong >Role: Software Engineer</strong><br>
+                      <strong >Package: <%= companiesNot[i].package %></strong><br>
+                      <button style="background-color: blue;">Not Eligible</button>
+                      <i class="fab fa-google" style="color: blue;"></i>
+                    </div>
+                  </div>
+                  <% } %>
+
+                  <% for(var i=0; i<companyPast.length; i++){ %>
+                    <div class="course">
+                      <div class="box ">
+                        <h3><%= companyPast[i].name %></h3>
+                        <p style="color: black;"><%= companyPast[i].description %></p><br>
+                        <strong >Role: Software Engineer</strong><br>
+                        <strong >Package: <%= companyPast[i].package %></strong><br>
+                        <button style="background-color: blue;">Not Available Now</button>
+                        <i class="fab fa-google" style="color: blue;"></i>
+                      </div>
+                    </div>
+                    <% } %>
+            </div>
+          </div>
+
+
+          <div class="incoming" style="display: none;">
+            <div class="course-box">
+              <ul>
+                <li id="progressbtn">In progress</li>
+                <li id="exploreBtn" >Explore</li>
+                <li id="incomingbtn" class="active">Incoming</li>
+                <li>Finished</li>
+                <li></li>
+                <li></li>
+                <li>Eligible only</li>
+                <li><label class="switch">
+                  <input type="checkbox" id="toggle" onclick="showEligibleJobs(this)">
+                  <span class="slider round"></span>
+                </label></li>
+              </ul>
+                  <% for(var i=0; i<companyPast.length; i++){ %>
+                    <% var current = new Date(); %>
+                    <% if(companyPast[i].startingDate > current){ %>
+                      <div class="course">
+                        <div class="box ">
+                          <h3><%= companyPast[i].name %></h3>
+                          <p style="color: black;"><%= companyPast[i].description %></p><br>
+                          <strong >Role: Software Engineer</strong><br>
+                          <strong >Package: <%= companyPast[i].package %></strong><br>
+                          <button style="background-color: blue;">Not Available Now</button>
+                          <i class="fab fa-google" style="color: blue;"></i>
+                        </div>
+                      </div>
+                    <% } %>
+                    <% } %>
+          </div>
+
+        </div>    
+      </main>
+    </div>
+
+
+
+
+
+
+    
+
+<div class="update">
+  <main>
+    <div class="center"><h1>Update form</h1></div>
+   
+      <div class="cardStyle1">
+      <div class="row">
+        <div class="column">
+          <div class="mainDiv">
+            <div class="cardStyle">
+              <form action="" method="post" name="signupForm" id="signupForm">
+                
+                <img src="" id="signupLogo"/>
+                
+                <h2 class="formTitle">
+                  Change Personnel information
+                </h2>
+
+              <div class="inputDiv">
+                <label class="inputLabel">Resume</label>
+                <input type="file" id="resume" name="resume">
+              </div>
+              
+              <div class="buttonWrapper">
+                <button type="submit" id="submitButton" onclick="validateSignupForm()" class="submitButton pure-button pure-button-primary">
+                  <span>Submit</span>
+                </button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="mainDiv">
+            <div class="cardStyle">
+              <form action="/updatePassword" method="post" >
+                
+                <img src="" id="signupLogo"/>
+                
+                <h2 class="formTitle">
+                  Change Your Password
+                </h2>
+              
+              <div class="inputDiv">
+                <label class="inputLabel" >Old Password</label>
+                <input type="password" id="oldPassword" name="oldPassword" required>
+              </div>
+                
+              <div class="inputDiv">
+                <label class="inputLabel" >New Password</label>
+                <input type="password" id="newPassword" name="newPassword" required>
+              </div>
+                
+              <div class="inputDiv">
+                <label class="inputLabel" >Confirm New Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword">
+              </div>
+              
+              <div class="buttonWrapper">
+                <button type="submit"  class="submitButton pure-button pure-button-primary">
+                  Submit
+                </button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>  
+
+  </main>
+</div>
+
+
+<div class="feedback">
+  <main>
+    <div class="center"><h1>Feedback</h1></div>
+   
+      <div class="cardStyle1">
+      <div class="row">
+        <div class="column">
+          <div class="mainDiv">
+            <div class="cardStyle">
+              <form action="" method="post" name="signupForm" id="signupForm">
+                
+                <img src="" id="signupLogo"/>
+                
+                <h2 class="formTitle">
+                  Add feedback
+                </h2>
+              
+              <div class="inputDiv">
+                <label class="inputLabel">Title</label>
+                <input type="text">
+              </div>
+                
+              <div class="inputDiv">
+                <label class="inputLabel">Content</label>
+                <input type="text" id="email" required>
+              </div>
+              <div class="buttonWrapper">
+                <button type="submit" id="submitButton" onclick="validateSignupForm()" class="submitButton pure-button pure-button-primary">
+                  <span>Submit</span>
+                </button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>  
+  </main>
+</div>
+
+
+
+
+<div class="applied">
+  <main>
+    <h1>Applied companies</h1>
+ 
+    <div class="recent-orders">
+      <h2></h2>
+      <table id="verified">
+        <thead>
+          <tr>
+            <th class="sortable">ID</th>
+            <th class="sortable">comnpany Name</th>
+            <th class="sortable">role</th>
+            <th class="sortable">Package</th>
+          </tr>
+          <% for(var i=0; i<cStudent.length; i++){ %>
+            <tr>
+              <td><%= i+1 %></td>
+              <td><%= cStudent[i].name %></td>
+              <td>Software Engineer</td>
+              <td><%= cStudent[i].package %></td>
+            </tr>
+            <% } %>
+        </thead>
+      </table>
+      <a href="#">Show All</a>
+    </div>  
+   </main>
+</div>
+
+
+
+      <div class="right">
+        <div class="top">
+          <button id="menu-btn">
+            <span class="material-icons-sharp"> menu </span>
+          </button>
+          <div class="profile">
+            <div class="info">
+              <p>Hey, <b><%= student[0].name %></b></p>
+              <small class="text-muted">Student</small>
+            </div>
+            <div class="profile-photo">
+              <img src="https://images.unsplash.com/photo-1492288991661-058aa541ff43?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="profile photo">
+            </div>
+          </div>
+        </div>
+
+        <div class="recent-updates">
+          <h2>Recent Updates</h2>
+          <div class="updates">
+            <div class="update">
+            <%for(var i=0; i<notice.length; i++){ %>
+              <div class="profile-photo">
+                <img src= "images/profile-1.jpg" />
+              </div>
+              <div class="message">
+                <p><b><%= notice[i].title %></b> <%= notice[i].notice %></p>
+                <small class="text-muted">2 Minutes Ago</small>
+              </div>
+          <% } %>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/constants/update-data2.js"></script>
+    <script src="../js/StudentDashboard.js"></script>
+    <script src="js/index.js"></script>
+
+    <script>
+      function showEligibleJobs(toggle) {
+        if (toggle.checked) {
+          document.querySelectorAll(".box").forEach(function(box) {
+            if (box.classList.contains("eligible")) {
+              box.style.display = "block";
+            } else {
+              box.style.display = "none";
+            }
+          });
+        } else {
+          document.querySelectorAll(".box").forEach(function(box) {
+            box.style.display = "block";
+          });
+        }
+      }
+    </script>
+        <script>
+          $(document).ready(function() {
+            $('#exploreBtn').click(function() {
+              $('.progress').hide();
+              $('.explore').show();
+              $('.incoming').hide();
+            });
+          });
+          $(document).ready(function() {
+          $('#progressbtn').click(function() {
+          $('.explore').hide();
+         $('.progress').show();
+         $('.incoming').hide();
+          });
+        });
+      $(document).ready(function() {
+    $('#incomingbtn').click(function() {
+      $('.incoming').show();
+      $('.explore').hide();
+      $('.progress').hide();
+    });
+  });
+        </script>
+
+
+
+<script>
+
+</script>
+
+
+<script>
+  function changeActiveLink(link) {
+    // Remove "active" class from all links
+    var links = document.getElementsByClassName("sidebar")[0].getElementsByTagName("a");
+    for (var i = 0; i < links.length; i++) {
+      links[i].classList.remove("active");
+    }
+
+    // Add "active" class to the clicked link
+    link.classList.add("active");
+  }
+</script>
+
+<script>
+const studentsLink = document.querySelector('.sidebar a:nth-child(2)');
+const studentsLink2 = document.querySelector('.sidebar a:nth-child(1)');
+const dashboardDiv = document.querySelector('.dashboard');
+const updateDiv = document.querySelector('.update');
+
+updateDiv.style.display = 'none';
+
+
+// Add click event listener to the students link
+studentsLink.addEventListener('click', () => {
+  // Hide the home div
+  dashboardDiv.style.display = 'none';
+  appliedDiv.style.display = 'none';
+  feedbackDiv.style.display = 'none';
+  // Show the student details div
+  updateDiv.style.display = 'block';
+});
+
+
+studentsLink2.addEventListener('click', () => {
+  // Hide the home div
+  updateDiv.style.display = 'none';
+  appliedDiv.style.display = 'none';
+  feedbackDiv.style.display = 'none';
+
+  // Show the student details div
+  dashboardDiv.style.display = 'block';
+});
+
+
+
+const studentsLink3 = document.querySelector('.sidebar a:nth-child(3)');
+const appliedDiv = document.querySelector('.applied');
+appliedDiv.style.display = 'none';
+
+studentsLink3.addEventListener('click', () => {
+  // Hide the home div
+  updateDiv.style.display = 'none';
+
+  dashboardDiv.style.display = 'none';
+  feedbackDiv.style.display = 'none';
+
+  // Show the student details div
+  appliedDiv.style.display = 'block';
+});
+
+const studentsLink4 = document.querySelector('.sidebar a:nth-child(4)');
+const feedbackDiv = document.querySelector('.feedback');
+feedbackDiv.style.display='none';
+
+studentsLink4.addEventListener('click', () => {
+  // Hide the home div
+  updateDiv.style.display = 'none';
+  appliedDiv.style.display = 'none';
+  dashboardDiv.style.display = 'none';
+
+  // Show the student details div
+  feedbackDiv.style.display = 'block';
+});
+
+
+function reloadPageAfterDelay(delayInMilliseconds) {
+  setTimeout(() => {
+    window.location.reload();
+  }, delayInMilliseconds);
+}
+
+
+</script>
+  </body>
+</html>

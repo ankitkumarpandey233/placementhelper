@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Placement </title>
+
+    <!-- FAVICON -->
+    <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/cLogin.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="headline">
+            <h1 style="text-transform: uppercase;"> Welcome to College Placement Cell</h1><br>
+            <h3 style="text-transform: uppercase; color: red"> Kindly Login Or SignUp here</h3>
+        </div>
+        <form action="/aLogin" method="post">
+            <fieldset>
+            <legend>ENTER LOGIN DETAILS</legend>
+
+            <div class="form-group">
+                <label>Enter Your Email</label><input type="email" name="email" placeholder="Email" required="">
+            </div>
+            <div class="form-group">
+                <label>Enter Your Password</label><input type="password" name="password" placeholder="Password"
+                    required="">
+            </div>
+        </fieldset>
+        <button type="submit" class="btn" id="btnLogin">Login</button>
+    </div>
+    </form>
+</body>
+
+</html>

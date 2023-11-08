@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+    <link rel="stylesheet" href="css/Admin.css" />
+    <link rel="stylesheet" href="css/simple-datatable.css" />
+
+  <script src="js/simple-datatable.js"></script>
+  <style>
+    .add-button, .remove-button {
+      width: 50px;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      margin-right: 10px;
+    }
+  
+    .add-button:last-child, .remove-button:last-child {
+      margin-right: 0;
+    }
+  
+    .add-button {
+      background-color: #4CAF50;
+      color: white;
+    }
+  
+    .remove-button {
+      background-color: #FF5722;
+      color: white;
+    }
+  
+    .add-button:hover, .remove-button:hover {
+      background-color: #45a049;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+
+
+    .detail-button {
+    background-color: #4287f5; /* Lighter blue color */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  .detail-button:hover{
+    background-color: #1f5bcf; /* Darker shade of blue on hover */
+    cursor: pointer;
+  }
+
+
+
+  .recent-orders{
+    overflow: auto;
+  }
+
+
+  .applied {
+      display: none;
+    }
+  </style>
+  
+  
+  </head>
+  <body>
+    <div class="container">
+      <aside>
+        <div class="top">
+          <div class="logo">
+            <img src="images/favicon-16x16.png" alt="Logo" />
+            <h2 style="
+            font-size: 17px;
+            font-weight: bold;
+            color: blue;
+        ">Placement Helper</h2>
+          </div>
+          <div class="close" id="close-btn">
+            <span class="material-icons-sharp"> close </span>
+          </div>
+        </div>
+
+        <div class="sidebar">
+          <a href="#" class="active" onclick="changeActiveLink(this)">
+            <span class="material-icons-sharp"> dashboard </span>
+            <h3>Dashboard</h3>
+          </a>
+          <a href="#" onclick="changeActiveLink(this)">
+            <span class="material-icons-sharp"> person_outline </span>
+            <h3>Students</h3>
+          </a>
+
+          <a href="#" onclick="changeActiveLink(this)">
+            <span class="material-icons-sharp"> insights </span>
+            <h3>Company Details</h3>
+          </a>
+          <a href="#" onclick="changeActiveLink(this)">
+            <span class="material-icons-sharp"> receipt_long </span>
+            <h3>Applied</h3>
+          </a>
+          <a href="#" onclick="changeActiveLink(this)">
+            <span class="material-icons-sharp"> mail_outline </span>
+            <h3>Feedbacks</h3>
+            <span class="message-count">26</span>
+          </a>
+          <a href="#" onclick="changeActiveLink(this)">
+            <span class="material-icons-sharp"> add </span>
+            <h3>  Add Company </h3>
+          </a>
+          <a href="#" onclick="changeActiveLink(this)">
+            <span class="material-icons-sharp"> add </span>
+            <h3>  Add Notice </h3>
+          </a>
+          <a href="#" onclick="changeActiveLink(this)">
+            <span class="material-icons-sharp"> add </span>
+            <h3>  Add Admin </h3>
+          </a>
+          <a href="#">
+            <span class="material-icons-sharp"> logout </span>
+            <h3>Logout</h3>
+          </a>
+        </div>
+      </aside>
+    <div class="home">
+        <main>
+          <h1>Dashboard</h1>
+  
+          <div class="insights">
+            <!-- SALES -->
+            <div class="sales">
+              <span class="material-icons-sharp"> analytics </span>
+              <div class="middle">
+                <div class="left">
+                  <h3>Total Verified Students</h3>
+                  <h1><%= verified.length %></h1>
+                </div>
+                <div class="progress">
+                  <svg>
+                    <circle cx="38" cy="38" r="36"></circle>
+                  </svg>
+                  <div class="number">
+                    <p>81%</p>
+                  </div>
+                </div>
+              </div>
+              <small class="text-muted">This Year</small>
+            </div>
+  
+            <!-- EXPENSES -->
+            <div class="expenses">
+              <span class="material-icons-sharp"> bar_chart </span>
+              <div class="middle">
+                <div class="left">
+                  <h3>Total Unverified students</h3>
+                  <h1><%= student.length %></h1>
+                </div>
+                <div class="progress">
+                  <svg>
+                    <circle cx="38" cy="38" r="36"></circle>
+                  </svg>
+                  <div class="number">
+                    <p>62%</p>
+                  </div>
+                </div>
+              </div>
+              <small class="text-muted">This Year</small>
+            </div>
+  
+            <!-- INCOME -->
+            <div class="income">
+              <span class="material-icons-sharp"> stacked_line_chart </span>
+              <div class="middle">
+                <div class="left">
+                  <h3>Total Companies</h3>
+                  <h1><%= companies.length %></h1>
+                </div>
+                <div class="progress">
+                  <svg>
+                    <circle cx="38" cy="38" r="36"></circle>
+                  </svg>
+                  <div class="number">
+                    <p>44%</p>
+                  </div>
+                </div>
+              </div>
+              <small class="text-muted">This Year</small>
+            </div>
+          </div>
+  
+          <div class="recent-orders" style="overflow: auto;">
+            <h2>Unverified Student</h2>
+            <table id="unverified">
+              <thead>
+                <tr>
+                  <th class="sortable">ID</th>
+                  <th class="sortable">Name</th>
+                  <th class="sortable">Enrollment No</th>
+                  <th class="sortable">Email</th>
+                  <th class="sortable">Resume</th>
+                  <th>Action</th>
+                </tr>
+                <% for(var i=0; i<student.length; i++){ %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <td><%= student[i].name %></td>
+                  <td><%= student[i].enrollment %></td>
+                  <td><%= student[i].email %></td>
+                  <td><a href="/download-resume/<%= student[i].resume %>"><button class="detail-button">Resume</button></a></td>
+
+                  <td> 
+                    <form action="/accept/<%= student[i].email %>" method="post">
+                        <button class="add-button" type="submit">&#10004;</button>
+                    </form>
+                  </td>
+                  <td>
+                    <form action="/reject/<%= student[i].email %>" method="post">
+                      <button class="remove-button" type="submit">&#10008;</button>
+                  </form>
+                  </td>
+                       
+                </tr>
+                <% } %>
+              </thead>
+            </table>
+            <a href="#">Show All</a>
+          </div>
+        </main>
+      </div>
+<div class="studentdetails">
+      <main>
+        <h1>Student Details</h1>
+
+        <div class="recent-orders">
+          <h2>Unverified Student</h2>
+          <table id="unverified2">
+            <thead>
+              <tr>
+                <th class="sortable">ID</th>
+                <th class="sortable">Name</th>
+                <th class="sortable">Enrollment No</th>
+                <th class="sortable">Email</th>
+                <th class="sortable">Resume</th>
+                <th>Action</th>
+              </tr>
+              <% for(var i=0; i<student.length; i++){ %>
+              <tr>
+                <td><%= i+1 %></td>
+                <td><%= student[i].name %></td>
+                <td><%= student[i].enrollment %></td>
+                <td><%= student[i].email %></td>
+                <td><a href="/download-resume/<%= student[i].resume %>"><button class="detail-button">Resume</button></a></td>
+                <td> 
+                  <form action="/accept/<%= student[i].email %>" method="post">
+                      <button class="add-button" type="submit">&#10004;</button>
+                  </form>
+                </td>
+                <td>
+                  <form action="/reject/<%= student[i].email %>" method="post">
+                    <button class="remove-button" type="submit">&#10008;</button>
+                </form>
+                </td>
+              </tr>
+              <% } %>
+            </thead>
+          </table>
+          <a href="#">Show All</a>
+        </div>
+        <div class="recent-orders">
+          <h2>Verified Student</h2>
+          <table id="verified">
+            <thead>
+              <tr>
+                <th class="sortable">ID</th>
+                <th class="sortable">Name</th>
+                <th class="sortable">Enrollment No</th>
+                <th class="sortable">Email</th>
+                <th class="sortable">Resume</th>
+              </tr>
+              <% for(var i=0; i<verified.length; i++){ %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <td><%= verified[i].name %></td>
+                  <td><%= verified[i].enrollment %></td>
+                  <td><%= verified[i].email %></td>
+                <td><a href="/download-resume/<%= verified[i].resume %>"><button class="detail-button">Resume</button></a></td>
+              </tr>
+              <% } %>
+            </thead>
+          </table>
+          <a href="#">Show All</a>
+        </div>
+      </main>
+    </div>
+
+  <div class="companylist">
+      <main>
+        <h1>Total Companies</h1>
+
+        <div class="recent-orders">
+          <h2>Ongoing Companies</h2>
+          <table id="totalCompanylist">
+            <thead>
+              <tr>
+                <th class="sortable">ID</th>
+                <th class="sortable">Name</th>
+                <th class="sortable">Location</th>
+                <th class="sortable">Package</th>
+                <th class="sortable" onclick="toggleVisibility()">Applied Student</th>
+              </tr>
+              <% var x = 0; %>
+              <% for(var i=0; i<companies.length; i++){ %>
+                <% var ending = new Date(companies[i].endingDate); %>
+                <% var starting = new Date(companies[i].startingDate); %>
+                <% var current = new Date(); %>
+                
+                <% if(ending>current && current>=starting) { %>
+                  <% x++; %>
+                <tr>
+                  <td><%= x %></td>
+
+                  <td><%= companies[i].name %></td>
+
+                  <% if(companies[i].location!=0) { %>
+                    <td><%= companies[i].location %></td>
+                    <% } %>
+                  <% if(companies[i].location===0) {%>
+                    <td> N/A </td>
+                  <% } %>
+
+                  <% if(companies[i].package!=0) { %>
+                    <td><%= companies[i].package %> LPA</td>
+                    <% } %>
+                  <% if(companies[i].package===0) {%>
+                    <td> N/A </td>
+                  <% } %>
+
+                  <td><button class="detail-button">Applied Students</button></td>
+
+                </tr>
+                
+                <% } %>
+              <% } %>
+            </thead>
+          </table>
+          <a href="#">Show All</a>
+        </div>
+        <div class="recent-orders">
+          <h2>Upcoming Companies</h2>
+          <table id="Upcompanies">
+            <thead>
+              <tr>
+                <th class="sortable">ID</th>
+                <th class="sortable">Name</th>
+                <th class="sortable">Location</th>
+                <th class="sortable">Package</th>
+                <th class="sortable">Dates</th>
+              </tr>
+              <% var y = 0; %>
+              <% for(var i=0; i<companies.length; i++){ %>
+                <% var ending = new Date(companies[i].startingDate); %>
+                <% var current = new Date(); %>
+                <% if(ending>current) { %>
+                <tr>
+                  
+                  <td><%= ++y %></td>
+
+                  <td><%= companies[i].name %></td>
+
+                  <% if(companies[i].location!=0) { %>
+                    <td><%= companies[i].location %></td>
+                    <% } %>
+                  <% if(companies[i].location===0) {%>
+                    <td> N/A </td>
+                  <% } %>
+
+                  <% if(companies[i].package!=0) { %>
+                    <td><%= companies[i].package %> LPA</td>
+                    <% } %>
+                  <% if(companies[i].package===0) {%>
+                    <td> N/A </td>
+                  <% } %>
+
+                  <% if(ending!="1970-01-01") { %>
+                  <td><%= ending.toISOString().slice(0, 10) %></td>
+                  <% } %>
+                  <% if(ending==="1970-01-01") {%>
+                  <td> NULL </td>
+                  <% } %>
+                </tr>
+                <% } %>
+              <% } %>
+            </thead>
+          </table>
+          <a href="#">Show All</a>
+        </div>
+      </main>
+    </div>
+
+    
+
+    <div class="addcompany">
+
+      <main>
+        <div class="recent-orders">
+          <div>
+            <section class="container-form">
+              <!-- <header>Registration Form</header> -->
+              <form action="/cRegister" method="post" class="form" style="
+              margin-top:0px;
+          ">
+                <div class="input-box">
+                  <label>Company Name</label>
+                  <input type="text" placeholder="Enter Company Name" name="name" required />
+                </div>
+        
+                <div class="input-box">
+                  <label>Email Address</label>
+                  <input type="text" id="email" placeholder="Enter email address" name = "email" required />
+                  <span id="emailError" style="color: red;"></span>
+                </div>
+                <div class="input-box">
+                  <label>Password</label>
+                  <input type="text" id="password" placeholder="Enter Password" name = "password" required />
+                  <span id="passwordError" style="color: red" class="error"></span>
+                </div>
+        
+                <div class="input-box">
+                  <label>Confirm Password</label>
+                  <input type="text" id="cpassword" placeholder="Enter Confirm Password" required />
+                  <span id="cpasswordError" style="color: red" class="error"></span>
+                </div>
+        
+                <div class="input-box">
+                  <label>Location</label>
+                  <input type="text" placeholder="Enter Company location" name = "location" />
+                </div>
+        
+        
+                <div class="column">
+                  <div class="input-box">
+                    <label>Package Offered</label>
+                    <input type="text" placeholder="Enter Package Offered" name="package"/>
+                  </div>
+                  <div class="input-box">
+                    <label>Starting Date</label>
+                    <input type="date" placeholder="Enter birth date" name="startingDate" required />
+                  </div>
+                  <div class="input-box">
+                    <label>Ending Date</label>
+                    <input type="date" placeholder="Enter birth date" name="endingDate" required />
+                  </div>
+                </div>
+        
+                <div class="input-box address">
+                  <label>Company Description</label>
+                  <input type="text" placeholder="Enter Company Description" name="description" required />
+                </div>
+                <div class="column">
+                  <div class="input-box">
+                    <label>10th Marks required</label>
+                    <input type="number" id="marks" placeholder="Enter 10th Marks required" name="marks10"/>
+                    <span id="marksError" style="color: red" class="error"></span>
+                  </div>
+                  <div class="input-box">
+                    <label>12th Marks required</label>
+                    <input type="number" id="mark" placeholder="Enter 12th Marks required" name="marks12" />
+                    <span id="markError" style="color: red" class="error"></span>
+                  </div>
+                  <div class="input-box">
+                    <label>Required CGPA</label>
+                    <input type="number" id="cgpa" placeholder="Enter cgpa required" name="cgpa" />
+                    <span id="cgpaError" style="color: red" class="error"></span>
+                  </div>
+                </div> 
+                <button id="submitBtn" type="submit">Submit</button>
+              </form>
+              </section>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="addNotice">
+
+      <main>
+        <div class="recent-orders" style="margin-top:200px;">
+          <div>
+            <section class="container-form">
+              <!-- <header>Registration Form</header> -->
+              <form action="/Notice" method="post" class="form" style="margin-top:0px;">
+
+                <div class="input-box">
+                  <label>Title</label>
+                  <input type="text" placeholder="Enter a Title" name="title" required />
+                </div>
+        
+                <div class="input-box">
+                  <label>Notice</label>
+                  <input type="text" id="email" placeholder="Enter Notice here" name = "notice" required />
+                  <span id="emailError" style="color: red;"></span>
+                </div>
+                <button id="submitBtn" type="submit">Submit</button>
+              </form>
+              </section>
+          </div>
+        </div>
+      </main>
+    </div>
+
+
+    <div class="addAdmin">
+      <main>
+        <div class="recent-orders" style="margin-top:200px;">
+          <div>
+            <section class="container-form">
+              <!-- <header>Registration Form</header> -->
+              <form action="/aRegister" method="post" class="form" style="margin-top:0px;">
+
+                <div class="input-box">
+                  <label>Email</label>
+                  <input type="email" placeholder="Enter email" name="email" required />
+                </div>
+        
+                <div class="input-box">
+                  <label>Password</label>
+                  <input type="password" placeholder="Enter Password" name = "password" required />
+                </div>
+                <div class="input-box">
+                  <label>Confirm Password</label>
+                  <input type="password" placeholder="Enter Password" name = "cpassword" required />
+                </div>
+                <button type="submit">Submit</button>
+              </form>
+              </section>
+          </div>
+        </div>
+      </main>
+    </div>
+
+
+
+    <div class="feedback">
+      <main>
+        <div class="recent-orders">
+          <h1>Feedback from students</h1>
+        </div>
+      </main>
+
+    </div>
+
+    <div class="applied">
+      <main>
+        <h1>All Companies</h1>
+
+
+        <div class="recent-orders">
+          <table id="totalCompanylist">
+            <thead>
+              <tr>
+                <th class="sortable">ID</th>
+                <th class="sortable">Name</th>
+                <th class="sortable">Location</th>
+                <th class="sortable">Package</th>
+                <th class="sortable" >Applied Student</th>
+              </tr>
+
+              <% for(var i=0; i<companies.length; i++){ %>
+                <tr>
+                  <td><%= i+1 %></td>
+
+                  <td><%= companies[i].name %></td>
+
+                  <% if(companies[i].location!=0) { %>
+                    <td><%= companies[i].location %></td>
+                    <% } %>
+                  <% if(companies[i].location===0) {%>
+                    <td> N/A </td>
+                  <% } %>
+
+                  <% if(companies[i].package!=0) { %>
+                    <td><%= companies[i].package %> LPA</td>
+                    <% } %>
+                  <% if(companies[i].package===0) {%>
+                    <td> N/A </td>
+                  <% } %>
+
+                  <td><button class="detail-button">Applied Students</button></td>
+
+                </tr>
+                
+                <% } %>
+            </thead>
+          </table>
+          <a href="#">Show All</a>
+        </div>
+
+      </main>
+    </div>
+
+    
+
+      <div class="right">
+        <div class="top">
+          <button id="menu-btn">
+            <span class="material-icons-sharp"> Menu </span>
+          </button>
+          <div class="profile">
+            <div class="info">
+              <p>Hey, <b>Placment Cordinator</b></p>
+              <small class="text-muted">Admin</small>
+            </div>
+            <div class="profile-photo">
+              <img src="images/profile-1.jpg" alt="Profile Picture" />
+            </div>
+          </div>
+        </div>
+
+        <div class="recent-updates">
+          <h2>Recent Updates</h2>
+          <div class="updates">
+            <div class="update">
+            <%for(var i=0; i<notice.length; i++){ %>
+              <div class="profile-photo">
+                <img src= "images/profile-1.jpg" />
+              </div>
+              <div class="message">
+                <p><b><%= notice[i].title %></b> <%= notice[i].notice %></p>
+                <small class="text-muted">2 Minutes Ago</small>
+              </div>
+          <% } %>
+        </div>
+        </div>
+      </div>
+    </div>
+    <script>
+  // Get the necessary elements
+const studentsLink = document.querySelector('.sidebar a:nth-child(2)');
+const studentsLink2 = document.querySelector('.sidebar a:nth-child(1)');
+const homeDiv = document.querySelector('.home');
+const studentDetailsDiv = document.querySelector('.studentdetails');
+studentDetailsDiv.style.display = 'none';
+
+
+// Add click event listener to the students link
+studentsLink.addEventListener('click', () => {
+  // Hide the home div
+  homeDiv.style.display = 'none';
+  companyDiv.style.display = 'none';
+  addcompanyDiv.style.display = 'none';
+  feedbackDiv.style.display='none';
+  appliedDiv.style.display='none';
+  addNoticeDiv.style.display='none';
+  // Show the student details div
+  addAdminDiv.style.display = 'none';
+  studentDetailsDiv.style.display = 'block';
+});
+
+// Add click event listener to the students link
+studentsLink2.addEventListener('click', () => {
+  // Hide the home div
+  studentDetailsDiv.style.display = 'none';
+  companyDiv.style.display = 'none';
+  addcompanyDiv.style.display = 'none';
+  feedbackDiv.style.display='none';
+  appliedDiv.style.display='none';
+  addNoticeDiv.style.display='none';
+  // Show the student details 
+  addAdminDiv.style.display = 'none';
+  homeDiv.style.display = 'block';
+});
+
+</script>
+<script>
+  // Get the necessary elements
+const studentsLink3 = document.querySelector('.sidebar a:nth-child(3)');
+const companyDiv = document.querySelector('.companylist');
+
+companyDiv.style.display = 'none';
+
+// Add click event listener to the students link
+studentsLink3.addEventListener('click', () => {
+  // Hide the home div
+  homeDiv.style.display = 'none';
+  studentDetailsDiv.style.display = 'none';
+  addcompanyDiv.style.display = 'none';
+  feedbackDiv.style.display='none';
+  appliedDiv.style.display='none';
+  addNoticeDiv.style.display='none';
+  // Show the student details div
+  addAdminDiv.style.display = 'none';
+  companyDiv.style.display = 'block';
+});
+
+
+
+
+const studentsLink4 = document.querySelector('.sidebar a:nth-child(4)');
+const appliedDiv = document.querySelector('.applied');
+appliedDiv.style.display='none';
+// Add click event listener to the students link
+studentsLink4.addEventListener('click', () => {
+  // Hide the home div
+  homeDiv.style.display = 'none';
+  studentDetailsDiv.style.display = 'none';
+  companyDiv.style.display='none';
+  addcompanyDiv.style.display = 'none';
+  feedbackDiv.style.display='none';
+  addNoticeDiv.style.display='none';
+  // Show the student details div
+  addAdminDiv.style.display = 'none';
+  appliedDiv.style.display='block';
+});
+
+
+
+
+const studentsLink5 = document.querySelector('.sidebar a:nth-child(5)');
+const feedbackDiv = document.querySelector('.feedback');
+
+
+feedbackDiv.style.display='none';
+
+// Add click event listener to the students link
+studentsLink5.addEventListener('click', () => {
+  // Hide the home div
+  homeDiv.style.display = 'none';
+  studentDetailsDiv.style.display = 'none';
+  companyDiv.style.display='none';
+  addcompanyDiv.style.display = 'none';
+  appliedDiv.style.display='none';
+  addNoticeDiv.style.display='none';
+  // Show the student details div
+  addAdminDiv.style.display = 'none';
+  feedbackDiv.style.display='block';
+});
+
+
+
+
+  // Get the necessary elements
+const studentsLink6 = document.querySelector('.sidebar a:nth-child(6)');
+const addcompanyDiv = document.querySelector('.addcompany');
+
+addcompanyDiv.style.display = 'none';
+
+// Add click event listener to the students link
+studentsLink6.addEventListener('click', () => {
+  // Hide the home div
+  homeDiv.style.display = 'none';
+  studentDetailsDiv.style.display = 'none';
+  companyDiv.style.display='none';
+  feedbackDiv.style.display='none';
+  appliedDiv.style.display='none';
+  addNoticeDiv.style.display='none';
+  // Show the student details div
+  addAdminDiv.style.display = 'none';
+  addcompanyDiv.style.display = 'block';
+});
+
+
+
+
+
+
+const studentsLink7 = document.querySelector('.sidebar a:nth-child(7)');
+const addNoticeDiv = document.querySelector('.addNotice');
+
+addNoticeDiv.style.display = 'none';
+
+// Add click event listener to the students link
+studentsLink7.addEventListener('click', () => {
+  // Hide the home div
+  homeDiv.style.display = 'none';
+  studentDetailsDiv.style.display = 'none';
+  companyDiv.style.display='none';
+  feedbackDiv.style.display='none';
+  appliedDiv.style.display='none';
+  // Show the student details div
+  addAdminDiv.style.display = 'none';
+  addcompanyDiv.style.display = 'none';
+  addNoticeDiv.style.display='block';
+});
+
+const studentsLink8 = document.querySelector('.sidebar a:nth-child(8)');
+const addAdminDiv = document.querySelector('.addAdmin');
+
+addAdminDiv.style.display = 'none';
+
+// Add click event listener to the students link
+studentsLink8.addEventListener('click', () => {
+  // Hide the home div
+  homeDiv.style.display = 'none';
+  studentDetailsDiv.style.display = 'none';
+  companyDiv.style.display='none';
+  feedbackDiv.style.display='none';
+  appliedDiv.style.display='none';
+  // Show the student details div
+  addcompanyDiv.style.display = 'none';
+  addNoticeDiv.style.display='none';
+  addAdminDiv.style.display = 'block';
+});
+
+</script>
+
+
+
+<script>
+  function changeActiveLink(link) {
+    // Remove "active" class from all links
+    var links = document.getElementsByClassName("sidebar")[0].getElementsByTagName("a");
+    for (var i = 0; i < links.length; i++) {
+      links[i].classList.remove("active");
+    }
+
+    // Add "active" class to the clicked link
+    link.classList.add("active");
+  }
+</script>
+
+<script>
+  $(document).ready(function() {
+    $('.sortable').click(function() {
+      if ($(this).text() === 'Applied Student') {
+        $('.applied').show();
+        $('.home').hide();
+        $('.addcompany').hide();
+        $('.feedback').hide();
+        $('.companylist').hide();
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  const emailInput = document.getElementById('email');
+  const emailError = document.getElementById('emailError');
+
+  emailInput.addEventListener('input', () => {
+    const email = emailInput.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(email)) {
+      emailError.textContent = '';
+    } else {
+      emailError.textContent = 'Invalid email format';
+    }
+  });
+</script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var passwordInput = document.getElementById('password');
+    var confirmPasswordInput = document.getElementById('cpassword');
+    var passwordError = document.getElementById('passwordError');
+    var confirmPasswordError = document.getElementById('cpasswordError');
+
+    passwordInput.addEventListener('input', validatePassword);
+    confirmPasswordInput.addEventListener('input', validatePassword);
+
+    function validatePassword() {
+      var password = passwordInput.value;
+      var confirmPassword = confirmPasswordInput.value;
+
+      if (password.trim() === "") {
+        passwordError.textContent = "Please enter a password.";
+      } else {
+        passwordError.textContent = "";
+      }
+
+      if (confirmPassword.trim() === "") {
+        confirmPasswordError.textContent = "Please confirm your password.";
+      } else if (confirmPassword !== password) {
+        confirmPasswordError.textContent = "Passwords do not match.";
+      } else {
+        confirmPasswordError.textContent = "";
+      }
+    }
+  });
+</script>
+
+
+<!-- //marks 10-->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var marksInput = document.getElementById('marks');
+    var marksError = document.getElementById('marksError');
+
+    marksInput.addEventListener('input', function () {
+      var marks = marksInput.value;
+      var numericRegex = /^\d*\.?\d+$/; // Regular expression to allow decimal values
+      var minMarks = 0; // Minimum marks allowed
+      var maxMarks = 100; // Maximum marks allowed
+
+      if (marks.trim() === "") {
+        marksError.textContent = "Please enter the marks.";
+      } else if (!numericRegex.test(marks)) {
+        marksError.textContent = "Marks should be a valid numeric value.";
+      } else {
+        var marksValue = parseFloat(marks);
+        if (marksValue < minMarks || marksValue > maxMarks) {
+          marksError.textContent = "Enter Correct Value";
+        } else {
+          marksError.textContent = "";
+        }
+      }
+    });
+  });
+</script>
+
+<!-- //marks 12 -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var marksInput = document.getElementById('mark');
+    var marksError = document.getElementById('markError');
+
+    marksInput.addEventListener('input', function () {
+      var marks = marksInput.value;
+      var numericRegex = /^\d*\.?\d+$/; // Regular expression to allow decimal values
+      var minMarks = 0; // Minimum marks allowed
+      var maxMarks = 100; // Maximum marks allowed
+
+      if (marks.trim() === "") {
+        marksError.textContent = "Please enter the marks.";
+      } else if (!numericRegex.test(marks)) {
+        marksError.textContent = "Marks should be a valid numeric value.";
+      } else {
+        var marksValue = parseFloat(marks);
+        if (marksValue < minMarks || marksValue > maxMarks) {
+          marksError.textContent = "Enter Correct Value";
+        } else {
+          marksError.textContent = "";
+        }
+      }
+    });
+  });
+</script>
+
+<!-- //cgpa-->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var marksInput = document.getElementById('cgpa');
+    var marksError = document.getElementById('cgpaError');
+
+    marksInput.addEventListener('input', function () {
+      var marks = marksInput.value;
+      var numericRegex = /^\d*\.?\d+$/; // Regular expression to allow decimal values
+      var minMarks = 0; // Minimum marks allowed
+      var maxMarks = 10; // Maximum marks allowed
+
+      if (marks.trim() === "") {
+        marksError.textContent = "Please enter the cgpa.";
+      } else if (!numericRegex.test(marks)) {
+        marksError.textContent = "cgpa should be a valid numeric value.";
+      } else {
+        var marksValue = parseFloat(marks);
+        if (marksValue < minMarks || marksValue > maxMarks) {
+          marksError.textContent = "Enter Correct Value";
+        } else {
+          marksError.textContent = "";
+        }
+      }
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const resumeButtons = document.querySelectorAll(".download-resume");
+
+    resumeButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        const resumePath = button.getAttribute("data-resume");
+        const downloadLink = document.createElement("a");
+        downloadLink.style.display = "none";
+        downloadLink.href = resumePath;
+        downloadLink.download = "student_resume.pdf"; // Adjust the file name if needed
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+      });
+    });
+  });
+</script>
+
+    <script src="js/constants/update-data2.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>

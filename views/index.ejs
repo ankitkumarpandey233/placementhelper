@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Placement </title>
+
+    <!-- FAVICON -->
+    <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+
+    <!-- Bootstrap 5 CDN Links -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Custom File's Link -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive-style.css">
+    <link rel="stylesheet" href="css/board.css">
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="75">
+    <!-- Navbar section -->
+    <%- include("header"); -%>
+        <!-- Navbar section exit -->
+
+        <!-- Banner section -->
+        <section id="home" class="banner_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 order-lg-1 order-2 banner-content">
+                        <h2 class="text-uppercase position-relative">Welcome to</h2>
+                        <h1 class="text-uppercase">UVPCE Placement Cell</h1>
+                        <h5 class="text-uppercase"></h5>
+                        <div class="mt-5">
+                            <a class="main-btn primary-btn" href="/login" id="loginButton">Login</a>
+                            <a class="main-btn secondary-btn ms-4" href="/Form">Register</a>
+                            <a class="main-btn secondary-btn ms-4" href="/cLogin">cLogin</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 order-lg-2 order-1">
+                        <div class="top-right-img">
+                            <img decoding="async" src="images/home-right.webp" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Banner section exit -->
+
+
+        <!--announcement section starts-->
+
+
+        <h1 class="text-center text-3xl pt-8 pb-4" style="
+    font-size: 38px;
+">
+            LATEST UPDATES
+        </h1>
+
+        <div class="container">
+
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-12  col-md-12">
+
+                        <!--sdfdasfads-->
+                        <div class="boxdesign1" style="width:50%; height: 240px; color:#8b0000; margin-left: 25%; ">
+                            <ul class="list"
+                                style="color:#035e6c; overflow-y: scroll; height: 205px; scroll-behavior  : auto; font-size: 90%; font-family: Arial, Helvetica, sans-serif; list-style-type:disc;">
+                                <div class="card" style="border: none;">
+                                    <li class="list-new">New PPT On Java is uploaded today <img src="images/new.gif"
+                                            alt="New_img"></li><br>
+
+                                    <li class="list-new">New Video Lecture is Uploaded<img src="images/new.gif"
+                                            alt="New_img"></li><br>
+                                    <li class="list-new">New session will be arranged today by manan sir</li><br>
+                                    <li class="list-new">New Project related videos downloaded</li><br>
+                                    <li class="list-new">Kindally Attend The Meeting Tomorrow for placement helping
+                                        session</li><br>
+                                    <li class="list-new">Fillout the form for upcoming hackathon </li>
+                                </div>
+                            </ul>
+                        </div>
+                        <!--sdfdasfads-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!--annoucememt section exit-->
+
+
+        <!-- About section -->
+        <section id="about" class="about_wrapper">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 mb-4 mb-lg-0">
+                        <img decoding="async" src="images/about-us.webp" class="img-fluid" alt="About Us">
+                    </div>
+                    <div class="col-lg-5 mb-4 mb-lg-0">
+                        <h3>Welcome to placement cell</h3>
+                        <p>Congratulations on taking the first step towards a bright and promising future. We are thrilled to have you join our platform, dedicated to empowering students like you to achieve their career aspirations.</p>
+                        <p>As the College Placement Cell, our mission is to connect you with remarkable internship and job opportunities that align with your skills, passions, and ambitions. We understand that your college journey has been a valuable experience, and now it's time to put your knowledge into action.</p>
+                        <p>Explore our extensive database of internships and job openings from leading companies in various industries. You'll find opportunities that cater to different academic backgrounds and interests, ensuring that there's something for everyone. Stay up to date with the latest trends, industry insights, and valuable resouces. Here are some study materials you can go through.</p>
+                        <a href="/notes" class="main-btn primary-btn mt-4">Study Materials</a>
+
+                    </div>
+                </div>
+                <div class="row justify-content-center pt-5">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <div class="row">
+
+                            <% for(var i=0; i<photo.length; i++) { %>
+                                <div class="col-md-4 col-sm-6 mb-4">
+                                    <div class="single-logo-item">
+                                        <img decoding="async" src="<%= photo[i] %>" class="img-fluid">
+                                    </div>
+                                </div>
+                                <% } %>
+                        </div>
+                    </div>
+                    <div class="offset-lg-2 col-lg-4 col-md-10">
+                        <div class="client-info">
+                            <div class="d-flex">
+                                <span class="large">25</span>
+                                <span class="smll">Years <br>of <br>Excellence</span>
+                            </div>
+                            <div class="call-now d-flex py-4">
+                                <div>
+                                    <span class="fa fa-phone-alt"></span>
+                                </div>
+                                <div class="ms-4">
+                                    <p>Contact Us </p>
+                                    <h5>(+91) 123-456-7890</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <!-- About section exit -->
+
+        <!-- Footer section -->
+        <%- include("footer"); -%>
+            <!-- Footer section Exit -->
+            <script>
+                let signIn = document.querySelector(".signin");
+                let signUp = document.querySelector(".signup");
+                let nextSection = document.querySelectorAll(".next");
+                let loginLink = document.getElementById("login");
+
+                // Click event for "Login" link
+                loginLink.onclick = function () {
+                    signIn.classList.add("active");
+                    signUp.classList.add("inActive");
+                    nextSection.forEach(section => section.classList.add("inActive"));
+                }
+            </script>
+</body>
