@@ -10,6 +10,7 @@ const nocache = require('nocache');
 const fs = require('fs')
 const multer = require('multer');
 const path = require('path');
+const ExcelJS = require('exceljs');
 
 
 const app = express();
@@ -772,6 +773,46 @@ app.post('/updateResume', upload.single('resume'), (req, res) => {
     res.status(200).json({ message: 'Resume updated successfully' });
   });
 });
+
+app.get('/download/:companyName', (req, res) => {
+  const companyName = req.params.companyName;
+
+  const query = `SELECT * FROM applied WHERE companyName = ?`;
+
+  dbPool.query(query, [companyName], (err, results) => {
+    if (err) {
+      console.error('Error fetching data:', err);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Applications');
+
+    worksheet.columns = [
+      { header: 'Student Email', key: 'studentEmail', width: 20 },
+      { header: 'Student Name', key: 'studentName', width: 20 },
+      { header: 'Company Email', key: 'companyEmail', width: 20 },
+      { header: 'Company Name', key: 'companyName', width: 20 },
+      { header: 'Student Enrollment', key: 'studentEnrollment', width: 20 },
+      { header: 'Next Round', key: 'next', width: 20 },
+      { header: 'Round Selected', key: 'selected', width: 20 },
+    ];
+
+    results.forEach((result) => {
+      worksheet.addRow(result);
+    });
+
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', `attachment; filename=${companyName}_applications.xlsx`);
+
+    // Pipe the workbook to the response
+    workbook.xlsx.write(res).then(() => {
+      res.end();
+    });
+  });
+});
+
 
 app.listen(3000, function() {
     console.log("Server started on port 3000");

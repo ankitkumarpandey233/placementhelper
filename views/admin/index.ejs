@@ -346,7 +346,7 @@
                     <td> N/A </td>
                   <% } %>
 
-                  <td><button class="detail-button">Applied Students</button></td>
+                  <td><button class="detail-button" onclick="downloadStudents('<%= companies[i].name %>')">Applied Students</button></td>
 
                 </tr>
                 
@@ -596,7 +596,7 @@
                     <td> N/A </td>
                   <% } %>
 
-                  <td><button class="detail-button">Applied Students</button></td>
+                  <td><button class="detail-button" onclick="downloadStudents('<%= companies[i].name %>')">Applied Students</button></td>
 
                 </tr>
                 
@@ -984,22 +984,22 @@ studentsLink8.addEventListener('click', () => {
 </script>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const resumeButtons = document.querySelectorAll(".download-resume");
-
-    resumeButtons.forEach(function (button) {
-      button.addEventListener("click", function () {
-        const resumePath = button.getAttribute("data-resume");
-        const downloadLink = document.createElement("a");
-        downloadLink.style.display = "none";
-        downloadLink.href = resumePath;
-        downloadLink.download = "student_resume.pdf"; // Adjust the file name if needed
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
-      });
-    });
-  });
+  function downloadStudents(companyName) {
+    // Assuming you're using Fetch API for simplicity
+    fetch(`/download/${encodeURIComponent(companyName)}`)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${companyName}_applications.xlsx`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      })
+      .catch((error) => console.error('Error downloading students:', error));
+  }
 </script>
 
     <script src="js/constants/update-data2.js"></script>

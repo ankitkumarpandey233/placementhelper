@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Dashboard</title>
+  <title>Company Dashboard</title>
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
@@ -209,7 +209,7 @@
                     <td>
                       <%= students[i].studentEmail %>
                     </td>
-                    <td><button class="detail-button">Resume</button></td>
+                    <td><a href="/download-resume/<%= student[i].resume %>"><button class="detail-button">Resume</button></a></td>
 
                     <td>
                       <form action="/accepted/<%= students[i].studentEmail %>" method="post">
@@ -276,7 +276,7 @@
                   <td>
                     <%= rejected[i].studentEmail %>
                   </td>
-                  <td><button class="detail-button">Resume</button></td>
+                  <td><a href="/download-resume/<%= rejected[i].resume %>"><button class="detail-button">Resume</button></a></td>
                   <td>
                     <%= rejected[i].round %>
                   </td>
@@ -326,9 +326,7 @@
                   <td>
                     <%= selected[i].studentEmail %>
                   </td>
-                  <td>
-                    <button class="detail-button">Resume</button>
-                  </td>
+                  <td><a href="/download-resume/<%= selected[i].resume %>"><button class="detail-button">Resume</button></a></td>
                 </tr>
                 <% } %>
             </thead>
