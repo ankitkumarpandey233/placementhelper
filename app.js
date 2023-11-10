@@ -11,7 +11,7 @@ const fs = require('fs')
 const multer = require('multer');
 const path = require('path');
 const ExcelJS = require('exceljs');
-
+const nodemailer = require('nodemailer');
 
 const app = express();
 app.use(nocache());
@@ -19,6 +19,14 @@ app.use(nocache());
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
+
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+      user: 'turbogeek641@gmail.com',
+      pass: 'vcle vjly tzln yznv'
+  }
+});
 
 
 const storage = multer.diskStorage({
@@ -366,6 +374,21 @@ app.post("/accept/:email", function(req, res)
       if (err) {
         res.redirect("/");
       }
+      const mailOptions = {
+        from: 'turbogeek641@gmail.com',
+        to: req.params.email,
+        subject: 'Hello, regarding ',
+        text: `registration has been accepted you can now register in placement helper GUIN`
+      };
+    
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log('Error sending email: ' + error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+
       res.redirect("/admin");
   });
 });
@@ -376,6 +399,22 @@ app.post("/reject/:email", function(req, res)
       if (err) {
         res.redirect("/");
       }
+
+      const mailOptions = {
+        from: 'turbogeek641@gmail.com',
+        to: req.params.email,
+        subject: 'Hello, regarding registration',
+        text: `Your registration has been rejected you have to register again in placement helper GUIN`
+      };
+    
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log('Error sending email: ' + error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+
       res.redirect("/admin");
   });
 });
@@ -623,6 +662,26 @@ app.post("/accepted/:email", function(req, res)
         if (err) {
           res.redirect("/company");
         }
+        dbPool.query("SELECT * FROM companies WHERE email = ?",[req.session.company] , (err, resu) => {
+          if (err) {
+            res.redirect("/company");
+          }
+            const mailOptions = {
+              from: 'turbogeek641@gmail.com',
+              to: req.params.email,
+              subject: 'Hello',
+              text: `You have been accepted for the next round in ${resu[0].name}`
+            };
+          
+            transporter.sendMail(mailOptions, (error, info) => {
+              if (error) {
+                  console.log('Error sending email: ' + error);
+              } else {
+                  console.log('Email sent: ' + info.response);
+              }
+          });
+        });
+
         res.redirect("/company");
     });
 });
@@ -640,6 +699,20 @@ app.post("/rejected/:email", function(req, res)
       companyName:results[0].companyName,
       round:results[0].round
     };
+    const mailOptions = {
+      from: 'turbogeek641@gmail.com',
+      to: req.params.email,
+      subject: 'Hello',
+      text: `You have been rejected for the next round in ${results[0].companyName}`
+    };
+  
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+          console.log('Error sending email: ' + error);
+      } else {
+          console.log('Email sent: ' + info.response);
+      }
+    });
     dbPool.query('INSERT INTO rejected SET ?', applied1, (err, result) => {
       if (err) {
         console.error('Error inserting data:', err);
@@ -663,6 +736,31 @@ app.post("/selected", function(req, res)
       if (err) {
         res.redirect("/company");
       }
+
+      dbPool.query("SELECT * FROM applied WHERE companyEmail = ? && selected = 1",[req.session.company]  , (err, resu) => {
+        if (err) {
+          res.redirect("/company");
+        }
+
+        for(var i = 0; i<resu.length; i++)
+        {
+          const mailOptions = {
+            from: 'turbogeek641@gmail.com',
+            to: resu[i].studentEmail,
+            subject: 'Hello',
+            text: `congratulatins, You have been selected for ${resu[i].companyName}`
+          };
+        
+          transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log('Error sending email: ' + error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+      }
+      });
+
       res.redirect("/company");
     });
 });
