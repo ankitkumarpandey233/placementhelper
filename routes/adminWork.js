@@ -1,6 +1,7 @@
 const express = require('express')
 const {dbPool} = require('../database/db')
 const ExcelJS = require('exceljs');
+const flash = require('connect-flash')
 
 const router = express.Router()
 
@@ -15,6 +16,7 @@ router.post('/Notice', (req, res) => {
         console.error('Error inserting data:', err);
         res.redirect("/");
       }
+      flash('success_msg', 'Notice added successfully')
       console.log('Data inserted successfully!');
       res.redirect("/admin")
     });  

@@ -10,6 +10,7 @@ const nocache = require('nocache');
 const multer = require('multer');
 const nodemailer = require('nodemailer');
 const env = require('dotenv');
+const flash = require('connect-flash')
 
 const app = express();
 
@@ -49,6 +50,15 @@ app.use(session({
   store: sessionStore,
 }));
 
+// Express flash message middleware
+app.use(flash())
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.error_msg = req.flash('error_msg')
+  res.locals.error = req.flash('error') // login passport.js msg
+  next()
+})
+
 
 // const transporter = nodemailer.createTransport({
 //   service: 'Gmail',
@@ -64,9 +74,16 @@ const homeRouter = require('../routes/home')
 app.use(homeRouter)
 
 
+
 const adminRouter = require('../routes/admin')
 
 app.use(adminRouter)
+
+const adminWorkRouter = require('../routes/adminWork')
+
+app.use(adminWorkRouter)
+
+
 
 
 const companyRouter = require('../routes/company')
@@ -76,6 +93,7 @@ app.use(companyRouter)
 const companyloginRouter = require('../routes/companylogin')
 
 app.use(companyloginRouter)
+
 
 
 
@@ -91,6 +109,11 @@ const studentAdminRouter = require('../routes/studentAdmin')
 
 app.use(studentAdminRouter)
 
+
+
+const resumeRouter = require('../routes/resume')
+
+app.use(resumeRouter)
 
 
 const errorRouter = require('../routes/404')

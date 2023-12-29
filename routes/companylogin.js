@@ -73,6 +73,7 @@ router.post('/cRegister', (req, res) => {
           console.error('Error inserting data:', err);
           res.redirect("/");
         }
+        req.flash('success_msg', 'Company Data inserted successfully!')
         console.log('Data inserted successfully!');
         res.redirect("/admin")
       });  
