@@ -911,6 +911,10 @@ app.get('/download/:companyName', (req, res) => {
   });
 });
 
+const errorRouter = require('../routes/404')
+
+app.use(errorRouter)
+
 
 app.listen(3000, function() {
     console.log("Server started on port 3000");
