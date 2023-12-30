@@ -4,7 +4,7 @@ const router = express.Router()
 
 // error router
 router.get('*', (req, res) => {
-  res.render('error/404.ejs')
+  res.render('partials/404.ejs')
 })
 
 module.exports = router

@@ -5,7 +5,7 @@ const multer = require('multer');
 
 const router = express.Router()
 
-const {dbPool} = require('../database/db')
+const {dbPool} = require('../config/db')
 
 
 const storage = multer.diskStorage({
