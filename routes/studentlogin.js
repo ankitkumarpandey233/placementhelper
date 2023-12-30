@@ -1,5 +1,5 @@
 const express = require('express')
-const {dbPool} = require('../database/db')
+const {dbPool} = require('../config/db')
 const bcrypt = require('bcrypt');
 const multer = require('multer');
 
@@ -20,7 +20,7 @@ const upload = multer({ storage: storage, });
 //login
 
 router.get("/login", function(req,res){
-    res.render("form")
+    res.render("partials/form.ejs")
   })
   
   router.post("/login", function(req, res)
@@ -71,8 +71,7 @@ router.get("/login", function(req,res){
 
 router.post("/register",upload.fields([{ name: 'photo', maxCount: 1 } , { name: 'resume', maxCount: 1 }]), function(req, res)  {
 
-    var skills = req.body.skills;
-    const serializedArray = JSON.stringify(skills);
+    
 
     const plainPassword = req.body.password;
     const saltRounds = 10;
@@ -98,24 +97,7 @@ router.post("/register",upload.fields([{ name: 'photo', maxCount: 1 } , { name: 
 
           console.log(hashedPassword);
 
-          const student1 ={
-            name: req.body.name,
-            email: req.body.email,
-            password: hashedPassword,
-            cpassword: hashedPassword,
-            enrollment: req.body.enrollment,
-            birthDate: req.body.birthDate,
-            mobile: req.body.mobile,
-            marks10: req.body.marks10,
-            marks12 : req.body.marks12,
-            cgpa : req.body.cgpa,
-            skills : serializedArray,
-            linkedin : req.body.linkedin,
-            github : req.body.github,
-            otherid : req.body.otherid,
-            photo: req.files['photo'][0].originalname,
-            resume : req.files['resume'][0].originalname
-          };
+          
           
 
           dbPool.query('INSERT INTO student SET ?', student1, (err, result) => {

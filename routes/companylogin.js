@@ -1,32 +1,32 @@
 const express = require('express')
-const {dbPool} = require('../database/db')
+const {dbPool} = require('../config/db')
 const bcrypt = require('bcrypt');
 
 const router = express.Router()
 
 // login
   
-router.get('/cLogin', (req, res) => {
-    res.render('cLogin.ejs');
+router.get('/companyLogin', (req, res) => {
+    res.render('company/companyLogin.ejs');
   });
   
-router.post("/cLogin",(req,res) => {
+router.post("/companyLogin",(req,res) => {
   
     dbPool.query("SELECT * from companies where email = ?" , req.body.email , (err,result) => {
       if (err) {
-        res.redirect("/cLogin");
+        res.redirect("/companyLogin");
       }
     
       if(result.length === 0)
       {
-        res.redirect("/cLogin")
+        res.redirect("/companyLogin")
       }
       else
       {
         bcrypt.compare(req.body.password , result[0].password, (err, passwordMatch) => {
           if (err) {
             console.log('Error comparing passwords:', err);
-            res.redirect("/cLogin");
+            res.redirect("/companyLogin");
           }
           
           if (passwordMatch) 
@@ -36,7 +36,7 @@ router.post("/cLogin",(req,res) => {
           } 
           else {
             console.log('Password does not match');
-            res.redirect("/cLogin");
+            res.redirect("/companyLogin");
           }
         });
       }

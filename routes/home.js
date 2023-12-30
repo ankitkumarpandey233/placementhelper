@@ -41,17 +41,17 @@ router.get("/", function(req, res)
 });
 
 router.get('/form', (req, res) => {
-  res.render('form.ejs');
+  res.render('partials/form.ejs');
 });
 
 
 router.get("/notes", function(req, res)
 {
-  res.render("notes.ejs",{photo: img , courses: course , link: material, link1: source});
+  res.render("partials/notes.ejs",{photo: img , courses: course , link: material, link1: source});
 });
 
 router.get('/notes1', (req, res) => {
-  res.render('notes1.ejs');
+  res.render('partials/notes1.ejs');
 });
 
 

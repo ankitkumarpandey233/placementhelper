@@ -1,5 +1,5 @@
 const express = require('express')
-const {dbPool} = require('../database/db')
+const {dbPool} = require('../config/db')
 
 const router = express.Router()
 

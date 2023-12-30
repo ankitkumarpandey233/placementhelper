@@ -1,5 +1,5 @@
 const express = require('express')
-const {dbPool} = require('../database/db')
+const {dbPool} = require('../config/db')
 const bcrypt = require('bcrypt');
 
 const router = express.Router()
@@ -7,19 +7,19 @@ const router = express.Router()
 router.get('/company', (req, res) => {
     dbPool.query("SELECT * from applied where companyEmail = ? && next = 0",req.session.company,(err,data) => {
       if (err) {
-        res.redirect("/cLogin");
+        res.redirect("/companyLogin");
       }
       dbPool.query("SELECT * from applied where companyEmail = ? && next = 1",req.session.company,(err,results) => {
         if (err) {
-          res.redirect("/cLogin");
+          res.redirect("/companyLogin");
         }
         dbPool.query("SELECT * from rejected where companyEmail = ?",req.session.company,(err,rejected) => {
           if (err) {
-            res.redirect("/cLogin");
+            res.redirect("/companyLogin");
           }
           dbPool.query("SELECT * from applied where companyEmail = ? && selected = 1",req.session.company,(err,selected) => {
             if (err) {
-              res.redirect("/cLogin");
+              res.redirect("/companyLogin");
             }
             res.render("company/company.ejs",{students: data , accepted: results , rejected: rejected , selected: selected});
           });
@@ -38,20 +38,7 @@ router.post("/accepted/:email", function(req, res)
           if (err) {
             res.redirect("/company");
           }
-            const mailOptions = {
-              from: 'turbogeek641@gmail.com',
-              to: req.params.email,
-              subject: 'Hello',
-              text: `You have been accepted for the next round in ${resu[0].name}`
-            };
-          
-            transporter.sendMail(mailOptions, (error, info) => {
-              if (error) {
-                  console.log('Error sending email: ' + error);
-              } else {
-                  console.log('Email sent: ' + info.response);
-              }
-          });
+            
         });
 
         res.redirect("/company");
@@ -71,20 +58,7 @@ router.post("/rejected/:email", function(req, res)
       companyName:results[0].companyName,
       round:results[0].round
     };
-    const mailOptions = {
-      from: 'turbogeek641@gmail.com',
-      to: req.params.email,
-      subject: 'Hello',
-      text: `You have been rejected for the next round in ${results[0].companyName}`
-    };
-  
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-          console.log('Error sending email: ' + error);
-      } else {
-          console.log('Email sent: ' + info.response);
-      }
-    });
+    
     dbPool.query('INSERT INTO rejected SET ?', applied1, (err, result) => {
       if (err) {
         console.error('Error inserting data:', err);

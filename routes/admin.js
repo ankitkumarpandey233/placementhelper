@@ -1,104 +1,75 @@
-const express = require('express')
-const {dbPool} = require('../database/db')
+// admin.js
+const express = require('express');
 const bcrypt = require('bcrypt');
+const adminModel = require('../models/adminModel');
 
-const router = express.Router()
+const router = express.Router();
 
-router.get('/admin', (req, res) => {
-    dbPool.query('SELECT * FROM student WHERE allow = 0', (err, student) => {
-      if (err) {
-        res.redirect("/");
-      }
-        dbPool.query('SELECT * FROM student WHERE allow = 1', (err, verified) => {
-          if (err) {
-            res.redirect("/");
-          }
-  
-          dbPool.query('SELECT * FROM companies', (err, companies) => {
-            if (err) {
-              res.redirect("/");
-            }
-            dbPool.query('SELECT * FROM notice', (err, notice) => {
-              if (err) {
-                res.redirect("/");
-              }
-            res.render("admin/index.ejs" , {student : student, verified : verified , companies: companies , notice: notice});
-            });
-          });
-      });
+router.get('/admin', async (req, res) => {
+  try {
+    const unverifiedStudents = await adminModel.getUnverifiedStudents();
+    const verifiedStudents = await adminModel.getVerifiedStudents();
+    const companies = await adminModel.getCompanies();
+    const notices = await adminModel.getNotices();
+
+    res.render('admin/index.ejs', {
+      student: unverifiedStudents,
+      verified: verifiedStudents,
+      companies: companies,
+      notice: notices,
     });
-  });
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.redirect('/');
+  }
+});
 
-  
+router.get('/adminLogin', (req, res) => {
+  res.render('admin/adminLogin.ejs');
+});
 
+router.post('/adminLogin', async (req, res) => {
+  try {
+    const admin = await adminModel.getAdminByEmail(req.body.email);
 
+    if (admin.length === 0) {
+      return res.redirect('/adminLogin');
+    }
 
-
-router.get('/aLogin', (req, res) => {
-    res.render('aLogin.ejs');
-  });
-  
-router.post("/aLogin",(req,res) => {
-  
-    dbPool.query("SELECT * from admin where email = ?" , req.body.email , (err,result) => {
-      if (err) {
-        res.redirect("/aLogin");
+    bcrypt.compare(req.body.password, admin[0].password, (err, passwordMatch) => {
+      if (err || !passwordMatch) {
+        console.log('Error comparing passwords or password does not match');
+        return res.redirect('/adminLogin');
       }
-    
-      if(result.length === 0)
-      {
-        res.redirect("/aLogin")
-      }
-      else
-      {
-        bcrypt.compare(req.body.password , result[0].password, (err, passwordMatch) => {
-          if (err) {
-            console.log('Error comparing passwords:', err);
-            res.redirect("/cLogin");
-          }
-          
-          if (passwordMatch) 
-          {
-            req.session.company = req.body.email;
-            res.redirect("/admin");
-          } 
-          else {
-            console.log('Password does not match');
-            res.redirect("/aLogin");
-          }
-        });
-      }
-      });
-  });
-  
-router.post('/aRegister', (req, res) => {
-  
-    const plainPassword = req.body.password;
-    const saltRounds = 10;
-  
-  
-    bcrypt.hash(plainPassword, saltRounds, (err, hashedPassword) => {
-      if (err) {
-        console.error('Error hashing password:', err);
-        return;
-      }
-      
-      const admin1 ={
-        email: req.body.email,
-        password: hashedPassword,
-      };
-  
-      dbPool.query('INSERT INTO admin SET ?', admin1, (err, result) => {
-        if (err) {
-          console.error('Error inserting data:', err);
-          res.redirect("/");
-        }
-        console.log('Data inserted successfully!');
-        res.redirect("/admin")
-      });  
-    
+
+      req.session.company = req.body.email;
+      res.redirect('/admin');
     });
-  });
-  
+  } catch (error) {
+    console.error('Error fetching admin:', error);
+    res.redirect('/adminLogin');
+  }
+});
 
-  module.exports = router
+router.post('/adminRegister', async (req, res) => {
+  const plainPassword = req.body.password;
+  const saltRounds = 10;
+
+  try {
+    const hashedPassword = await bcrypt.hash(plainPassword, saltRounds);
+    const adminData = {
+      email: req.body.email,
+      password: hashedPassword,
+    };
+
+    await adminModel.insertAdmin(adminData);
+
+    console.log('Data inserted successfully!');
+    res.redirect('/admin');
+  } catch (error) {
+    console.error('Error inserting data:', error);
+    res.redirect('/');
+  }
+});
+
+module.exports = router;

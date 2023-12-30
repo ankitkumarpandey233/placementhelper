@@ -1,5 +1,5 @@
 const express = require('express')
-const {dbPool} = require('../database/db')
+const {dbPool} = require('../config/db')
 const bcrypt = require('bcrypt');
 
 const router = express.Router()
@@ -54,7 +54,7 @@ router.get('/students', requireAuth ,(req, res) => {
                       sCompany.push(co[i].companyName);
                     }
   
-                    // console.log(sCompany);                
+               
   
                   if(cStudent.length != 0)
                   {
@@ -68,11 +68,11 @@ router.get('/students', requireAuth ,(req, res) => {
                       }
                         
   
-                      res.render("studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , notice: notice , sCompany: sCompany});   
+                      res.render("student/studentDashboard.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , notice: notice , sCompany: sCompany});   
                     });
                   }
                   else{
-                    res.render("studentD.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , sCompany: sCompany , notice: notice});
+                    res.render("student/studentDashboard.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , sCompany: sCompany , notice: notice});
                   }
                 });
                 });

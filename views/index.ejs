@@ -23,7 +23,7 @@
 
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="75">
     <!-- Navbar section -->
-    <%- include("header"); -%>
+    <%- include("partials/header"); -%>
         <!-- Navbar section exit -->
 
         <!-- Banner section -->
@@ -37,7 +37,7 @@
                         <div class="mt-5">
                             <a class="main-btn primary-btn" href="/login" id="loginButton">Login</a>
                             <a class="main-btn secondary-btn ms-4" href="/Form">Register</a>
-                            <a class="main-btn secondary-btn ms-4" href="/cLogin">cLogin</a>
+                            <a class="main-btn secondary-btn ms-4" href="/companyLogin">companyLogin</a>
                         </div>
                     </div>
                     <div class="col-lg-5 order-lg-2 order-1">
@@ -155,7 +155,7 @@
         <!-- About section exit -->
 
         <!-- Footer section -->
-        <%- include("footer"); -%>
+        <%- include("partials/footer"); -%>
             <!-- Footer section Exit -->
             <script>
                 let signIn = document.querySelector(".signin");
