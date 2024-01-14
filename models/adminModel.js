@@ -34,16 +34,16 @@ const getCompanies = () => {
   });
 };
 
-const getNotices = () => {
+const getNotices = (notice) => {
   return new Promise((resolve, reject) => {
-    dbPool.query('SELECT * FROM notice', (err, notices) => {
+    dbPool.query('SELECT * FROM notice', notice , (err, notices) => {
       if (err) {
         reject(err);
       }
       resolve(notices);
     });
   });
-};
+}
 
 const getAdminByEmail = (email) => {
   return new Promise((resolve, reject) => {
