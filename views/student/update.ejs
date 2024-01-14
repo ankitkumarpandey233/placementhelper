@@ -1,0 +1,81 @@
+<div class="update">
+    <main>
+      <div class="center">
+        <h1>Update form</h1>
+      </div>
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <style>
+            .row {
+            display: flex;
+            flex-flow: row wrap;
+            }
+            .column {
+            flex: 1;
+            float: left;
+            width: 33.33%;
+            }
+            .hidden {
+            display: none;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="cardStyle1">
+            <div class="row">
+              <div class="column">
+                <div class="mainDiv">
+                  <div class="cardStyle">
+                    <form action="/updateResume" method="post" name="signupForm" id="signupForm" enctype="multipart/form-data">
+                      <img src="" id="signupLogo" />
+                      <h2 class="formTitle">
+                        Change Personal information
+                      </h2>
+                      <div class="inputDiv">
+                        <label class="inputLabel">Resume</label>
+                        <input type="file" id="resume" name="resume">
+                      </div>
+                      <div class="buttonWrapper">
+                        <button type="submit" id="submitButton" onclick="validateSignupForm()" class="submitButton pure-button pure-button-primary">
+                        <span>Submit</span>
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <div class="mainDiv">
+                  <div class="cardStyle">
+                    <form action="/updatePassword" method="post" >
+                      <img src="" id="signupLogo"/>
+                      <h2 class="formTitle">
+                        Change Your Password
+                      </h2>
+                      <div class="inputDiv">
+                        <label class="inputLabel" >Old Password</label>
+                        <input type="password" id="oldPassword" name="oldPassword" required>
+                      </div>
+                      <div class="inputDiv">
+                        <label class="inputLabel" >New Password</label>
+                        <input type="password" id="newPassword" name="newPassword" required>
+                      </div>
+                      <div class="inputDiv">
+                        <label class="inputLabel" >Confirm New Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword">
+                      </div>
+                      <div class="buttonWrapper">
+                        <button type="submit"  class="submitButton pure-button pure-button-primary">
+                        Submit
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </body>
+      </html>
+    </main>
+    </div>

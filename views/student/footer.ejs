@@ -1,0 +1,122 @@
+<script>
+    function showEligibleJobs(toggle) {
+      if (toggle.checked) {
+        document.querySelectorAll(".box").forEach(function(box) {
+          if (box.classList.contains("eligible")) {
+            box.style.display = "block";
+          } else {
+            box.style.display = "none";
+          }
+        });
+      } else {
+        document.querySelectorAll(".box").forEach(function(box) {
+          box.style.display = "block";
+        });
+      }
+    }
+  </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Set up a click event handler on a common parent container (e.g., .course-box)
+      $('.course-box').on('click', 'li', function() {
+        var id = $(this).attr('id');
+    
+        // Hide all sections initially
+        $('.progress, .explore, .incoming').hide();
+    
+        // Show the section based on the clicked list item
+        if (id === 'progressbtn') {
+          $('.progress').show();
+        } else if (id === 'exploreBtn') {
+          $('.explore').show();
+        } else if (id === 'incomingbtn') {
+          $('.incoming').show();
+        }
+        // Add more conditions for other list items if needed
+      });
+    });
+  </script>
+  <script></script>
+  <script>
+    function changeActiveLink(link) {
+      // Remove "active" class from all links
+      var links = document.getElementsByClassName("sidebar")[0].getElementsByTagName("a");
+      for (var i = 0; i < links.length; i++) {
+        links[i].classList.remove("active");
+      }
+    
+      // Add "active" class to the clicked link
+      link.classList.add("active");
+    }
+  </script>
+  <script>
+    const studentsLink = document.querySelector('.sidebar a:nth-child(2)');
+    const studentsLink2 = document.querySelector('.sidebar a:nth-child(1)');
+    const dashboardDiv = document.querySelector('.dashboard');
+    const updateDiv = document.querySelector('.update');
+    
+    updateDiv.style.display = 'none';
+    
+    
+    // Add click event listener to the students link
+    studentsLink.addEventListener('click', () => {
+      // Hide the home div
+      dashboardDiv.style.display = 'none';
+      appliedDiv.style.display = 'none';
+      feedbackDiv.style.display = 'none';
+      // Show the student details div
+      updateDiv.style.display = 'block';
+    });
+    
+    
+    studentsLink2.addEventListener('click', () => {
+      // Hide the home div
+      updateDiv.style.display = 'none';
+      appliedDiv.style.display = 'none';
+      feedbackDiv.style.display = 'none';
+    
+      // Show the student details div
+      dashboardDiv.style.display = 'block';
+    });
+    
+    
+    
+    const studentsLink3 = document.querySelector('.sidebar a:nth-child(3)');
+    const appliedDiv = document.querySelector('.applied');
+    appliedDiv.style.display = 'none';
+    
+    studentsLink3.addEventListener('click', () => {
+      // Hide the home div
+      updateDiv.style.display = 'none';
+    
+      dashboardDiv.style.display = 'none';
+      feedbackDiv.style.display = 'none';
+    
+      // Show the student details div
+      appliedDiv.style.display = 'block';
+    });
+    
+    const studentsLink4 = document.querySelector('.sidebar a:nth-child(4)');
+    const feedbackDiv = document.querySelector('.feedback');
+    feedbackDiv.style.display='none';
+    
+    studentsLink4.addEventListener('click', () => {
+      // Hide the home div
+      updateDiv.style.display = 'none';
+      appliedDiv.style.display = 'none';
+      dashboardDiv.style.display = 'none';
+    
+      // Show the student details div
+      feedbackDiv.style.display = 'block';
+    });
+    
+    
+    function reloadPageAfterDelay(delayInMilliseconds) {
+      setTimeout(() => {
+        window.location.reload();
+      }, delayInMilliseconds);
+    }
+    
+    
+  </script>

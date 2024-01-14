@@ -1,0 +1,27 @@
+<div class="applied">
+    <main>
+      <h1>Applied Companies</h1>
+      <div class="recent-orders">
+        <h2></h2>
+        <table id="verified">
+          <thead>
+            <tr>
+              <th class="sortable">ID</th>
+              <th class="sortable">Company Name</th>
+              <th class="sortable">Role</th>
+              <th class="sortable">Package</th>
+            </tr>
+            <% for(var i=0; i<cStudent.length; i++){ %>
+            <tr>
+              <td><%= i+1 %></td>
+              <td><%= cStudent[i].name %></td>
+              <td>Software Engineer</td>
+              <td><%= cStudent[i].package %></td>
+            </tr>
+            <% } %>
+          </thead>
+        </table>
+        <a href="#">Show All</a>
+      </div>
+    </main>
+  </div>

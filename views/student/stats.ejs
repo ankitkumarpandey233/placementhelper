@@ -1,0 +1,53 @@
+<div class="insights">
+    <div class="wrapper">
+      <div class="img-area">
+        <div class="inner-area">
+          <% if (student[0].photo) { %>
+            <img src="/uploads/<%= student[0].photo %>" alt="">
+          <% } else { %>
+            <img src="https://images.unsplash.com/photo-1492288991661-058aa541ff43?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Default Avatar">
+          <% } %>
+        </div>
+      </div>
+      <div class="icon dots"><i class="fas fa-ellipsis-v"></i></div>
+      <div class="name"><%= student[0].name %></div>
+      <div class="about"><%= student[0].email %></div>
+      <div class="social-icons">
+        <a href="<%= student[0].github %>" class="fb"><i class="fab fa-github"></i></a>
+        <a href="<%= student[0].linkedin %>" class="yt"><i class="fab fa-linkedin"></i></a>
+        <a href="<%= student[0].other %>" class="twitter"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+    <!-- EXPENSES -->
+    <div class="expenses">
+      <span class="material-icons-sharp"> bar_chart </span>
+      <div class="middle">
+        <div class="left">
+          <h3>Total Available Comapnies</h3>
+          <h1><%= companies.length + companiesNot.length %></h1>
+          <i class="fas fa-building" style="
+            font-size: 100px;
+            margin-left: 50%;
+            color: blue;
+            "></i>
+        </div>
+      </div>
+      <small class="text-muted">This year</small>
+    </div>
+    <!-- INCOME -->
+    <div class="income">
+      <span class="material-icons-sharp"> stacked_line_chart </span>
+      <div class="middle">
+        <div class="left">
+          <h3>Total Eligible Companies</h3>
+          <h1><%= companies.length %></h1>
+          <i class="fas fa-thumbs-up"style="
+            font-size: 100px;
+            margin-left: 50%;
+            color: blue;
+            "></i>
+        </div>
+      </div>
+      <small class="text-muted"> This year </small>
+    </div>
+  </div>

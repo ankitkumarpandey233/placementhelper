@@ -1,0 +1,56 @@
+<div class="feedback">
+    <main>
+      <div class="center">
+        <h1>Feedback</h1>
+      </div>
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <style>
+            .row {
+            display: flex;
+            flex-flow: row wrap;
+            }
+            .column {
+            flex: 1;
+            float: left;
+            width: 33.33%;
+            }
+            .hidden {
+            display: none;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="cardStyle1">
+            <div class="row">
+              <div class="column">
+                <div class="mainDiv">
+                  <div class="cardStyle">
+                    <form action="" method="post" name="signupForm" id="signupForm">
+                      <img src="" id="signupLogo"/>
+                      <h2 class="formTitle">
+                        Add feedback
+                      </h2>
+                      <div class="inputDiv">
+                        <label class="inputLabel">Title</label>
+                        <input type="text">
+                      </div>
+                      <div class="inputDiv">
+                        <label class="inputLabel">Content</label>
+                        <input type="text" id="email" required>
+                      </div>
+                      <div class="buttonWrapper">
+                        <button type="submit" id="submitButton" onclick="validateSignupForm()" class="submitButton pure-button pure-button-primary">
+                        <span>Submit</span>
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </body>
+      </html>
+    </main>
+    </div>
