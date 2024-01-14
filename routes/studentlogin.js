@@ -71,46 +71,64 @@ router.get("/login", function(req,res){
 
 router.post("/register",upload.fields([{ name: 'photo', maxCount: 1 } , { name: 'resume', maxCount: 1 }]), function(req, res)  {
 
-    
+  var skills = req.body.skills;
+  const serializedArray = JSON.stringify(skills);
 
-    const plainPassword = req.body.password;
-    const saltRounds = 10;
+  const plainPassword = req.body.password;
+  const saltRounds = 10;
 
-    dbPool.query('SELECT * FROM student WHERE email = ?', req.body.email, (err, results) => {
-      if (err) {
-        console.error('Error querying the database:', err);
-        res.redirect("/");
-      }
-    
-      if (results.length>0) 
-      {
-        console.log('please enter diffrent email its already loged in');
-        res.redirect("/form");
-      }
-      else
-      {
-        bcrypt.hash(plainPassword, saltRounds, (err, hashedPassword) => {8
+  dbPool.query('SELECT * FROM student WHERE email = ?', req.body.email, (err, results) => {
+    if (err) {
+      console.error('Error querying the database:', err);
+      res.redirect("/");
+    }
+  
+    if (results.length>0) 
+    {
+      console.log('please enter diffrent email its already loged in');
+      res.redirect("/form");
+    }
+    else
+    {
+      bcrypt.hash(plainPassword, saltRounds, (err, hashedPassword) => {8
+        if (err) {
+          console.error('Error hashing password:', err);
+          return;
+        }
+
+        console.log(hashedPassword);
+
+        const student1 ={
+          name: req.body.name,
+          email: req.body.email,
+          password: hashedPassword,
+          cpassword: hashedPassword,
+          enrollment: req.body.enrollment,
+          birthDate: req.body.birthDate,
+          mobile: req.body.mobile,
+          marks10: req.body.marks10,
+          marks12 : req.body.marks12,
+          cgpa : req.body.cgpa,
+          skills : serializedArray,
+          linkedin : req.body.linkedin,
+          github : req.body.github,
+          otherid : req.body.otherid,
+          photo: req.files['photo'][0].originalname,
+          resume : req.files['resume'][0].originalname
+        };
+        
+
+        dbPool.query('INSERT INTO student SET ?', student1, (err, result) => {
           if (err) {
-            console.error('Error hashing password:', err);
-            return;
+            console.error('Error inserting data:', err);
+            res.redirect("/");
           }
-
-          console.log(hashedPassword);
-
-          
-          
-
-          dbPool.query('INSERT INTO student SET ?', student1, (err, result) => {
-            if (err) {
-              console.error('Error inserting data:', err);
-              res.redirect("/");
-            }
-            console.log('Data inserted successfully!');
-            res.redirect("/verified");
-          });  
+          console.log('Data inserted successfully!');
+          res.redirect("/verified");
         });  
-      }
-    });
+      });  
+    }
+  });
 });
 
 //verification wait
