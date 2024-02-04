@@ -9,17 +9,75 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
       rel="stylesheet"
       />
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@version/dist/tailwind.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link rel="stylesheet" href="/css/studentDashboard1.css" />
     <link rel="stylesheet" href="/css/studentDashboard2.css" />
+    <link rel="stylesheet" href="/css/updateform.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
       .progress ,.explore,.incoming{
       display: block;
       }
     </style>
+<style>
+  .add-button, .remove-button {
+    width: 50px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-right: 10px;
+  }
+
+  .add-button:last-child, .remove-button:last-child {
+    margin-right: 0;
+  }
+
+  .add-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .remove-button {
+    background-color: #FF5722;
+    color: white;
+  }
+
+  .add-button:hover, .remove-button:hover {
+    background-color: #45a049;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+
+
+  .detail-button {
+  background-color: #4287f5; /* Lighter blue color */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.detail-button:hover{
+  background-color: #1f5bcf; /* Darker shade of blue on hover */
+  cursor: pointer;
+}
+
+
+
+.recent-orders{
+  overflow: auto;
+}
+
+
+.applied {
+    display: none;
+  }
+</style>
   </head>
   <body>
     <div class="container">

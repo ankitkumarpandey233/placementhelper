@@ -716,6 +716,12 @@ main .recent-orders a {
   column-gap: 5px;
 }
 
+.sortable {
+
+  align-items: center;
+  font-size: large;
+}
+
 .gender input {
   accent-color: rgb(130, 106, 251);
 }
@@ -756,6 +762,11 @@ main .recent-orders a {
 
 .form button:hover {
   background: rgb(88, 56, 250);
+}
+
+td {
+  text-align: center;
+  font-size: 14px;
 }
 
 /* Responsive */

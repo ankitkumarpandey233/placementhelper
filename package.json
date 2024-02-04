@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"No test specified\" ",
-    "start": "node app.js"
+    "start": "node ./src/app.js"
   },
   "repository": {
     "type": "git",

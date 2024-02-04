@@ -1,56 +1,48 @@
 <div class="feedback">
     <main>
-      <div class="center">
-        <h1>Feedback</h1>
+      <h1>Selected Companies</h1>
+      <div class="recent-orders">
+          <input type="text" id="searchInput" placeholder="Search by Company Name">
+          <table id="verified" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+              <thead>
+                  <tr style="background-color: #f2f2f2;">
+                      <th class="sortable" style="padding: 10px; text-align: left; border: 1px solid #ddd;">ID</th>
+                      <th class="sortable" style="padding: 10px; text-align: left; border: 1px solid #ddd;">Company Name</th>
+                      <th class="sortable" style="padding: 10px; text-align: left; border: 1px solid #ddd;">Role</th>
+                      <th class="sortable" style="padding: 10px; text-align: left; border: 1px solid #ddd;">Package</th>
+                  </tr>
+              </thead>
+              <tbody id="tableBody">
+                  <% for(var i=0; i<cStudent.length; i++){ %>
+                  <tr style="border: 1px solid #ddd;">
+                      <td style="padding: 10px; text-align: left;"><%= i+1 %></td>
+                      <td style="padding: 10px; text-align: left;"><%= cStudent[i].name %></td>
+                      <td style="padding: 10px; text-align: left;">Software Engineer</td>
+                      <td style="padding: 10px; text-align: left;"><%= cStudent[i].package %></td>
+                  </tr>
+                  <% } %>
+              </tbody>
+          </table>
       </div>
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <style>
-            .row {
-            display: flex;
-            flex-flow: row wrap;
-            }
-            .column {
-            flex: 1;
-            float: left;
-            width: 33.33%;
-            }
-            .hidden {
-            display: none;
-            }
-          </style>
-        </head>
-        <body>
-          <div class="cardStyle1">
-            <div class="row">
-              <div class="column">
-                <div class="mainDiv">
-                  <div class="cardStyle">
-                    <form action="" method="post" name="signupForm" id="signupForm">
-                      <img src="" id="signupLogo"/>
-                      <h2 class="formTitle">
-                        Add feedback
-                      </h2>
-                      <div class="inputDiv">
-                        <label class="inputLabel">Title</label>
-                        <input type="text">
-                      </div>
-                      <div class="inputDiv">
-                        <label class="inputLabel">Content</label>
-                        <input type="text" id="email" required>
-                      </div>
-                      <div class="buttonWrapper">
-                        <button type="submit" id="submitButton" onclick="validateSignupForm()" class="submitButton pure-button pure-button-primary">
-                        <span>Submit</span>
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </body>
-      </html>
-    </main>
+  </main>
+
+
+<script>
+  document.getElementById('searchInput').addEventListener('input', function () {
+      const searchValue = this.value.toLowerCase();
+      const tableBody = document.getElementById('tableBody');
+      const rows = tableBody.getElementsByTagName('tr');
+
+      for (let i = 0; i < rows.length; i++) {
+          const companyName = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
+
+          if (companyName.includes(searchValue)) {
+              rows[i].style.display = '';
+          } else {
+              rows[i].style.display = 'none';
+          }
+      }
+  });
+</script>
+
     </div>
