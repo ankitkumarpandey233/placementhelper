@@ -1,81 +1,203 @@
+<style>
+  .file-input__input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.file-input__label {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  font-size: 14px;
+  padding: 10px 12px;
+  background-color: #6d70cd;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+}
+
+.file-input__label svg {
+  height: 16px;
+  margin-right: 4px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  left: 2%;
+ margin-bottom: 2%;
+
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  content: "Resume";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 24px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+</style>
+
 <div class="update">
-    <main>
-      <div class="center">
-        <h1>Update form</h1>
-      </div>
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <style>
-            .row {
-            display: flex;
-            flex-flow: row wrap;
-            }
-            .column {
-            flex: 1;
-            float: left;
-            width: 33.33%;
-            }
-            .hidden {
-            display: none;
-            }
-          </style>
-        </head>
-        <body>
-          <div class="cardStyle1">
-            <div class="row">
-              <div class="column">
-                <div class="mainDiv">
-                  <div class="cardStyle">
-                    <form action="/updateResume" method="post" name="signupForm" id="signupForm" enctype="multipart/form-data">
-                      <img src="" id="signupLogo" />
-                      <h2 class="formTitle">
-                        Change Personal information
-                      </h2>
-                      <div class="inputDiv">
-                        <label class="inputLabel">Resume</label>
-                        <input type="file" id="resume" name="resume">
-                      </div>
-                      <div class="buttonWrapper">
-                        <button type="submit" id="submitButton" onclick="validateSignupForm()" class="submitButton pure-button pure-button-primary">
-                        <span>Submit</span>
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-              <div class="column">
-                <div class="mainDiv">
-                  <div class="cardStyle">
-                    <form action="/updatePassword" method="post" >
-                      <img src="" id="signupLogo"/>
-                      <h2 class="formTitle">
-                        Change Your Password
-                      </h2>
-                      <div class="inputDiv">
-                        <label class="inputLabel" >Old Password</label>
-                        <input type="password" id="oldPassword" name="oldPassword" required>
-                      </div>
-                      <div class="inputDiv">
-                        <label class="inputLabel" >New Password</label>
-                        <input type="password" id="newPassword" name="newPassword" required>
-                      </div>
-                      <div class="inputDiv">
-                        <label class="inputLabel" >Confirm New Password</label>
-                        <input type="password" id="confirmPassword" name="confirmPassword">
-                      </div>
-                      <div class="buttonWrapper">
-                        <button type="submit"  class="submitButton pure-button pure-button-primary">
-                        Submit
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
+  <main>
+   
+    <div class="recent-orders">
+      <div>
+        <span style=" margin-left: 37%; margin-top: 2%; font-weight: bolder; font-size: x-large;">Password</span>
+        <label class="switch">
+          <input type="checkbox" id="toggleSwitch" onchange="toggleForms()">
+          <span class="slider round"></span>
+        </label>
+        <span style="float: right; margin-right: 36%;  font-weight: bolder; font-size: x-large;">Resume</span>
+        <section class="container-form" id="passwordForm">
+
+          <form action="/updatePassword" method="post" class="form" style="
+          margin-top:0px;
+      ">
+            <div class="input-box">
+              <label class="inputLabel" >Old Password</label>
+              <input type="password" id="oldPassword" name="oldPassword" placeholder="Enter old Password" required />
+              
+              
             </div>
-        </body>
-      </html>
-    </main>
+    
+            <div class="input-box">
+              <label  class="inputLabel">New Password</label>
+              <input type="password"  placeholder="Enter New Password" id="newPassword" name="newPassword" required />
+              <span id="emailError" style="color: red;"></span>
+            </div>
+    
+            <div class="input-box">
+              <label  class="inputLabel">Confirm Password</label>
+              <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm New Password" required>
+              <span id="cpasswordError" style="color: red" class="error"></span>
+            </div>
+    
+            
+            <button id="submitBtn" type="submit">Submit</button>
+          </form>
+
+          
+          </section>
+          <section class="container-form" style="display: none;" id="resumeForm">
+     
+            <!-- <header>Registration Form</header> -->
+            <form  action="/updateResume" method="post" name="signupForm" id="signupForm" enctype="multipart/form-data" class="form" style="
+            margin-top:0px;
+        ">
+      
+              <div class="input-box">
+                <div class="file-input" style="margin-left: 40%;">
+                  <input
+                    type="file"
+                    name="resume"
+                    id="file-input"
+                    class="file-input__input"
+                    onchange="displayFileName()"
+                  />
+                  <label class="file-input__label" for="file-input" style="color: white;">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      data-prefix="fas"
+                      data-icon="upload"
+                      class="svg-inline--fa fa-upload fa-w-16"
+                      role="img"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M296 384h-80c-13.3 0-24-10.7-24-24V192h-87.7c-17.8 0-26.7-21.5-14.1-34.1L242.3 5.7c7.5-7.5 19.8-7.5 27.3 0l152.2 152.2c12.6 12.6 3.7 34.1-14.1 34.1H320v168c0 13.3-10.7 24-24 24zm216-8v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h136v8c0 30.9 25.1 56 56 56h80c30.9 0 56-25.1 56-56v-8h136c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"
+                      ></path>
+                    </svg>
+                    <span>Upload Resume</span>
+                  </label
+                  ><br><br>
+                  <span id="selected-file"></span>
+                </div>
+              </div>
+      
+              
+              <button id="submitBtn" type="submit">Submit</button>
+            </form>
+  
+            
+            </section>
+      </div>
+    </div>
+  </main>
+  <script>
+    function displayFileName() {
+      const fileInput = document.getElementById('file-input');
+      const fileNameDisplay = document.getElementById('selected-file');
+      
+      if (fileInput.files.length > 0) {
+        fileNameDisplay.textContent = fileInput.files[0].name;
+      } else {
+        fileNameDisplay.textContent = 'Upload Resume';
+      }
+    }
+
+    function toggleForms() {
+      const passwordForm = document.getElementById('passwordForm');
+      const resumeForm = document.getElementById('resumeForm');
+
+      if (document.getElementById('toggleSwitch').checked) {
+        passwordForm.style.display = 'none';
+        resumeForm.style.display = 'block';
+      } else {
+        passwordForm.style.display = 'block';
+        resumeForm.style.display = 'none';
+      }
+    }
+  </script>
     </div>

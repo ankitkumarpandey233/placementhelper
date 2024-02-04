@@ -111,11 +111,6 @@
             <h3>Applied</h3>
           </a>
           <a href="#" onclick="changeActiveLink(this)">
-            <span class="material-icons-sharp"> mail_outline </span>
-            <h3>Feedbacks</h3>
-            <span class="message-count">26</span>
-          </a>
-          <a href="#" onclick="changeActiveLink(this)">
             <span class="material-icons-sharp"> add </span>
             <h3>  Add Company </h3>
           </a>
@@ -201,7 +196,7 @@
   
           <div class="recent-orders" style="overflow: auto;">
             <h2>Unverified Student</h2>
-            <table id="unverified">
+            <table id="unverified" style="border: 1px solid gray;">
               <thead>
                 <tr>
                   <th class="sortable">ID</th>
@@ -212,8 +207,8 @@
                   <th>Action</th>
                 </tr>
                 <% for(var i=0; i<student.length; i++){ %>
-                <tr>
-                  <td><%= i+1 %></td>
+                <tr style="border: 1px solid gray;">
+                  <td  ><%= i+1 %></td>
                   <td><%= student[i].name %></td>
                   <td><%= student[i].enrollment %></td>
                   <td><%= student[i].email %></td>
@@ -244,7 +239,7 @@
 
         <div class="recent-orders">
           <h2>Unverified Student</h2>
-          <table id="unverified2">
+          <table id="unverified2"  style="border: 1px solid gray;">
             <thead>
               <tr>
                 <th class="sortable">ID</th>
@@ -277,9 +272,9 @@
           </table>
           <a href="#">Show All</a>
         </div>
-        <div class="recent-orders">
+        <div class="recent-orders"style="max-height: 750px; overflow-y: auto;">
           <h2>Verified Student</h2>
-          <table id="verified">
+          <table id="verified"  style="border: 1px solid gray;  ">
             <thead>
               <tr>
                 <th class="sortable">ID</th>
@@ -310,7 +305,7 @@
 
         <div class="recent-orders">
           <h2>Ongoing Companies</h2>
-          <table id="totalCompanylist">
+          <table id="totalCompanylist"  style="border: 1px solid gray;">
             <thead>
               <tr>
                 <th class="sortable">ID</th>
@@ -358,7 +353,7 @@
         </div>
         <div class="recent-orders">
           <h2>Upcoming Companies</h2>
-          <table id="Upcompanies">
+          <table id="Upcompanies"  style="border: 1px solid gray;">
             <thead>
               <tr>
                 <th class="sortable">ID</th>
@@ -566,7 +561,7 @@
 
 
         <div class="recent-orders">
-          <table id="totalCompanylist">
+          <table id="totalCompanylist"  style="border: 1px solid gray;">
             <thead>
               <tr>
                 <th class="sortable">ID</th>

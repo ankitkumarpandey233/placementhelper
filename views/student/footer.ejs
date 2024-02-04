@@ -1,20 +1,4 @@
-<script>
-    function showEligibleJobs(toggle) {
-      if (toggle.checked) {
-        document.querySelectorAll(".box").forEach(function(box) {
-          if (box.classList.contains("eligible")) {
-            box.style.display = "block";
-          } else {
-            box.style.display = "none";
-          }
-        });
-      } else {
-        document.querySelectorAll(".box").forEach(function(box) {
-          box.style.display = "block";
-        });
-      }
-    }
-  </script>
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     $(document).ready(function() {
@@ -23,7 +7,7 @@
         var id = $(this).attr('id');
     
         // Hide all sections initially
-        $('.progress, .explore, .incoming').hide();
+        $('.progress, .explore, .incoming , .eligible').hide();
     
         // Show the section based on the clicked list item
         if (id === 'progressbtn') {
@@ -32,6 +16,8 @@
           $('.explore').show();
         } else if (id === 'incomingbtn') {
           $('.incoming').show();
+        } else if (id === 'eligiblebtn') {
+          $('.eligible').show();
         }
         // Add more conditions for other list items if needed
       });

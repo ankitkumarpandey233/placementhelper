@@ -19,6 +19,53 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive-style.css">
     <link rel="stylesheet" href="css/board.css">
+    <style>
+        .modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #ffffff;
+    margin: 358px  auto;
+    padding: 20px;
+    width: 27%;
+    height: 25%;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+    text-align: right;
+}
+
+.close:hover,
+.close:focus {
+    color: #ff5b5b;
+}
+
+/* Modal Text */
+p {
+    font-size: 18px;
+}
+
+
+
+    </style>
 </head>
 
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="75">
@@ -35,9 +82,16 @@
                         <h1 class="text-uppercase">UVPCE Placement Cell</h1>
                         <h5 class="text-uppercase"></h5>
                         <div class="mt-5">
-                            <a class="main-btn primary-btn" href="/login" id="loginButton">Login</a>
+                            <a class="main-btn primary-btn"  id="openModalBtn">Login</a>
                             <a class="main-btn secondary-btn ms-4" href="/Form">Register</a>
-                            <a class="main-btn secondary-btn ms-4" href="/companyLogin">companyLogin</a>
+                            <!-- <a class="main-btn secondary-btn ms-4" href="/companyLogin">companyLogin</a> -->
+                            <div id="myModal" class="modal">
+                                <div class="modal-content">
+                                    <span id="closeModalBtn" class="close">&times;</span>
+                                    <a class="main-btn primary-btn"  href="/login" id="loginButton" style="width: 128px; margin-left: 36%;">Student</a><br>
+                                    <a class="main-btn secondary-btn" href="/companyLogin" style="width: 128px; margin-left: 36%;" margin>company</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-5 order-lg-2 order-1">
@@ -49,55 +103,7 @@
             </div>
         </section>
         <!-- Banner section exit -->
-
-
-        <!--announcement section starts-->
-
-
-        <h1 class="text-center text-3xl pt-8 pb-4" style="
-    font-size: 38px;
-">
-            LATEST UPDATES
-        </h1>
-
-        <div class="container">
-
-            <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-lg-12  col-md-12">
-
-                        <!--sdfdasfads-->
-                        <div class="boxdesign1" style="width:50%; height: 240px; color:#8b0000; margin-left: 25%; ">
-                            <ul class="list"
-                                style="color:#035e6c; overflow-y: scroll; height: 205px; scroll-behavior  : auto; font-size: 90%; font-family: Arial, Helvetica, sans-serif; list-style-type:disc;">
-                                <div class="card" style="border: none;">
-                                    <li class="list-new">New PPT On Java is uploaded today <img src="images/new.gif"
-                                            alt="New_img"></li><br>
-
-                                    <li class="list-new">New Video Lecture is Uploaded<img src="images/new.gif"
-                                            alt="New_img"></li><br>
-                                    <li class="list-new">New session will be arranged today by manan sir</li><br>
-                                    <li class="list-new">New Project related videos downloaded</li><br>
-                                    <li class="list-new">Kindally Attend The Meeting Tomorrow for placement helping
-                                        session</li><br>
-                                    <li class="list-new">Fillout the form for upcoming hackathon </li>
-                                </div>
-                            </ul>
-                        </div>
-                        <!--sdfdasfads-->
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-        <!--annoucememt section exit-->
-
-
+        
         <!-- About section -->
         <section id="about" class="about_wrapper">
             <div class="container">
@@ -169,5 +175,24 @@
                     signUp.classList.add("inActive");
                     nextSection.forEach(section => section.classList.add("inActive"));
                 }
+            </script>
+            <script>
+                let openModalBtn = document.getElementById("openModalBtn");
+let modal = document.getElementById("myModal");
+let closeModalBtn = document.getElementById("closeModalBtn");
+
+openModalBtn.addEventListener("click", function() {
+    modal.style.display = "block";
+});
+
+closeModalBtn.addEventListener("click", function() {
+    modal.style.display = "none";
+});
+
+window.addEventListener("click", function(event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+});
             </script>
 </body>
