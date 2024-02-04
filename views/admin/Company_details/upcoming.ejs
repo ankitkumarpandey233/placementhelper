@@ -1,0 +1,44 @@
+<div class="recent-orders">
+    <h2>Upcoming Companies</h2>
+    <table id="Upcompanies"  style="border: 1px solid gray;">
+      <thead>
+        <tr>
+          <th class="sortable">ID</th>
+          <th class="sortable">Name</th>
+          <th class="sortable">Location</th>
+          <th class="sortable">Package</th>
+          <th class="sortable">Dates</th>
+        </tr>
+        <% var y = 0; %>
+        <% for(var i=0; i<companies.length; i++){ %>
+          <% var ending = new Date(companies[i].startingDate); %>
+          <% var current = new Date(); %>
+          <% if(ending>current) { %>
+          <tr>
+            <td><%= ++y %></td>
+            <td><%= companies[i].name %></td>
+            <% if(companies[i].location!=0) { %>
+              <td><%= companies[i].location %></td>
+              <% } %>
+            <% if(companies[i].location===0) {%>
+              <td> N/A </td>
+            <% } %>
+            <% if(companies[i].package!=0) { %>
+              <td><%= companies[i].package %> LPA</td>
+              <% } %>
+            <% if(companies[i].package===0) {%>
+              <td> N/A </td>
+            <% } %>
+            <% if(ending!="1970-01-01") { %>
+            <td><%= ending.toISOString().slice(0, 10) %></td>
+            <% } %>
+            <% if(ending==="1970-01-01") {%>
+            <td> NULL </td>
+            <% } %>
+          </tr>
+          <% } %>
+        <% } %>
+      </thead>
+    </table>
+    <a href="#">Show All</a>
+  </div>

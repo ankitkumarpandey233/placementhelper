@@ -119,7 +119,7 @@ const StudentModel = {
     return new Promise((resolve, reject) => {
       const query = `
         INSERT INTO applied (studentEmail, studentName, companyEmail, companyName, studentEnrollment)
-        VALUES (?, (SELECT name FROM student WHERE email = ?), ?, ?, (SELECT enrollment FROM student WHERE email = ?))
+        VALUES (?, (SELECT name FROM student WHERE email = ?), (select name from companies where email = ?), ?, (SELECT enrollment FROM student WHERE email = ?))
       `;
       dbPool.query(query, [studentEmail, studentEmail, companyName, companyName, studentEmail], (error, results) => {
         if (error) {

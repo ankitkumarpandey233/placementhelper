@@ -1,0 +1,80 @@
+<div class="addcompany">
+    <main>
+      <div class="recent-orders">
+        <div>
+          <section class="container-form">
+            <!-- <header>Registration Form</header> -->
+            <form action="/cRegister" method="post" class="form" style="
+            margin-top:0px;
+        ">
+              <div class="input-box">
+                <label>Company Name</label>
+                <input type="text" placeholder="Enter Company Name" name="name" required />
+              </div>
+      
+              <div class="input-box">
+                <label>Email Address</label>
+                <input type="text" id="email" placeholder="Enter email address" name = "email" required />
+                <span id="emailError" style="color: red;"></span>
+              </div>
+              <div class="input-box">
+                <label>Password</label>
+                <input type="text" id="password" placeholder="Enter Password" name = "password" required />
+                <span id="passwordError" style="color: red" class="error"></span>
+              </div>
+      
+              <div class="input-box">
+                <label>Confirm Password</label>
+                <input type="text" id="cpassword" placeholder="Enter Confirm Password" required />
+                <span id="cpasswordError" style="color: red" class="error"></span>
+              </div>
+      
+              <div class="input-box">
+                <label>Location</label>
+                <input type="text" placeholder="Enter Company location" name = "location" />
+              </div>
+      
+      
+              <div class="column">
+                <div class="input-box">
+                  <label>Package Offered</label>
+                  <input type="text" placeholder="Enter Package Offered" name="package"/>
+                </div>
+                <div class="input-box">
+                  <label>Starting Date</label>
+                  <input type="date" placeholder="Enter birth date" name="startingDate" required />
+                </div>
+                <div class="input-box">
+                  <label>Ending Date</label>
+                  <input type="date" placeholder="Enter birth date" name="endingDate" required />
+                </div>
+              </div>
+      
+              <div class="input-box address">
+                <label>Company Description</label>
+                <input type="text" placeholder="Enter Company Description" name="description" required />
+              </div>
+              <div class="column">
+                <div class="input-box">
+                  <label>10th Marks required</label>
+                  <input type="number" id="marks" placeholder="Enter 10th Marks required" name="marks10"/>
+                  <span id="marksError" style="color: red" class="error"></span>
+                </div>
+                <div class="input-box">
+                  <label>12th Marks required</label>
+                  <input type="number" id="mark" placeholder="Enter 12th Marks required" name="marks12" />
+                  <span id="markError" style="color: red" class="error"></span>
+                </div>
+                <div class="input-box">
+                  <label>Required CGPA</label>
+                  <input type="number" id="cgpa" placeholder="Enter cgpa required" name="cgpa" />
+                  <span id="cgpaError" style="color: red" class="error"></span>
+                </div>
+              </div> 
+              <button id="submitBtn" type="submit">Submit</button>
+            </form>
+            </section>
+        </div>
+      </div>
+    </main>
+  </div>

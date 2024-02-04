@@ -1,0 +1,360 @@
+<script>
+    // Get the necessary elements
+  const studentsLink = document.querySelector('.sidebar a:nth-child(2)');
+  const studentsLink2 = document.querySelector('.sidebar a:nth-child(1)');
+  const homeDiv = document.querySelector('.home');
+  const studentDetailsDiv = document.querySelector('.studentdetails');
+  studentDetailsDiv.style.display = 'none';
+  
+  
+  // Add click event listener to the students link
+  studentsLink.addEventListener('click', () => {
+    // Hide the home div
+    homeDiv.style.display = 'none';
+    companyDiv.style.display = 'none';
+    addcompanyDiv.style.display = 'none';
+    feedbackDiv.style.display='none';
+    appliedDiv.style.display='none';
+    addNoticeDiv.style.display='none';
+    // Show the student details div
+    addAdminDiv.style.display = 'none';
+    studentDetailsDiv.style.display = 'block';
+  });
+  
+  // Add click event listener to the students link
+  studentsLink2.addEventListener('click', () => {
+    // Hide the home div
+    studentDetailsDiv.style.display = 'none';
+    companyDiv.style.display = 'none';
+    addcompanyDiv.style.display = 'none';
+    feedbackDiv.style.display='none';
+    appliedDiv.style.display='none';
+    addNoticeDiv.style.display='none';
+    // Show the student details 
+    addAdminDiv.style.display = 'none';
+    homeDiv.style.display = 'block';
+  });
+  
+  </script>
+  <script>
+    // Get the necessary elements
+  const studentsLink3 = document.querySelector('.sidebar a:nth-child(3)');
+  const companyDiv = document.querySelector('.companylist');
+  
+  companyDiv.style.display = 'none';
+  
+  // Add click event listener to the students link
+  studentsLink3.addEventListener('click', () => {
+    // Hide the home div
+    homeDiv.style.display = 'none';
+    studentDetailsDiv.style.display = 'none';
+    addcompanyDiv.style.display = 'none';
+    feedbackDiv.style.display='none';
+    appliedDiv.style.display='none';
+    addNoticeDiv.style.display='none';
+    // Show the student details div
+    addAdminDiv.style.display = 'none';
+    companyDiv.style.display = 'block';
+  });
+  
+  
+  
+  
+  const studentsLink4 = document.querySelector('.sidebar a:nth-child(4)');
+  const appliedDiv = document.querySelector('.applied');
+  appliedDiv.style.display='none';
+  // Add click event listener to the students link
+  studentsLink4.addEventListener('click', () => {
+    // Hide the home div
+    homeDiv.style.display = 'none';
+    studentDetailsDiv.style.display = 'none';
+    companyDiv.style.display='none';
+    addcompanyDiv.style.display = 'none';
+    feedbackDiv.style.display='none';
+    addNoticeDiv.style.display='none';
+    // Show the student details div
+    addAdminDiv.style.display = 'none';
+    appliedDiv.style.display='block';
+  });
+  
+  
+  
+  
+  const studentsLink5 = document.querySelector('.sidebar a:nth-child(5)');
+  const feedbackDiv = document.querySelector('.feedback');
+  
+  
+  feedbackDiv.style.display='none';
+  
+  // Add click event listener to the students link
+  studentsLink5.addEventListener('click', () => {
+    // Hide the home div
+    homeDiv.style.display = 'none';
+    studentDetailsDiv.style.display = 'none';
+    companyDiv.style.display='none';
+    addcompanyDiv.style.display = 'none';
+    appliedDiv.style.display='none';
+    addNoticeDiv.style.display='none';
+    // Show the student details div
+    addAdminDiv.style.display = 'none';
+    feedbackDiv.style.display='block';
+  });
+  
+  
+  
+  
+    // Get the necessary elements
+  const studentsLink6 = document.querySelector('.sidebar a:nth-child(6)');
+  const addcompanyDiv = document.querySelector('.addcompany');
+  
+  addcompanyDiv.style.display = 'none';
+  
+  // Add click event listener to the students link
+  studentsLink6.addEventListener('click', () => {
+    // Hide the home div
+    homeDiv.style.display = 'none';
+    studentDetailsDiv.style.display = 'none';
+    companyDiv.style.display='none';
+    feedbackDiv.style.display='none';
+    appliedDiv.style.display='none';
+    addNoticeDiv.style.display='none';
+    // Show the student details div
+    addAdminDiv.style.display = 'none';
+    addcompanyDiv.style.display = 'block';
+  });
+  
+  
+  
+  
+  
+  
+  const studentsLink7 = document.querySelector('.sidebar a:nth-child(7)');
+  const addNoticeDiv = document.querySelector('.addNotice');
+  
+  addNoticeDiv.style.display = 'none';
+  
+  // Add click event listener to the students link
+  studentsLink7.addEventListener('click', () => {
+    // Hide the home div
+    homeDiv.style.display = 'none';
+    studentDetailsDiv.style.display = 'none';
+    companyDiv.style.display='none';
+    feedbackDiv.style.display='none';
+    appliedDiv.style.display='none';
+    // Show the student details div
+    addAdminDiv.style.display = 'none';
+    addcompanyDiv.style.display = 'none';
+    addNoticeDiv.style.display='block';
+  });
+  
+  const studentsLink8 = document.querySelector('.sidebar a:nth-child(8)');
+  const addAdminDiv = document.querySelector('.addAdmin');
+  
+  addAdminDiv.style.display = 'none';
+  
+  // Add click event listener to the students link
+  studentsLink8.addEventListener('click', () => {
+    // Hide the home div
+    homeDiv.style.display = 'none';
+    studentDetailsDiv.style.display = 'none';
+    companyDiv.style.display='none';
+    feedbackDiv.style.display='none';
+    appliedDiv.style.display='none';
+    // Show the student details div
+    addcompanyDiv.style.display = 'none';
+    addNoticeDiv.style.display='none';
+    addAdminDiv.style.display = 'block';
+  });
+  
+  </script>
+  
+  
+  
+  <script>
+    function changeActiveLink(link) {
+      // Remove "active" class from all links
+      var links = document.getElementsByClassName("sidebar")[0].getElementsByTagName("a");
+      for (var i = 0; i < links.length; i++) {
+        links[i].classList.remove("active");
+      }
+  
+      // Add "active" class to the clicked link
+      link.classList.add("active");
+    }
+  </script>
+  
+  <script>
+    $(document).ready(function() {
+      $('.sortable').click(function() {
+        if ($(this).text() === 'Applied Student') {
+          $('.applied').show();
+          $('.home').hide();
+          $('.addcompany').hide();
+          $('.feedback').hide();
+          $('.companylist').hide();
+        }
+      });
+    });
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script>
+    const emailInput = document.getElementById('email');
+    const emailError = document.getElementById('emailError');
+  
+    emailInput.addEventListener('input', () => {
+      const email = emailInput.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailRegex.test(email)) {
+        emailError.textContent = '';
+      } else {
+        emailError.textContent = 'Invalid email format';
+      }
+    });
+  </script>
+  
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var passwordInput = document.getElementById('password');
+      var confirmPasswordInput = document.getElementById('cpassword');
+      var passwordError = document.getElementById('passwordError');
+      var confirmPasswordError = document.getElementById('cpasswordError');
+  
+      passwordInput.addEventListener('input', validatePassword);
+      confirmPasswordInput.addEventListener('input', validatePassword);
+  
+      function validatePassword() {
+        var password = passwordInput.value;
+        var confirmPassword = confirmPasswordInput.value;
+  
+        if (password.trim() === "") {
+          passwordError.textContent = "Please enter a password.";
+        } else {
+          passwordError.textContent = "";
+        }
+  
+        if (confirmPassword.trim() === "") {
+          confirmPasswordError.textContent = "Please confirm your password.";
+        } else if (confirmPassword !== password) {
+          confirmPasswordError.textContent = "Passwords do not match.";
+        } else {
+          confirmPasswordError.textContent = "";
+        }
+      }
+    });
+  </script>
+  
+  
+  <!-- //marks 10-->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var marksInput = document.getElementById('marks');
+      var marksError = document.getElementById('marksError');
+  
+      marksInput.addEventListener('input', function () {
+        var marks = marksInput.value;
+        var numericRegex = /^\d*\.?\d+$/; // Regular expression to allow decimal values
+        var minMarks = 0; // Minimum marks allowed
+        var maxMarks = 100; // Maximum marks allowed
+  
+        if (marks.trim() === "") {
+          marksError.textContent = "Please enter the marks.";
+        } else if (!numericRegex.test(marks)) {
+          marksError.textContent = "Marks should be a valid numeric value.";
+        } else {
+          var marksValue = parseFloat(marks);
+          if (marksValue < minMarks || marksValue > maxMarks) {
+            marksError.textContent = "Enter Correct Value";
+          } else {
+            marksError.textContent = "";
+          }
+        }
+      });
+    });
+  </script>
+  
+  <!-- //marks 12 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var marksInput = document.getElementById('mark');
+      var marksError = document.getElementById('markError');
+  
+      marksInput.addEventListener('input', function () {
+        var marks = marksInput.value;
+        var numericRegex = /^\d*\.?\d+$/; // Regular expression to allow decimal values
+        var minMarks = 0; // Minimum marks allowed
+        var maxMarks = 100; // Maximum marks allowed
+  
+        if (marks.trim() === "") {
+          marksError.textContent = "Please enter the marks.";
+        } else if (!numericRegex.test(marks)) {
+          marksError.textContent = "Marks should be a valid numeric value.";
+        } else {
+          var marksValue = parseFloat(marks);
+          if (marksValue < minMarks || marksValue > maxMarks) {
+            marksError.textContent = "Enter Correct Value";
+          } else {
+            marksError.textContent = "";
+          }
+        }
+      });
+    });
+  </script>
+  
+  <!-- //cgpa-->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var marksInput = document.getElementById('cgpa');
+      var marksError = document.getElementById('cgpaError');
+  
+      marksInput.addEventListener('input', function () {
+        var marks = marksInput.value;
+        var numericRegex = /^\d*\.?\d+$/; // Regular expression to allow decimal values
+        var minMarks = 0; // Minimum marks allowed
+        var maxMarks = 10; // Maximum marks allowed
+  
+        if (marks.trim() === "") {
+          marksError.textContent = "Please enter the cgpa.";
+        } else if (!numericRegex.test(marks)) {
+          marksError.textContent = "cgpa should be a valid numeric value.";
+        } else {
+          var marksValue = parseFloat(marks);
+          if (marksValue < minMarks || marksValue > maxMarks) {
+            marksError.textContent = "Enter Correct Value";
+          } else {
+            marksError.textContent = "";
+          }
+        }
+      });
+    });
+  </script>
+  
+  <script>
+    function downloadStudents(companyName) {
+      // Assuming you're using Fetch API for simplicity
+      fetch(`/download/${encodeURIComponent(companyName)}`)
+        .then((response) => response.blob())
+        .then((blob) => {
+          const url = window.URL.createObjectURL(new Blob([blob]));
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `${companyName}_applications.xlsx`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          window.URL.revokeObjectURL(url);
+        })
+        .catch((error) => console.error('Error downloading students:', error));
+    }
+  </script>
+  
+      <script src="js/constants/update-data2.js"></script>
+      <script src="js/index.js"></script>

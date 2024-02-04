@@ -1,0 +1,48 @@
+<div class="applied">
+    <main>
+      <h1>All Companies</h1>
+
+
+      <div class="recent-orders">
+        <table id="totalCompanylist"  style="border: 1px solid gray;">
+          <thead>
+            <tr>
+              <th class="sortable">ID</th>
+              <th class="sortable">Name</th>
+              <th class="sortable">Location</th>
+              <th class="sortable">Package</th>
+              <th class="sortable" >Applied Student</th>
+            </tr>
+
+            <% for(var i=0; i<companies.length; i++){ %>
+              <tr>
+                <td><%= i+1 %></td>
+
+                <td><%= companies[i].name %></td>
+
+                <% if(companies[i].location!=0) { %>
+                  <td><%= companies[i].location %></td>
+                  <% } %>
+                <% if(companies[i].location===0) {%>
+                  <td> N/A </td>
+                <% } %>
+
+                <% if(companies[i].package!=0) { %>
+                  <td><%= companies[i].package %> LPA</td>
+                  <% } %>
+                <% if(companies[i].package===0) {%>
+                  <td> N/A </td>
+                <% } %>
+
+                <td><button class="detail-button" onclick="downloadStudents('<%= companies[i].name %>')">Applied Students</button></td>
+
+              </tr>
+              
+              <% } %>
+          </thead>
+        </table>
+        <a href="#">Show All</a>
+      </div>
+
+    </main>
+  </div>

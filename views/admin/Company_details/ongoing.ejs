@@ -1,0 +1,41 @@
+<div class="recent-orders">
+    <h2>Ongoing Companies</h2>
+    <table id="totalCompanylist"  style="border: 1px solid gray;">
+      <thead>
+        <tr>
+          <th class="sortable">ID</th>
+          <th class="sortable">Name</th>
+          <th class="sortable">Location</th>
+          <th class="sortable">Package</th>
+          <th class="sortable" onclick="toggleVisibility()">Applied Student</th>
+        </tr>
+        <% var x = 0; %>
+        <% for(var i=0; i<companies.length; i++){ %>
+          <% var ending = new Date(companies[i].endingDate); %>
+          <% var starting = new Date(companies[i].startingDate); %>
+          <% var current = new Date(); %>
+          <% if(ending>current && current>=starting) { %>
+            <% x++; %>
+          <tr>
+            <td><%= x %></td>
+            <td><%= companies[i].name %></td>
+            <% if(companies[i].location!=0) { %>
+              <td><%= companies[i].location %></td>
+              <% } %>
+            <% if(companies[i].location===0) {%>
+              <td> N/A </td>
+            <% } %>
+            <% if(companies[i].package!=0) { %>
+              <td><%= companies[i].package %> LPA</td>
+              <% } %>
+            <% if(companies[i].package===0) {%>
+              <td> N/A </td>
+            <% } %>
+            <td><button class="detail-button" onclick="downloadStudents('<%= companies[i].name %>')">Applied Students</button></td>
+          </tr>
+          <% } %>
+        <% } %>
+      </thead>
+    </table>
+    <a href="#">Show All</a>
+  </div>

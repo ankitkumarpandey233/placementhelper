@@ -1,0 +1,24 @@
+<div class="recent-orders"style="max-height: 750px; overflow-y: auto;">
+    <h2>Verified Student</h2>
+    <table id="verified"  style="border: 1px solid gray;  ">
+      <thead>
+        <tr>
+          <th class="sortable">ID</th>
+          <th class="sortable">Name</th>
+          <th class="sortable">Enrollment No</th>
+          <th class="sortable">Email</th>
+          <th class="sortable">Resume</th>
+        </tr>
+        <% for(var i=0; i<verified.length; i++){ %>
+          <tr>
+            <td><%= i+1 %></td>
+            <td><%= verified[i].name %></td>
+            <td><%= verified[i].enrollment %></td>
+            <td><%= verified[i].email %></td>
+          <td><a href="/download-resume/<%= verified[i].resume %>"><button class="detail-button">Resume</button></a></td>
+        </tr>
+        <% } %>
+      </thead>
+    </table>
+    <a href="#">Show All</a>
+  </div>

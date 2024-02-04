@@ -1,0 +1,36 @@
+<div class="recent-orders" style="overflow: auto;">
+    <h2>Unverified Student</h2>
+    <table id="unverified" style="border: 1px solid gray;">
+      <thead>
+        <tr>
+          <th class="sortable">ID</th>
+          <th class="sortable">Name</th>
+          <th class="sortable">Enrollment No</th>
+          <th class="sortable">Email</th>
+          <th class="sortable">Resume</th>
+          <th>Action</th>
+        </tr>
+        <% for(var i=0; i<student.length; i++){ %>
+        <tr style="border: 1px solid gray;">
+          <td  ><%= i+1 %></td>
+          <td><%= student[i].name %></td>
+          <td><%= student[i].enrollment %></td>
+          <td><%= student[i].email %></td>
+          <td><a href="/download-resume/<%= student[i].resume %>"><button class="detail-button">Resume</button></a></td>
+
+          <td> 
+            <form action="/accept/<%= student[i].email %>" method="post">
+                <button class="add-button" type="submit">&#10004;</button>
+            </form>
+          </td>
+          <td>
+            <form action="/reject/<%= student[i].email %>" method="post">
+              <button class="remove-button" type="submit">&#10008;</button>
+          </form>
+          </td>
+        </tr>
+        <% } %>
+      </thead>
+    </table>
+    <a href="#">Show All</a>
+  </div>
