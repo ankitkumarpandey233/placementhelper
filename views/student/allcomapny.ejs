@@ -21,7 +21,7 @@
           <% } %>
       <% if(flag === 0 && flag1 === 0) { %>
       <div class="course">
-        <div class="box eligible" id="eligible">
+        <div class="box">
           <h3 style="font-size: 31px";><%=companies[i].name %></h3>
           <p style="color: black;"><%= companies[i].description %></p>
           <br>
@@ -43,16 +43,13 @@
       <% } %>
       <% if(flag1 === 1) { %>
       <div class="course">
-        <div class="box" id="noteligible">
+        <div class="box">
           <h3 style="font-size: 31px";><%=companies[i].name %></h3>
           <p style="color: black;"><%= companies[i].description %></p>
           <br>
           <strong >Role: Software Engineer</strong><br>
           <strong >Package: <%= companies[i].package %></strong><br>
-          <form action="/applied/<%= companies[i].email %>" method="post">
-            <button type="submit">Rejected</button>
-          </form>
-          <i class="fab fa-google" style="color: red;"></i>
+          <button type="submit" style="background-color: rgb(174, 21, 21);">Rejected</button>
         </div>
       </div>
       <% } %>
