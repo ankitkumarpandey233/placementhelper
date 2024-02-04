@@ -88,23 +88,6 @@ router.post("/selected", function(req, res)
           res.redirect("/company");
         }
 
-        for(var i = 0; i<resu.length; i++)
-        {
-          const mailOptions = {
-            from: 'turbogeek641@gmail.com',
-            to: resu[i].studentEmail,
-            subject: 'Hello',
-            text: `congratulatins, You have been selected for ${resu[i].companyName}`
-          };
-        
-          transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.log('Error sending email: ' + error);
-            } else {
-                console.log('Email sent: ' + info.response);
-            }
-        });
-      }
       });
 
       res.redirect("/company");

@@ -13,56 +13,105 @@ function requireAuth(req, res, next) {
     }
   }
   
-router.get('/students', requireAuth , async (req, res) => {
-  
-  try {
-    const results = await studentModel.findStudentByEmail(req.session.username);
-
-    const [eligibleCompanies, notEligibleCompanies, pastDeadlineCompanies, appliedCompanies, rejectedCompanies, notice] = await Promise.all([
-      studentModel.getCompaniesForStudent(req.session.username),
-      studentModel.getCompaniesNotEligibleForStudent(req.session.username),
-      studentModel.getCompaniesPastDeadlinesForStudent(),
-      studentModel.getStudentAppliedCompanies(req.session.username),
-      studentModel.getStudentRejectedCompanies(req.session.username),
-      studentModel.getNotice(),
-    ]);
-
-    let cStudent = appliedCompanies.map((c) => c.companyName);
-    let sCompany = rejectedCompanies.map((co) => co.companyName);
-
-    if (cStudent.length !== 0) {
-      const comp = await studentModel.getCompaniesByName(cStudent);
-      if (comp !== undefined) {
-        cStudent = comp;
-      }
+router.get('/students', requireAuth , (req, res) => {
+  dbPool.query('SELECT * FROM student WHERE email = ?', req.session.username , (err, results) => {
+    if (err) {
+      console.error('Error querying the database:', err);
     }
+    var current = new Date();
+    dbPool.query('SELECT * FROM companies WHERE cgpa <= ? AND marks10 <= ? AND marks12 <= ? AND startingDate <= ? AND endingDate >= ?', [results[0].cgpa , results[0].marks10 , results[0].marks12 , current , current], (err, company) => {
+      if (err) {
+        res.redirect("/");
+      }
+        dbPool.query('SELECT * FROM companies WHERE (cgpa > ? OR marks10 > ? OR marks12 > ?) AND startingDate <= ? AND endingDate >= ?', [results[0].cgpa , results[0].marks10 , results[0].marks12 , current , current], (err, companyNot) => {
+          if (err) {
+            res.redirect("/");
+          }
+          dbPool.query('SELECT * FROM companies WHERE  startingDate > ? OR endingDate < ?', [ current , current], (err, companyPast) => {
+          if (err) {
+            res.redirect("/");
+          }
+          dbPool.query('SELECT * FROM notice', (err, notice) => {
+            if (err) {
+              res.redirect("/");
+            }
+          dbPool.query('SELECT * FROM applied WHERE studentEmail = ?',req.session.username , (err, c) => {
+            if (err) {
+              res.redirect("/");
+            }
+            var cStudent = [];
+            for(var i=0; i<c.length; i++)
+            {
+              cStudent.push(c[i].companyName);
+            }
+            dbPool.query('SELECT * FROM rejected WHERE studentEmail = ?',req.session.username , (err, co) => {
+              if (err) {
+                res.redirect("/");
+              }
+              var sCompany = [];
+              for(var i=0; i<co.length; i++)
+              {
+                sCompany.push(co[i].companyName);
+              }
 
-    res.render("student/studentDashboard.ejs", {
-      student: results,
-      companies: eligibleCompanies,
-      companiesNot: notEligibleCompanies,
-      companyPast: pastDeadlineCompanies,
-      cStudent: cStudent,
-      sCompany: sCompany,
-      notice: notice,
+              // console.log(sCompany);                
+
+            if(cStudent.length != 0)
+            {
+              dbPool.query('SELECT * FROM companies WHERE name IN (?)', [cStudent] , (err, comp) => {
+                if (err) {
+                  res.redirect("/");
+                }
+                if(comp != undefined)
+                {
+                  cStudent = comp;
+                }
+                  
+
+                res.render("student/studentDashboard.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , notice: notice , sCompany: sCompany});   
+              });
+            }
+            else{
+              res.render("student/studentDashboard.ejs" , {student: results , companies : company , companiesNot : companyNot , companyPast: companyPast , cStudent: cStudent , sCompany: sCompany , notice: notice});
+            }
+          });
+          });
+        });
+        });
+        });
     });
-  } catch (error) {
-    console.error('Error:', error);
-    res.redirect("/students");
-  }
+});
   });
   
   
   
-router.post("/applied/:email", async function(req, res)
+  router.post("/applied/:email", function(req, res)
   {   
-    try {
-      await studentModel.applyToCompany(req.session.username, req.params.email);
-      res.redirect("/students");
-    } catch (error) { 
-      console.error('Error:', error);
-      res.redirect("/students");
-    }
+    dbPool.query('SELECT * FROM student WHERE email = ?', req.session.username , (err, results) => {
+      if (err) {
+        res.redirect("/students");
+      }
+      
+      dbPool.query('SELECT * FROM companies WHERE email = ?', req.params.email , (err, compan) => {
+        if (err) {
+          res.redirect("/students");
+        }
+        const applied1 = {
+          studentEmail : req.session.username,
+          studentName : results[0].name,
+          companyEmail : compan[0].email,
+          companyName : compan[0].name,
+          studentEnrollment : results[0].enrollment
+        };
+  
+        dbPool.query('INSERT INTO applied SET ?', applied1 , (err, result) => {
+          if (err) {
+            res.redirect("/");
+          }
+          res.redirect("/students");
+        });
+      });
+    });
   });
 
 
