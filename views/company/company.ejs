@@ -12,9 +12,15 @@
     <link rel="stylesheet" href="css/simple-datatable.css" />
     <script src="js/simple-datatable.js"></script>
   </head>
+  <%- include('headerstyle.ejs') %>
   <body>
     <div class="container">
-      <%- include('stats.ejs') %>
+      <%- include('sidebar.ejs') %>
+      <%- include('./Dashboard/dashboard.ejs') %>
+      <%- include('./student_details/rejected.ejs') %>
+      <%- include('./student_details/selected.ejs') %>
+      <%- include('profile.ejs') %>
+      <%- include('footer.ejs') %>
         </div>
       </body>
     </html>
