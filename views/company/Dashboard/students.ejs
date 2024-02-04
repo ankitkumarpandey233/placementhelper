@@ -1,0 +1,71 @@
+<div class="recent-orders" style="overflow: auto;">
+  <h2>Applied Student</h2>
+  <table id="unverified">
+    <thead>
+      <tr>
+        <th class="sortable" style="font-size: 18px;">ID</th>
+        <th class="sortable" style="font-size: 18px;">Name</th>
+        <th class="sortable" style="font-size: 18px;">Enrollment No</th>
+        <th class="sortable" style="font-size: 18px;">Email</th>
+        <th class="sortable" style="font-size: 18px;">Resume</th>
+        <th class="sortable" style="font-size: 18px;">Message</th>
+        <th class="sortable" style="font-size: 18px;">Accept</th>
+        <th class="sortable" style="font-size: 18px;">Reject</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for(var i=0; i<students.length; i++) { %>
+      <% if(students[i].selected === 0) { %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= students[i].studentName %></td>
+        <td><%= students[i].studentEnrollment %></td>
+        <td><%= students[i].studentEmail %></td>
+        <td>
+          <a href="/download-resume/<%= students[i].resume %>">
+          <button class="detail-button">Resume</button>
+          </a>
+        </td>
+        <td>
+          <textarea name="message" rows="2" cols="20" placeholder="Enter a message"></textarea>
+        </td>
+        <td>
+          <form action="/accepted/<%= students[i].studentEmail %>" method="post">
+            <input type="hidden" name="message" value="<%= students[i].studentEmail %>" />
+            <button class="add-button" type="submit">&#10004;</button>
+          </form>
+        </td>
+        <td>
+          <form action="/rejected/<%= students[i].studentEmail %>" method="post">
+            <input type="hidden" name="message" value="<%= students[i].studentEmail %>" />
+            <button class="remove-button" type="submit">&#10008;</button>
+          </form>
+        </td>
+      </tr>
+      <% } %>
+      <% } %>
+    </tbody>
+  </table>
+  <a href="#">Show All</a>
+</div>
+<% if(students.length===0) {%>
+<div class="recent-orders" style="overflow: auto;">
+  <h2>Next Step</h2>
+  <textarea style="border: 1px solid #ccc; box-shadow: 3px 3px 5px #ccc;" cols="70" rows="9" placeholder="Write a message for students" required></textarea>
+  <br></br>
+  <form action="/next" method="post">
+    <button class="detail-button" type="submit" style="font-size: 20px; background-color: #0074cc; margin-left: 10px; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 5px; transition: background-color 0.3s, transform 0.2s;"
+      onmouseover="this.style.backgroundColor='#0059a4'; this.style.transform='scale(1.1)';"
+      onmouseout="this.style.backgroundColor='#0074cc'; this.style.transform='scale(1.0)';">
+    Next Round
+    </button>
+  </form>
+  <form action="/selected" method="post">
+    <button class="detail-button" type="submit" style="font-size: 20px; background-color: #0074cc; margin-left: 10px; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 5px; transition: background-color 0.3s, transform 0.2s;"
+      onmouseover="this.style.backgroundColor='#0059a4'; this.style.transform='scale(1.1)';"
+      onmouseout="this.style.backgroundColor='#0074cc'; this.style.transform='scale(1.0)';">
+    Select Student
+    </button>
+  </form>
+</div>
+<% } %>

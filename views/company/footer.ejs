@@ -1,0 +1,38 @@
+<script>
+    // Get the necessary elements
+    const studentsLink = document.querySelector('.sidebar a:nth-child(2)');
+    const studentsLink2 = document.querySelector('.sidebar a:nth-child(1)');
+    const studentsLink3 = document.querySelector('.sidebar a:nth-child(3)');
+    const homeDiv = document.querySelector('.home');
+    const studentDetailsDiv = document.querySelector('.studentdetails');
+    const companyDiv = document.querySelector('.companylist');
+    studentDetailsDiv.style.display = 'none';
+    companyDiv.style.display = 'none';
+    
+    
+    // Add click event listener to the students link
+    studentsLink.addEventListener('click', () => {
+      // Hide the home div
+      homeDiv.style.display = 'none';
+      companyDiv.style.display = 'none';
+      studentDetailsDiv.style.display = 'block';
+    });
+    
+    // Add click event listener to the students link
+    studentsLink2.addEventListener('click', () => {
+      // Hide the home div
+      studentDetailsDiv.style.display = 'none';
+      companyDiv.style.display = 'none';
+      homeDiv.style.display = 'block';
+    });
+    
+    studentsLink3.addEventListener('click', () => {
+      // Hide the home div
+      studentDetailsDiv.style.display = 'none';
+      companyDiv.style.display = 'block';
+      homeDiv.style.display = 'none';
+    });
+    
+  </script>
+<script src="js/constants/update-data2.js"></script>
+<script src="js/index.js"></script>

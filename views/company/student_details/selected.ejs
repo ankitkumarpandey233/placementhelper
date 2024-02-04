@@ -1,0 +1,39 @@
+<div class="companylist">
+    <main>
+      <h1>SELECTED STUDENTS</h1>
+      <div class="recent-orders" style="overflow: auto;">
+        <table id="unverified">
+          <thead>
+            <tr>
+              <th class="sortable" style="font-size: 18px;">ID</th>
+              <th class="sortable" style="font-size: 18px;">Name</th>
+              <th class="sortable" style="font-size: 18px;">Enrollment No</th>
+              <th class="sortable" style="font-size: 18px;">Email</th>
+              <th class="sortable" style="font-size: 18px;">Resume</th>
+            </tr>
+            <tr>
+              <td style="color: white;">1</td>
+            </tr>
+            <% for(var i=0; i<selected.length; i++){ %>
+            <tr>
+              <td>
+                <%= i+1 %>
+              </td>
+              <td>
+                <%= selected[i].studentName %>
+              </td>
+              <td>
+                <%= selected[i].studentEnrollment %>
+              </td>
+              <td>
+                <%= selected[i].studentEmail %>
+              </td>
+              <td><a href="/download-resume/<%= selected[i].resume %>"><button class="detail-button">Resume</button></a></td>
+            </tr>
+            <% } %>
+          </thead>
+        </table>
+        <a href="#">Show All</a>
+      </div>
+    </main>
+  </div>
