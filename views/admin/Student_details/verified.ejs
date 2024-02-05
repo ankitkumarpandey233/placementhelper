@@ -1,5 +1,6 @@
 <div class="recent-orders"style="max-height: 750px; overflow-y: auto;">
     <h2>Verified Student</h2>
+    <button class="detail-button" onclick="downloadVerifiedStudents()">Download Excel</button>
     <table id="verified"  style="border: 1px solid gray;  ">
       <thead>
         <tr>
@@ -9,6 +10,8 @@
           <th class="sortable">Email</th>
           <th class="sortable">Resume</th>
         </tr>
+      </thead>
+        <tbody>
         <% for(var i=0; i<verified.length; i++){ %>
           <tr>
             <td><%= i+1 %></td>
@@ -18,7 +21,25 @@
           <td><a href="/download-resume/<%= verified[i].resume %>"><button class="detail-button">Resume</button></a></td>
         </tr>
         <% } %>
-      </thead>
+        </tbody>
+      
     </table>
     <a href="#">Show All</a>
+    <script>
+      function downloadVerifiedStudents() {
+        fetch(`/download-verified-student/`)
+          .then((response) => response.blob())
+          .then((blob) => {
+            const url = window.URL.createObjectURL(new Blob([blob]));
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Verified_Student_data.xlsx`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+          })
+          .catch((error) => console.error('Error downloading students:', error));
+      }
+    </script>
   </div>

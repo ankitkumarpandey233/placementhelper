@@ -2,8 +2,20 @@ const express = require('express')
 const {dbPool} = require('../config/db')
 const bcrypt = require('bcrypt');
 const studentModel = require('../models/studentModel');
+const multer = require('multer');
 
 const router = express.Router()
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './public/uploads/'); 
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname);
+    }
+  });
+  
+const upload = multer({ storage: storage, });
 
 function requireAuth(req, res, next) {
     if (req.session && req.session.username) {
@@ -85,7 +97,7 @@ router.get('/students', requireAuth , (req, res) => {
   
   
   
-  router.post("/applied/:email", function(req, res)
+  router.post("/applied/:email", upload.fields([{ name: 'resume', maxCount: 1 }]) , function(req, res)
   {   
     dbPool.query('SELECT * FROM student WHERE email = ?', req.session.username , (err, results) => {
       if (err) {
@@ -101,7 +113,8 @@ router.get('/students', requireAuth , (req, res) => {
           studentName : results[0].name,
           companyEmail : compan[0].email,
           companyName : compan[0].name,
-          studentEnrollment : results[0].enrollment
+          studentEnrollment : results[0].enrollment,
+          resume : req.files['resume'][0].originalname
         };
   
         dbPool.query('INSERT INTO applied SET ?', applied1 , (err, result) => {

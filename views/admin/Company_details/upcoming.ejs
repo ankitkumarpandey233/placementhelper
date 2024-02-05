@@ -9,6 +9,8 @@
           <th class="sortable">Package</th>
           <th class="sortable">Dates</th>
         </tr>
+        </thead>
+        <tbody>
         <% var y = 0; %>
         <% for(var i=0; i<companies.length; i++){ %>
           <% var ending = new Date(companies[i].startingDate); %>
@@ -38,7 +40,7 @@
           </tr>
           <% } %>
         <% } %>
-      </thead>
+        </tbody>
     </table>
     <a href="#">Show All</a>
   </div>

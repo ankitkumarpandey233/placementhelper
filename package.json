@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"No test specified\" ",
-    "start": "node ./src/app.js"
+    "start": "nodemon ./src/app.js"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,7 @@
     "mysql": "^2.18.1",
     "nocache": "^4.0.0",
     "nodemailer": "^6.9.7",
+    "nodemon": "^3.0.3",
     "path": "^0.12.7"
   }
 }
