@@ -1,24 +1,24 @@
 <div class="applied">
     <main>
         <h1>Applied Companies</h1>
-        <div class="recent-orders">
-            <input type="text" id="searchInput1" placeholder="Search by Company Name">
-            <table id="verified" style="width: 100%; border-collapse: collapse; margin-top: 20px;" >
+        <input type="text" id="searchInput1" placeholder="Search by Company Name">
+        <div class="recent-orders" style="overflow-y: auto; max-height: 356px; ">
+            <table id="verified" >
                 <thead>
-                    <tr style="background-color: #f2f2f2;">
-                        <th class="sortable" style="padding: 10px; text-align: left; border: 1px solid #ddd;">ID</th>
-                        <th class="sortable" style="padding: 10px; text-align: left; border: 1px solid #ddd;">Company Name</th>
-                        <th class="sortable" style="padding: 10px; text-align: left; border: 1px solid #ddd;">Role</th>
-                        <th class="sortable" style="padding: 10px; text-align: left; border: 1px solid #ddd;">Package</th>
+                    <tr>
+                        <th class="sortable" style="font-size: 18px;">ID</th>
+                        <th class="sortable" style="font-size: 18px;">Company Name</th>
+                        <th class="sortable" style="font-size: 18px;">Role</th>
+                        <th class="sortable" style="font-size: 18px;">Package</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody1">
                     <% for(var i=0; i<cStudent.length; i++){ %>
                     <tr style="border: 1px solid #ddd;">
-                        <td style="padding: 10px; text-align: left;"><%= i+1 %></td>
-                        <td style="padding: 10px; text-align: left;"><%= cStudent[i].name %></td>
-                        <td style="padding: 10px; text-align: left;">Software Engineer</td>
-                        <td style="padding: 10px; text-align: left;"><%= cStudent[i].package %></td>
+                        <td ><%= i+1 %></td>
+                        <td ><%= cStudent[i].name %></td>
+                        <td >Software Engineer</td>
+                        <td ><%= cStudent[i].package %></td>
                     </tr>
                     <% } %>
                 </tbody>
