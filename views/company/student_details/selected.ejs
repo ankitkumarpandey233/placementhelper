@@ -4,6 +4,7 @@
       <div class="recent-orders" style="overflow: auto;">
         <table id="unverified">
           <thead>
+
             <tr>
               <th class="sortable" style="font-size: 18px;">ID</th>
               <th class="sortable" style="font-size: 18px;">Name</th>
@@ -14,6 +15,9 @@
             <tr>
               <td style="color: white;">1</td>
             </tr>
+          </thead>
+          <tbody>
+          </t>
             <% for(var i=0; i<selected.length; i++){ %>
             <tr>
               <td>
@@ -31,9 +35,8 @@
               <td><a href="/download-resume/<%= selected[i].resume %>"><button class="detail-button">Resume</button></a></td>
             </tr>
             <% } %>
-          </thead>
+          </tbody>
         </table>
-        <a href="#">Show All</a>
       </div>
     </main>
   </div>

@@ -9,6 +9,8 @@
           <th class="sortable">Package</th>
           <th class="sortable" onclick="toggleVisibility()">Applied Student</th>
         </tr>
+      </thead>
+      <tbody>
         <% var x = 0; %>
         <% for(var i=0; i<companies.length; i++){ %>
           <% var ending = new Date(companies[i].endingDate); %>
@@ -35,7 +37,7 @@
           </tr>
           <% } %>
         <% } %>
-      </thead>
+      </tbody>
     </table>
     <a href="#">Show All</a>
   </div>

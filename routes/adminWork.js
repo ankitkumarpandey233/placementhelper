@@ -60,6 +60,39 @@ router.post('/Notice', (req, res) => {
       });
     });
   });
+
+  router.get('/download-verified-student/', (req, res) => {
+  
+    const query = `SELECT name, email, enrollment FROM student WHERE allow = 1`;
+  
+    dbPool.query(query, (err, results) => {
+      if (err) {
+        console.error('Error fetching data:', err);
+        res.status(500).send('Internal Server Error');
+        return;
+      }
+      const workbook = new ExcelJS.Workbook();
+      const worksheet = workbook.addWorksheet('Applications');
+  
+      worksheet.columns = [
+        { header: 'Student Name', key: 'name', width: 20 },
+        { header: 'Student Email', key: 'email', width: 20 },
+        { header: 'Student Enrollment', key: 'enrollment', width: 20 },
+      ];
+  
+      results.forEach((result) => {
+        worksheet.addRow(result);
+      });
+  
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      res.setHeader('Content-Disposition', `attachment; filename=Verified_Student_data.xlsx`);
+  
+      // Pipe the workbook to the response
+      workbook.xlsx.write(res).then(() => {
+        res.end();
+      });
+    });
+  });
   
 
 module.exports = router

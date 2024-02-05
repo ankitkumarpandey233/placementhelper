@@ -10,6 +10,8 @@
           <th class="sortable">Resume</th>
           <th>Action</th>
         </tr>
+      </thead>
+      <tbody>
         <% for(var i=0; i<student.length; i++){ %>
         <tr>
           <td><%= i+1 %></td>
@@ -29,7 +31,7 @@
           </td>
         </tr>
         <% } %>
-      </thead>
+      </tbody>
     </table>
     <a href="#">Show All</a>
   </div>

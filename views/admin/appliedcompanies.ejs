@@ -13,7 +13,8 @@
               <th class="sortable">Package</th>
               <th class="sortable" >Applied Student</th>
             </tr>
-
+          </thead>
+          <tbody>
             <% for(var i=0; i<companies.length; i++){ %>
               <tr>
                 <td><%= i+1 %></td>
@@ -35,11 +36,12 @@
                 <% } %>
 
                 <td><button class="detail-button" onclick="downloadStudents('<%= companies[i].name %>')">Applied Students</button></td>
+                
 
               </tr>
               
               <% } %>
-          </thead>
+            </tbody>
         </table>
         <a href="#">Show All</a>
       </div>

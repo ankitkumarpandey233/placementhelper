@@ -339,7 +339,6 @@
   
   <script>
     function downloadStudents(companyName) {
-      // Assuming you're using Fetch API for simplicity
       fetch(`/download/${encodeURIComponent(companyName)}`)
         .then((response) => response.blob())
         .then((blob) => {
