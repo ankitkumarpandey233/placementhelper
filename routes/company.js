@@ -17,11 +17,16 @@ router.get('/company', (req, res) => {
           if (err) {
             res.redirect("/companyLogin");
           }
-          dbPool.query("SELECT * from applied where companyEmail = ? && selected = 1",req.session.company,(err,selected) => {
+          dbPool.query("SELECT * from selected where companyEmail = ? && selected = 1",req.session.company,(err,selected) => {
             if (err) {
               res.redirect("/companyLogin");
             }
-            res.render("company/company.ejs",{students: data , accepted: results , rejected: rejected , selected: selected});
+            dbPool.query("SELECT * from rejectedcompanies where companyEmail = ?",req.session.company,(err,rejectedcompanies) => {
+              if (err) {
+                res.redirect("/companyLogin");
+              }
+              res.render("company/company.ejs",{students: data , accepted: results , rejected: rejected , selected: selected , rejectedcompanies : rejectedcompanies});
+            });
           });
         });
       });
@@ -38,10 +43,10 @@ router.post("/accepted/:email", function(req, res)
           if (err) {
             res.redirect("/company");
           }
-            
+          res.redirect("/company");
         });
 
-        res.redirect("/company");
+        
     });
 });
 
@@ -76,22 +81,41 @@ router.post("/rejected/:email", function(req, res)
 });
 
 router.post("/selected", function(req, res)
-{   
-
-    dbPool.query('UPDATE applied SET ? WHERE companyEmail = ? && next = 1',[{selected : 1},req.session.company] , (err, results) => {
-      if (err) {
-        res.redirect("/company");
-      }
-
-      dbPool.query("SELECT * FROM applied WHERE companyEmail = ? && selected = 1",[req.session.company]  , (err, resu) => {
+{ 
+      dbPool.query("SELECT * FROM applied WHERE companyEmail = ? && next = 1", [req.session.company]  , (err, result) => {
         if (err) {
           res.redirect("/company");
         }
+        let selectedStudents = [];
+          for(var i = 0; i < result.length; i++){
+            const selected ={
+              studentEmail:result[i].studentEmail,
+              studentName:result[i].studentName,
+              companyEmail:result[i].companyEmail,
+              companyName:result[i].companyName,
+              studentEnrollment:result[i].studentEnrollment,
+              package : result[i].package,
+              selected:1,
+              resume : result[i].resume
+            };
+            selectedStudents.push(selected);
+          }
 
+          dbPool.query('INSERT INTO selected SET ?', selectedStudents , (err, resu) => {
+            if (err) {
+              console.error('Error inserting data:', err);
+              res.redirect("/company");
+            }
+            dbPool.query("DELETE FROM applied WHERE companyEmail = ? && next = 1",[req.session.company] , (err, re) => {
+              if (err) {
+                res.redirect("/company");
+              }
+              res.redirect("/company");
+            });
+          
+          });
+        
       });
-
-      res.redirect("/company");
-    });
 });
 
 router.post('/next', (req, res) => {

@@ -1,0 +1,30 @@
+<div class="nextround">
+    <main>
+      <h1>Students In Next Round</h1>
+      <div class="recent-orders" style="overflow: auto;">
+        <table id="unverified">
+          <thead>
+            <tr>
+              <th class="sortable" style="font-size: 18px;">ID</th>
+              <th class="sortable" style="font-size: 18px;">Name</th>
+              <th class="sortable" style="font-size: 18px;">Email</th>
+              <th class="sortable" style="font-size: 18px;">Resume</th>
+              <th class="sortable" style="font-size: 18px;">Round</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i=0; i<accepted.length; i++) { %>
+            <tr>
+              <td><%= i+1 %></td>
+              <td><%= accepted[i].studentName %></td>
+              <td><%= accepted[i].studentEmail %></td>
+              <td><a href="/download-resume/<%= accepted[i].resume %>"><button class="detail-button">Resume</button></a></td>
+              <td><%= accepted[i].round %></td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <a href="#">Show All</a>
+      </div>
+    </main>
+  </div>

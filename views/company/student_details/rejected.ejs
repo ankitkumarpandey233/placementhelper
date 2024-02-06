@@ -1,8 +1,7 @@
 <div class="studentdetails">
     <main>
-      <h1>Student Details</h1>
+      <h1>Rejected Student</h1>
       <div class="recent-orders" style="overflow: auto;">
-        <h2>Rejected Student</h2>
         <table id="unverified">
           <thead>
             <tr>
@@ -11,7 +10,6 @@
               <th class="sortable" style="font-size: 18px;">Email</th>
               <th class="sortable" style="font-size: 18px;">Resume</th>
               <th class="sortable" style="font-size: 18px;">Round</th>
-              <th class="sortable" style="font-size: 18px;">Message</th>
               <th class="sortable" style="font-size: 18px;">Accept</th>
             </tr>
           </thead>
@@ -24,19 +22,37 @@
               <td><a href="/download-resume/<%= rejected[i].resume %>"><button class="detail-button">Resume</button></a></td>
               <td><%= rejected[i].round %></td>
               <td>
-                <textarea name="message<%= i %>" rows="2" cols="20" placeholder="Enter a message"></textarea>
-              </td>
-              <td>
-                <form action="/accepted/<%= rejected[i].studentEmail %>" method="post">
-                  <input type="hidden" name="message" value="message<%= i %>" />
+                <!-- <form action="/accepted/" method="post">
+                  <input type="hidden" name="message" value="message" /> -->
                   <button class="add-button" type="submit">&#10004;</button>
-                </form>
+                <!-- </form> -->
               </td>
             </tr>
             <% } %>
           </tbody>
         </table>
-        <a href="#">Show All</a>
+      </div>
+      <br><br>
+      <h1>Students Rejected The Offer</h1>
+      <div class="recent-orders" style="overflow: auto;">
+        <table id="unverified">
+          <thead>
+            <tr>
+              <th class="sortable" style="font-size: 18px;">ID</th>
+              <th class="sortable" style="font-size: 18px;">Name</th>
+              <th class="sortable" style="font-size: 18px;">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i=0; i<rejectedcompanies.length; i++) { %>
+            <tr>
+              <td><%= i+1 %></td>
+              <td><%= rejectedcompanies[i].studentName %></td>
+              <td><%= rejectedcompanies[i].studentEmail %></td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
       </div>
     </main>
   </div>

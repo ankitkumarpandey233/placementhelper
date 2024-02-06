@@ -67,6 +67,17 @@ const insertAdmin = (adminData) => {
   });
 };
 
+const placedStudent = () => {
+  return new Promise((resolve, reject) => {
+    dbPool.query('SELECT * FROM selected WHERE selected = 2', (err, result) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(result);
+    });
+  });
+};
+
 module.exports = {
   getUnverifiedStudents,
   getVerifiedStudents,
@@ -74,4 +85,5 @@ module.exports = {
   getNotices,
   getAdminByEmail,
   insertAdmin,
+  placedStudent
 };

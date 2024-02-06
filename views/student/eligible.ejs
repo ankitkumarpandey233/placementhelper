@@ -9,30 +9,45 @@
       <% for(var i=0; i<companies.length; i++){ %>
         <% var flag = 0; %>
         <% var flag1 = 0; %>
+        <% var flag2 = 0; %>
+        <% var flag3 = 0; %>
         <% for(var j=0; j<cStudent.length; j++){ %>
           <% if(companies[i].name === cStudent[j].name) { %>
             <% flag = 1; %>
         <% } %>
         <% } %>
-        <% for(var j=0; j<sCompany.length; j++){ %>
-          <% if(companies[i].name === sCompany[j]) { %>
+        <% for(var j=0; j<rejected.length; j++){ %>
+          <% if(companies[i].name === rejected[j].companyName) { %>
           <% flag1 = 1; %>
           <% } %>
+        <% } %>
+
+        <% for(var j=0; j<selected.length; j++){ %>
+          <% if(companies[i].name === selected[j].companyName) { %>
+          <% flag2 = 1; %>
           <% } %>
-      <% if(flag === 0 && flag1 === 0) { %>
-      <div class="course">
-        <div class="box">
-          <h3 style="font-size: 31px";><%=companies[i].name %></h3>
-          <p style="color: black;"><%= companies[i].description %></p>
-          <br>
-          <strong >Role: Software Engineer</strong><br>
-          <strong >Package: <%= companies[i].package %></strong><br>
-          <form action="/applied/<%= companies[i].email %>" method="post">
-            <button type="submit">Apply</button>
-          </form>
-        </div>
-      </div>
-      <% } %>
+        <% } %>
+        <% for(var j=0; j<rejectedCompanies.length; j++){ %>
+          <% if(companies[i].name === rejectedCompanies[j].companyName) { %>
+          <% flag3 = 1; %>
+          <% } %>
+        <% } %>
+        <% var package = student[0].package*0.3 + student[0].package%>
+        <% if(flag === 0 && flag1 === 0 && flag2 === 0 && flag3 === 0 && companies[i].package >= package) { %>
+          <div class="course">
+            <div class="box">
+              <h3 style="font-size: 31px";><%=companies[i].name %></h3>
+              <p style="color: black;"><%= companies[i].description %></p>
+              <br>
+              <strong >Role: Software Engineer</strong><br>
+              <strong >Package: <%= companies[i].package %></strong><br>
+              <form action="/applied/<%= companies[i].email %>" method="post">
+                <button type="submit">Apply</button>
+              </form>
+            </div>
+          </div>
+        <% } %>
+
       <% } %>
     </div>
   </div>

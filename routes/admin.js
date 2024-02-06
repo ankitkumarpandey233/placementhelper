@@ -11,12 +11,14 @@ router.get('/admin', async (req, res) => {
     const verifiedStudents = await adminModel.getVerifiedStudents();
     const companies = await adminModel.getCompanies();
     const notices = await adminModel.getNotices();
+    const placed = await adminModel.placedStudent();
 
     res.render('admin/index.ejs', {
       student: unverifiedStudents,
       verified: verifiedStudents,
       companies: companies,
       notice: notices,
+      placed: placed
     });
   } catch (error) {
     console.error('Error fetching data:', error);

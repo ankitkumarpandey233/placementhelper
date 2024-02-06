@@ -134,7 +134,7 @@ router.post("/register",upload.fields([{ name: 'photo', maxCount: 1 } , { name: 
 //verification wait
 
 router.get("/verified" , function(req , res){
-  res.render("verification.ejs");
+  res.render("partials/verification.ejs");
 });
 
 

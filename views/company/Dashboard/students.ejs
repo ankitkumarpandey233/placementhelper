@@ -48,7 +48,7 @@
   </table>
   <a href="#">Show All</a>
 </div>
-<% if(students.length===0) {%>
+<% if(students.length != 0 || accepted.length != 0) {%>
 <div class="recent-orders" style="overflow: auto;">
   <h2>Next Step</h2>
   <textarea style="border: 1px solid #ccc; box-shadow: 3px 3px 5px #ccc;" cols="70" rows="9" placeholder="Write a message for students" required></textarea>
