@@ -19,21 +19,66 @@
           <tbody>
           </t>
             <% for(var i=0; i<selected.length; i++){ %>
+              <% if(selected[i].selected === 1){ %>
+                <tr>
+                  <td>
+                    <%= i+1 %>
+                  </td>
+                  <td>
+                    <%= selected[i].studentName %>
+                  </td>
+                  <td>
+                    <%= selected[i].studentEnrollment %>
+                  </td>
+                  <td>
+                    <%= selected[i].studentEmail %>
+                  </td>
+                  <td><a href="/download-resume/<%= selected[i].resume %>"><button class="detail-button">Resume</button></a></td>
+                </tr>
+            <% } %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+
+      <br><br>
+
+      <h1>PERMANENT SELECTED STUDENTS</h1>
+      <div class="recent-orders" style="overflow: auto;">
+        <table id="unverified">
+          <thead>
+
             <tr>
-              <td>
-                <%= i+1 %>
-              </td>
-              <td>
-                <%= selected[i].studentName %>
-              </td>
-              <td>
-                <%= selected[i].studentEnrollment %>
-              </td>
-              <td>
-                <%= selected[i].studentEmail %>
-              </td>
-              <td><a href="/download-resume/<%= selected[i].resume %>"><button class="detail-button">Resume</button></a></td>
+              <th class="sortable" style="font-size: 18px;">ID</th>
+              <th class="sortable" style="font-size: 18px;">Name</th>
+              <th class="sortable" style="font-size: 18px;">Enrollment No</th>
+              <th class="sortable" style="font-size: 18px;">Email</th>
+              <th class="sortable" style="font-size: 18px;">Resume</th>
             </tr>
+            <tr>
+              <td style="color: white;">1</td>
+            </tr>
+          </thead>
+          <tbody>
+          </t>
+            <% for(var i=0; i<selected.length; i++){ %>
+              <% if(selected[i].selected === 2){ %>
+                <tr>
+                  <td>
+                    <%= i+1 %>
+                  </td>
+                  <td>
+                    <%= selected[i].studentName %>
+                  </td>
+                  <td>
+                    <%= selected[i].studentEnrollment %>
+                  </td>
+                  <td>
+                    <%= selected[i].studentEmail %>
+                  </td>
+                  <td><a href="/download-resume/<%= selected[i].resume %>"><button class="detail-button">Resume</button></a></td>
+                </tr>
+            <% } %>
             <% } %>
           </tbody>
         </table>

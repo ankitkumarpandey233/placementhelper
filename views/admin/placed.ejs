@@ -1,0 +1,30 @@
+<div class="studentPlaced">
+  <main>
+    <h1>Students Placed</h1>
+    <div class="recent-orders" style="overflow: auto;">
+      <table>
+        <thead>
+          <tr>
+            <th class="sortable" style="font-size: 18px;">ID</th>
+            <th class="sortable" style="font-size: 18px;">Student Name</th>
+            <th class="sortable" style="font-size: 18px;">Student Email</th>
+            <th class="sortable" style="font-size: 18px;">Company Name</th>
+            <th class="sortable" style="font-size: 18px;">Package Offered</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i<placed.length; i++) { %>
+          <tr>
+            <td><%= i+1 %></td>
+            <td><%= placed[i].studentName %></td>
+            <td><%= placed[i].studentEmail %></td>
+            <td><%= placed[i].companyName %></td>
+            <td><%= placed[i].package %></td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  </div>

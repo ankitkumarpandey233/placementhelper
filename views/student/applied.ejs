@@ -1,6 +1,7 @@
 <div class="applied">
     <main>
         <h1>Applied Companies</h1>
+        <br><br>
         <input type="text" id="searchInput1" placeholder="Search by Company Name">
         <div class="recent-orders" style="overflow-y: auto; max-height: 356px; ">
             <table id="verified" >
@@ -10,7 +11,11 @@
                         <th class="sortable" style="font-size: 18px;">Company Name</th>
                         <th class="sortable" style="font-size: 18px;">Role</th>
                         <th class="sortable" style="font-size: 18px;">Package</th>
+                        <th class="sortable" style="font-size: 18px;">status</th>
                     </tr>
+                    <tr>
+                        <th style="color: white;">1</th>
+                      </tr>
                 </thead>
                 <tbody id="tableBody1">
                     <% for(var i=0; i<cStudent.length; i++){ %>
@@ -19,6 +24,16 @@
                         <td ><%= cStudent[i].name %></td>
                         <td >Software Engineer</td>
                         <td ><%= cStudent[i].package %></td>
+                        <td><%= cStudent[i].round %> Round</td>
+                    </tr>
+                    <% } %>
+                    <% for(var i=0; i<rejected.length; i++){ %>
+                    <tr style="border: 1px solid #ddd;">
+                        <td ><%= i+1 %></td>
+                        <td ><%= rejected[i].companyName %></td>
+                        <td >Software Engineer</td>
+                        <td > -- </td>
+                        <td style="color: rgb(208, 66, 66);">Rejected </td>
                     </tr>
                     <% } %>
                 </tbody>
