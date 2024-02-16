@@ -10,20 +10,8 @@ router.post("/accept/:email", function(req, res)
       if (err) {
         res.redirect("/");
       }
-      const mailOptions = {
-        from: 'turbogeek641@gmail.com',
-        to: req.params.email,
-        subject: 'Hello, regarding ',
-        text: `registration has been accepted you can now register in placement helper GUIN`
-      };
     
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.log('Error sending email: ' + error);
-        } else {
-            console.log('Email sent: ' + info.response);
-        }
-    });
+
 
       res.redirect("/admin");
   });
@@ -35,21 +23,6 @@ router.post("/reject/:email", function(req, res)
       if (err) {
         res.redirect("/");
       }
-
-      const mailOptions = {
-        from: 'turbogeek641@gmail.com',
-        to: req.params.email,
-        subject: 'Hello, regarding registration',
-        text: `Your registration has been rejected you have to register again in placement helper GUIN`
-      };
-    
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.log('Error sending email: ' + error);
-        } else {
-            console.log('Email sent: ' + info.response);
-        }
-    });
 
       res.redirect("/admin");
   });

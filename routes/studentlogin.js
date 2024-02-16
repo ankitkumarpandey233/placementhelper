@@ -53,6 +53,7 @@ router.get("/login", function(req,res){
                   }
                   else
                   {
+                    console.log(results[0].password);
                     console.log('login succesfull');
                     req.session.username = req.body.email;
                     res.redirect("/students");
