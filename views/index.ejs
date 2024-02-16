@@ -35,10 +35,12 @@
 .modal-content {
     position: relative;
     background-color: #ffffff;
-    margin: 358px  auto;
+    margin: 15% auto;
     padding: 20px;
-    width: 27%;
-    height: 25%;
+    width: 80%;
+    max-width: 450px; /* Optional: Set a max-width */
+    height: 250px; /* Adjust height based on content */
+    max-height: 80vh; /* Optional: Set a max-height */
     border-radius: 8px;
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.3);
 }
@@ -63,7 +65,24 @@ p {
     font-size: 18px;
 }
 
+@media screen and (max-width: 768px) {
+    /* Adjust the modal size for smaller screens */
+    .modal-content {
+        width: 90%;
+        max-width: none;
+        margin: 20% auto;
+        padding: 15px;
+    }
+}
 
+@media screen and (max-width: 480px) {
+    /* Further adjust the modal size for even smaller screens */
+    .modal-content {
+        width: 95%;
+        margin: 30% auto;
+        padding: 10px;
+    }
+}
 
     </style>
 </head>
@@ -96,7 +115,7 @@ p {
                     </div>
                     <div class="col-lg-5 order-lg-2 order-1">
                         <div class="top-right-img">
-                            <img decoding="async" src="images/home-right.webp" class="img-fluid">
+                            <img decoding="async" src="images/home-ri   ght.webp" class="img-fluid">
                         </div>
                     </div>
                 </div>
