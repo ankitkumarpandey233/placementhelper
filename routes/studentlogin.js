@@ -2,6 +2,7 @@ const express = require('express')
 const {dbPool} = require('../config/db')
 const bcrypt = require('bcrypt');
 const multer = require('multer');
+require('dotenv').config();
 
 const router = express.Router()
 
@@ -119,13 +120,26 @@ router.post("/register",upload.fields([{ name: 'photo', maxCount: 1 } , { name: 
         };
         
 
-        dbPool.query('INSERT INTO student SET ?', student1, (err, result) => {
+        dbPool.query('INSERT INTO student SET ?', student1, async (err, result) => {
           if (err) {
             console.error('Error inserting data:', err);
             res.redirect("/");
           }
-          console.log('Data inserted successfully!');
-          res.redirect("/verified");
+          const recaptchaSecretKey = process.env.RECAPTCHA_SECRET_KEY;;
+          const captchaResponse = req.body['g-recaptcha-response'];
+
+          const verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecretKey}&response=${captchaResponse}`;
+          const response = await fetch(verifyURL, { method: 'POST' });
+          const responseData = await response.json();
+
+          if (responseData.success) {
+            console.log('Data inserted successfully!');
+            res.redirect("/verified");
+          } else {
+              console.log('Captcha verification failed');
+              res.redirect("/");
+          }
+          
         });  
       });  
     }
