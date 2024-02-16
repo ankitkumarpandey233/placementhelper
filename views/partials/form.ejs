@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="css/Form.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -101,7 +102,7 @@
                 <button type="button" class="btn" id="btnPrev2">Go Back</button>
                 <button type="button" class="btn" id="btnNext3" disabled>Next</button>
             </div>
-            <div class="next inActive">
+            <!-- <div class="next inActive">
                 <fieldset>
                     <legend>SKILLS</legend>
                     <div class="form-group">
@@ -117,7 +118,7 @@
                 </fieldset>
                 <button type="button" class="btn" id="btnPrev3">Go Back</button>
                 <button type="button" class="btn" id="btnNext4">Next</button>
-            </div>
+            </div> -->
             <div class="next inActive">
                 <fieldset>
                     <legend>Social Media</legend>
@@ -131,12 +132,12 @@
                         <input type="text" name="github" id="github" placeholder="Github" required>
                         <span id="githubError" style="color: red" class="error"></span>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label>Other</label> <input type="text" name="otherid" placeholder="Twitter,Peerlist...">
-                    </div>
+                    </div> -->
                 </fieldset>
-                <button type="button" class="btn" id="btnPrev4">Go Back</button>
-                <button type="button" class="btn" id="btnNext5" disabled>Next</button>
+                <button type="button" class="btn" id="btnPrev3">Go Back</button>
+                <button type="button" class="btn" id="btnNext4" disabled>Next</button>
             </div>
             <div class="next inActive">
                 <fieldset>
@@ -151,7 +152,8 @@
                         <input type="file" name="resume" id="pdfFile" accept=".pdf" required>
                     </div>
                 </fieldset>
-                <button type="button" class="btn" id="btnPrev5">Go Back</button>
+                <div class="g-recaptcha" data-sitekey="6LemlnUpAAAAAHD2bOSLOaQ9AXn0sV4NzoGKlKSh"></div>
+                <button type="button" class="btn" id="btnPrev4">Go Back</button>
                 <button type="submit" class="btn">Submit</button>
             </div>
         </form>
@@ -179,7 +181,7 @@
     </div>
 
 
-    <script>
+    <!-- <script>
         // Get the necessary elements
         const inputContainer = document.getElementById('inputContainer');
         const addInputButton = document.getElementById('addInputButton');
@@ -198,7 +200,7 @@
 
         // Event listener for the addInputButton click
         addInputButton.addEventListener('click', addInputField);
-    </script>
+    </script> -->
 
 
 
@@ -233,13 +235,13 @@
         const btnPrev2 = document.getElementById('btnPrev2');
         const btnPrev3 = document.getElementById('btnPrev3');
         const btnPrev4 = document.getElementById('btnPrev4');
-        const btnPrev5 = document.getElementById('btnPrev5');
+        // const btnPrev5 = document.getElementById('btnPrev5');
 
         btnPrev1.addEventListener('click', goToPreviousSection);
         btnPrev2.addEventListener('click', goToPreviousSection);
         btnPrev3.addEventListener('click', goToPreviousSection);
         btnPrev4.addEventListener('click', goToPreviousSection);
-        btnPrev5.addEventListener('click', goToPreviousSection);
+        // btnPrev5.addEventListener('click', goToPreviousSection);
 
     </script>
 
@@ -636,7 +638,7 @@
     <script>
         const linkedinInput = document.getElementById("linkedin");
         const githubInput = document.getElementById("github");
-        const nextButton5 = document.getElementById("btnNext5");
+        const nextButton5 = document.getElementById("btnNext4");
 
             linkedinInput.addEventListener('input', function () {
                 var linkedin = linkedinInput.value;
