@@ -139,48 +139,64 @@ router.get('/students', requireAuth , (req, res) => {
     });
   });
 
-  router.post("/acceptOffer/:companyEmail/:package" , (req, res)=>{
-    dbPool.query('UPDATE selected SET selected = 0 WHERE selected = 2', (err, result) => {
+  router.post("/acceptOffer/:companyEmail/:package", (req, res) => {
+    dbPool.query('SELECT * FROM selected WHERE selected = 2 AND studentEmail = ? ', req.session.username, (err, results) => {
       if (err) {
-        res.redirect("/students");
+        return res.redirect("/students");
       }
-      dbPool.query('UPDATE selected SET selected = 2 WHERE studentEmail = ? AND companyEmail = ?', [req.session.username , req.params.companyEmail] , (err, result) => {
-        if (err) {
-          res.redirect("/students");
-        }
-          dbPool.query('UPDATE student SET package = ? WHERE email = ?', [req.params.package , req.session.username] , (err, result) => {
+  
+      // Check if the results array is not empty
+      if (results.length > 0) {
+        const rejected = {
+          studentEmail: req.session.username,
+          studentName: results[0].studentName,
+          companyEmail: results[0].companyEmail,
+          companyName: results[0].companyName,
+          package: results[0].package,
+          resume: results[0].resume
+        };
+  
+        dbPool.query('INSERT INTO rejectedcompanies SET ?', rejected, (err, result) => {
+          if (err) {
+            return res.redirect("/students");
+          }
+  
+          dbPool.query('DELETE FROM selected WHERE selected = 2 && studentEmail = ? ', req.session.username, (err, result) => {
             if (err) {
-              res.redirect("/students");
+              return res.redirect("/students");
             }
-            dbPool.query('SELECT * FROM selected WHERE selected = 0', (err, results) => {
+  
+            dbPool.query('UPDATE selected SET selected = 2 WHERE studentEmail = ? AND companyEmail = ?', [req.session.username, req.params.companyEmail], (err, result) => {
               if (err) {
-                res.redirect("/students");
+                return res.redirect("/students");
               }
-              const rejected = {
-                studentEmail : req.session.username,
-                studentName : results[0].studentName,
-                companyEmail : results[0].companyEmail,
-                companyName : results[0].companyName,
-                package : results[0].package,
-                resume : results[0].resume
-              };
-              dbPool.query('INSERT INTO rejectedcompanies SET ?', rejected , (err, result) => {
+  
+              dbPool.query('UPDATE student SET package = ? WHERE email = ?', [req.params.package, req.session.username], (err, result) => {
                 if (err) {
-                  res.redirect("/students");
+                  return res.redirect("/students");
                 }
-                dbPool.query('DELETE FROM selected WHERE selected = 0', (err, result) => {
-                  if (err) {
-                    res.redirect("/students");
-                  }
-
-                  res.redirect("/students");
-                });
+                return res.redirect("/students");
+              });
+            });
           });
         });
+      } else {
+        dbPool.query('UPDATE selected SET selected = 2 WHERE studentEmail = ? AND companyEmail = ?', [req.session.username, req.params.companyEmail], (err, result) => {
+          if (err) {
+            return res.redirect("/students");
+          }
+
+          dbPool.query('UPDATE student SET package = ? WHERE email = ?', [req.params.package, req.session.username], (err, result) => {
+            if (err) {
+              return res.redirect("/students");
+            }
+            return res.redirect("/students");
+          });
         });
-      });
+      }
     });
   });
+  
 
   router.post("/rejectOffer/:companyEmail" , (req, res)=>{
     dbPool.query('SELECT * FROM selected WHERE studentEmail = ? AND companyEmail = ?', [req.session.username , req.params.companyEmail] , (err, results) => {

@@ -1,6 +1,5 @@
 const express = require('express')
 const { dbPool } = require('../config/db')
-const bcrypt = require('bcrypt');
 
 const router = express.Router()
 
@@ -17,7 +16,7 @@ router.get('/company', (req, res) => {
           if (err) {
             res.redirect("/companyLogin");
           }
-          dbPool.query("SELECT * from selected where companyEmail = ? && selected = 1",req.session.company,(err,selected) => {
+          dbPool.query("SELECT * from selected where companyEmail = ? ",req.session.company,(err,selected) => {
             if (err) {
               res.redirect("/companyLogin");
             }
@@ -100,8 +99,10 @@ router.post("/selected", function(req, res)
             };
             selectedStudents.push(selected);
           }
+          const values = selectedStudents.map(student => [student.studentEmail, student.studentName, student.companyEmail, student.companyName, student.studentEnrollment, student.package, student.selected, student.resume]);
 
-          dbPool.query('INSERT INTO selected SET ?', selectedStudents , (err, resu) => {
+          // Use a single INSERT query to insert all selected students
+          dbPool.query('INSERT INTO selected (studentEmail, studentName, companyEmail, companyName, studentEnrollment, package, selected, resume) VALUES ?', [values], (err, resu) => {
             if (err) {
               console.error('Error inserting data:', err);
               res.redirect("/company");
