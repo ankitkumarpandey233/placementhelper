@@ -5,7 +5,15 @@ const adminModel = require('../models/adminModel');
 
 const router = express.Router();
 
-router.get('/admin', async (req, res) => {
+function requireAuth(req, res, next) {
+  if (req.session && req.session.admin) {
+    next();
+  } else {
+    res.redirect('/adminLogin');
+  }
+}
+
+router.get('/admin',requireAuth,async (req, res) => {
   try {
     const unverifiedStudents = await adminModel.getUnverifiedStudents();
     const verifiedStudents = await adminModel.getVerifiedStudents();
@@ -44,7 +52,7 @@ router.post('/adminLogin', async (req, res) => {
         return res.redirect('/adminLogin');
       }
 
-      req.session.company = req.body.email;
+      req.session.admin = req.body.email;
       res.redirect('/admin');
     });
   } catch (error) {
@@ -72,6 +80,21 @@ router.post('/adminRegister', async (req, res) => {
     console.error('Error inserting data:', error);
     res.redirect('/');
   }
+});
+
+router.get('/logoutAdmin', (req, res) => {
+  // Destroy the session
+  req.session.destroy((err) => {
+    if (err) {
+      
+      console.log('Error ending session:', err);
+    }
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.header('Expires', '-1');
+    res.header('Pragma', 'no-cache');
+    res.clearCookie('user_sid');
+    res.redirect('/adminLogin');
+  });
 });
 
 module.exports = router;
