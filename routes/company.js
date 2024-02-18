@@ -3,7 +3,15 @@ const { dbPool } = require('../config/db')
 
 const router = express.Router()
 
-router.get('/company', (req, res) => {
+function requireAuth(req, res, next) {
+  if (req.session && req.session.company ) {
+    next();
+  } else {
+    res.redirect('/companyLogin');
+  }
+}
+
+router.get('/company', requireAuth , (req, res) => {
     dbPool.query("SELECT * from applied where companyEmail = ? && next = 0",req.session.company,(err,data) => {
       if (err) {
         res.redirect("/companyLogin");
