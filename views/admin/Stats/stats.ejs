@@ -1,0 +1,95 @@
+<div class="studentStats">
+    <main>
+    <h1>Sample Analytics Dashboard</h1>
+    <div style="display: flex;">
+        <div style="margin-right: 50px; margin-left: 0px;">
+            <section class="container-form">
+                <canvas id="placementChart" width="500" height="300" ></canvas>
+            </section>
+        </div>
+        <div>
+            <section class="container-form">
+                <canvas id="salaryChart" width="500" height="300" ></canvas>
+            </section>
+        </div>
+    </div>
+    <div style="display: flex; margin-top: 30px;">
+        <div>
+            <section class="container-form">
+                <canvas id="studentsChart" width="400" height="400" ></canvas>
+            </section>
+        </div>
+    </div>
+    </main>
+  </div>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Sample data
+    const years = ['2018', '2019', '2020', '2021'];
+    const placementRates = [70, 80, 75, 90];
+    const averageSalaries = [50000, 55000, 60000, 65000];
+    const totalStudents = [500, 600, 550, 700];
+
+    // Line chart for placement rates
+    const ctxPlacement = document.getElementById('placementChart').getContext('2d');
+    const placementChart = new Chart(ctxPlacement, {
+      type: 'line',
+      data: {
+        labels: years,
+        datasets: [{
+          label: 'Placement Rates (%)',
+          data: placementRates,
+          borderColor: 'blue',
+          backgroundColor: 'rgba(0, 123, 255, 0.2)',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100
+          }
+        }
+      }
+    });
+
+    // Bar chart for average salaries
+    const ctxSalary = document.getElementById('salaryChart').getContext('2d');
+    const salaryChart = new Chart(ctxSalary, {
+      type: 'bar',
+      data: {
+        labels: years,
+        datasets: [{
+          label: 'Average Salary',
+          data: averageSalaries,
+          backgroundColor: 'rgba(0, 255, 0, 0.5)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    // Doughnut chart for total students
+    const ctxStudents = document.getElementById('studentsChart').getContext('2d');
+    const studentsChart = new Chart(ctxStudents, {
+      type: 'doughnut',
+      data: {
+        labels: years,
+        datasets: [{
+          label: 'Total Students',
+          data: totalStudents,
+          backgroundColor: ['rgba(255, 165, 0, 0.5)', 'rgba(255, 165, 0, 0.7)', 'rgba(255, 165, 0, 0.9)'],
+          borderWidth: 1
+        }]
+      }
+    });
+  </script>

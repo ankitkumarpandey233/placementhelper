@@ -11,6 +11,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
   <link rel="stylesheet" href="css/Admin.css" />
   <link rel="stylesheet" href="css/simple-datatable.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js">
   <script src="js/simple-datatable.js"></script>
 </head>
 <%- include('headerstyle.ejs') %>
@@ -25,7 +26,9 @@
     <%- include('./add/addcompany.ejs') %>  
     <%- include('./add/addnotice.ejs') %>
     <%- include('./add/addadmin.ejs') %>
+    <%- include('./Stats/stats.ejs') %>
     <%- include('./rightside/right.ejs') %>
+    
     <%- include('footer.ejs') %>
   </div>
 </body>
