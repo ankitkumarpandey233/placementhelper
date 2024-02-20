@@ -1,12 +1,23 @@
 <div class="addcompany">
     <main>
       <div class="recent-orders">
-        <div>
+        <div> 
           <section class="container-form">
             <!-- <header>Registration Form</header> -->
+            <h1>
+              Import from Excel
+              <form action="/importCompany" method="post" class="form" enctype="multipart/form-data">
+                <input type="file" name="file" accept=".xls, .xlsx" />
+                <button id="submitBtn" type="submit" style="width: 140px; height: 40px; border-radius: 5px;">Import from Excel</button>
+              </form>
+            </h1>
+            <br>
+            <span> <h2>or </h2></span>
+            <br>
+            <h1>Add Company</h1>
             <form action="/cRegister" method="post" class="form" style="
             margin-top:0px;
-        ">
+            ">
               <div class="input-box">
                 <label>Company Name</label>
                 <input type="text" placeholder="Enter Company Name" name="name" required />
@@ -77,4 +88,5 @@
         </div>
       </div>
     </main>
+
   </div>

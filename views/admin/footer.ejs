@@ -33,6 +33,7 @@
     // Show the student details 
     addAdminDiv.style.display = 'none';
     homeDiv.style.display = 'block';
+    addCompanyExcelDiv.style.display = 'none';
   });
   
   </script>
@@ -55,6 +56,7 @@
     // Show the student details div
     addAdminDiv.style.display = 'none';
     companyDiv.style.display = 'block';
+    addCompanyExcelDiv.style.display = 'none';
   });
   
   
@@ -75,6 +77,7 @@
     // Show the student details div
     addAdminDiv.style.display = 'none';
     appliedDiv.style.display='block';
+    addCompanyExcelDiv.style.display = 'none';
   });
   
   
@@ -98,6 +101,7 @@
     // Show the student details div
     addAdminDiv.style.display = 'none';
     feedbackDiv.style.display='block';
+    addCompanyExcelDiv.style.display = 'none';
   });
   
   
@@ -121,6 +125,7 @@
     // Show the student details div
     addAdminDiv.style.display = 'none';
     addcompanyDiv.style.display = 'block';
+    addCompanyExcelDiv.style.display = 'none';
   });
   
   
@@ -145,6 +150,7 @@
     addAdminDiv.style.display = 'none';
     addcompanyDiv.style.display = 'none';
     addNoticeDiv.style.display='block';
+    addCompanyExcelDiv.style.display = 'none';
   });
   
   const studentsLink8 = document.querySelector('.sidebar a:nth-child(8)');
@@ -164,6 +170,27 @@
     addcompanyDiv.style.display = 'none';
     addNoticeDiv.style.display='none';
     addAdminDiv.style.display = 'block';
+    addCompanyExcelDiv.style.display = 'none';
+  });
+
+  const studentsLink9 = document.querySelector('.sidebar a:nth-child(9)');
+  const addCompanyExcelDiv = document.querySelector('.addCompanyExcel');
+  
+  addCompanyExcelDiv.style.display = 'none';
+  
+  // Add click event listener to the students link
+  studentsLink9.addEventListener('click', () => {
+    // Hide the home div
+    homeDiv.style.display = 'none';
+    studentDetailsDiv.style.display = 'none';
+    companyDiv.style.display='none';
+    feedbackDiv.style.display='none';
+    appliedDiv.style.display='none';
+    // Show the student details div
+    addcompanyDiv.style.display = 'none';
+    addNoticeDiv.style.display='none';
+    addAdminDiv.style.display = 'none';
+    addCompanyExcelDiv.style.display = 'block';
   });
   
   </script>
@@ -192,6 +219,7 @@
           $('.addcompany').hide();
           $('.feedback').hide();
           $('.companylist').hide();
+
         }
       });
     });

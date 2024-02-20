@@ -13,7 +13,7 @@ function requireAuth(req, res, next) {
   }
 }
 
-router.get('/admin',requireAuth,async (req, res) => {
+router.get('/admin/',requireAuth,async (req, res) => {
   try {
     const unverifiedStudents = await adminModel.getUnverifiedStudents();
     const verifiedStudents = await adminModel.getVerifiedStudents();
@@ -33,6 +33,7 @@ router.get('/admin',requireAuth,async (req, res) => {
     res.redirect('/');
   }
 });
+
 
 router.get('/adminLogin', (req, res) => {
   res.render('admin/adminLogin.ejs');

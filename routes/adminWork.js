@@ -2,9 +2,21 @@ const express = require('express')
 const {dbPool} = require('../config/db')
 const ExcelJS = require('exceljs');
 const flash = require('connect-flash')
-
+const multer = require('multer');
+const bcrypt = require('bcrypt');
 const router = express.Router()
 
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/uploads/'); 
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+
+const upload = multer({ storage: storage, });
 router.post('/Notice', (req, res) => {
     const notice1 ={
       title : req.body.title,
@@ -92,6 +104,66 @@ router.post('/Notice', (req, res) => {
         res.end();
       });
     });
+  });
+
+  router.post('/importCompany', upload.single('file'), (req, res) => {
+    try {
+      const filePath = req.file?.path;
+  
+      if (!filePath) {
+        console.error('Invalid or empty file path.');
+        res.status(400).send('Bad Request');
+        return;
+      }
+  
+      const workbook = new ExcelJS.Workbook();
+      workbook.xlsx.readFile(filePath)
+        .then(() => {
+  
+          workbook.eachSheet((sheet, sheetId) => {
+            const headers = sheet.getRow(1).values;
+            const saltRounds = 10;
+            for (let i = 2; i <= sheet.rowCount; i++) {
+              const row = sheet.getRow(i).values;
+  
+              const rowData = {};
+              headers.forEach((header, index) => {
+                rowData[header] = row[index];
+              });
+  
+              let plaintextPassword = row[headers.indexOf('password')];
+              console.log('Plaintext Password:', plaintextPassword);
+              plaintextPassword = plaintextPassword.toString();
+              bcrypt.hash(plaintextPassword, saltRounds, (err, hash) => {
+                if (err) {
+                  console.error('Error hashing password:', err);
+                  return;
+                } else {
+                  rowData.password = hash;
+                  console.log('Hashed Password:', hash);
+  
+                  dbPool.query('INSERT INTO companies SET ?', rowData, (dbErr, results) => {
+                    if (dbErr) {
+                      console.error('Error inserting data into the database:', dbErr);
+                    } else {
+                      console.log('Data inserted into the database successfully!');
+                    }
+                  });
+                }
+              });
+            }
+          });
+  
+          res.send('File uploaded, and data inserted into the database!');
+        })
+        .catch((err) => {
+          console.error('Error loading Excel file:', err);
+          res.status(500).send('Internal Server Error');
+        });
+    } catch (err) {
+      console.error('Error handling file upload:', err);
+      res.status(500).send('Internal Server Error');
+    }
   });
   
 
