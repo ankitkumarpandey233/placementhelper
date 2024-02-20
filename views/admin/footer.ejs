@@ -18,6 +18,7 @@
     addNoticeDiv.style.display='none';
     // Show the student details div
     addAdminDiv.style.display = 'none';
+    studentStatsDiv.style.display = 'none';
     studentDetailsDiv.style.display = 'block';
   });
   
@@ -32,6 +33,7 @@
     addNoticeDiv.style.display='none';
     // Show the student details 
     addAdminDiv.style.display = 'none';
+    studentStatsDiv.style.display = 'none';
     homeDiv.style.display = 'block';
   });
   
@@ -53,6 +55,7 @@
     appliedDiv.style.display='none';
     addNoticeDiv.style.display='none';
     // Show the student details div
+    studentStatsDiv.style.display = 'none';
     addAdminDiv.style.display = 'none';
     companyDiv.style.display = 'block';
   });
@@ -74,6 +77,7 @@
     addNoticeDiv.style.display='none';
     // Show the student details div
     addAdminDiv.style.display = 'none';
+    studentStatsDiv.style.display = 'none';
     appliedDiv.style.display='block';
   });
   
@@ -97,6 +101,7 @@
     addNoticeDiv.style.display='none';
     // Show the student details div
     addAdminDiv.style.display = 'none';
+    studentStatsDiv.style.display = 'none';
     feedbackDiv.style.display='block';
   });
   
@@ -120,6 +125,7 @@
     addNoticeDiv.style.display='none';
     // Show the student details div
     addAdminDiv.style.display = 'none';
+    studentStatsDiv.style.display = 'none';
     addcompanyDiv.style.display = 'block';
   });
   
@@ -144,6 +150,7 @@
     // Show the student details div
     addAdminDiv.style.display = 'none';
     addcompanyDiv.style.display = 'none';
+    studentStatsDiv.style.display = 'none';
     addNoticeDiv.style.display='block';
   });
   
@@ -164,6 +171,27 @@
     addcompanyDiv.style.display = 'none';
     addNoticeDiv.style.display='none';
     addAdminDiv.style.display = 'block';
+    studentStatsDiv.style.display = 'none';
+  });
+
+  const studentsLink9 = document.querySelector('.sidebar a:nth-child(9)');
+  const studentStatsDiv = document.querySelector('.studentStats');
+  
+  studentStatsDiv.style.display = 'none';
+  
+  // Add click event listener to the students link
+  studentsLink9.addEventListener('click', () => {
+    // Hide the home div
+    homeDiv.style.display = 'none';
+    studentDetailsDiv.style.display = 'none';
+    companyDiv.style.display='none';
+    feedbackDiv.style.display='none';
+    appliedDiv.style.display='none';
+    // Show the student details div
+    addcompanyDiv.style.display = 'none';
+    addNoticeDiv.style.display='none';
+    addAdminDiv.style.display = 'none';
+    studentStatsDiv.style.display = 'block';
   });
   
   </script>
