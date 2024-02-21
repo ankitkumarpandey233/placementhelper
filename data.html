@@ -147,24 +147,14 @@
 
         const ctx5 = document.getElementById('companyLocationDistributionChart').getContext('2d');
         new Chart(ctx5, {
-            type: 'horizontalBar',
+            type: 'bar',
             data: companyLocationDistributionData,
-            options: {
-                legend: {
-                    display: false
-                }
-            }
         });
 
         const ctx6 = document.getElementById('topCompaniesByPlacementsChart').getContext('2d');
         new Chart(ctx6, {
-            type: 'horizontalBar',
+            type: 'bar',
             data: topCompaniesByPlacementsData,
-            options: {
-                legend: {
-                    display: false
-                }
-            }
         });
     </script>
 </body>
