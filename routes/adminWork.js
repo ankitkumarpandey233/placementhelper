@@ -131,26 +131,13 @@ router.post('/Notice', (req, res) => {
                 rowData[header] = row[index];
               });
   
-              let plaintextPassword = row[headers.indexOf('password')];
-              console.log('Plaintext Password:', plaintextPassword);
-              plaintextPassword = plaintextPassword.toString();
-              bcrypt.hash(plaintextPassword, saltRounds, (err, hash) => {
-                if (err) {
-                  console.error('Error hashing password:', err);
-                  return;
-                } else {
-                  rowData.password = hash;
-                  console.log('Hashed Password:', hash);
-  
-                  dbPool.query('INSERT INTO companies SET ?', rowData, (dbErr, results) => {
+                  dbPool.query('INSERT INTO studentplacement SET ?', rowData, (dbErr, results) => {
                     if (dbErr) {
                       console.error('Error inserting data into the database:', dbErr);
                     } else {
                       console.log('Data inserted into the database successfully!');
                     }
                   });
-                }
-              });
             }
           });
   
