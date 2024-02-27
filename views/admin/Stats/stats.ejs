@@ -1,36 +1,62 @@
 <div class="studentStats">
     <main>
     <h1>Sample Analytics Dashboard</h1>
-    <div style="display: flex;">
-        <div style="margin-right: 50px; margin-left: 0px;">
-            <section class="container-form">
-                <canvas id="placementChart" width="500" height="300" ></canvas>
-            </section>
+    <p>Click on the buttons below to view different charts</p>
+    
+        <div style=" width: 1200px; margin-bottom: 20px;">
+            <form class="form" style="display: flex;">
+                <button onclick="showChart('placementChart')"style=" margin-right: 10px; ">Placement Chart</button>
+                <button onclick="showChart('salaryChart')" style=" margin-right: 10px;">Salary Chart</button>
+                <button onclick="showChart('studentsChart')" style=" margin-right: 10px;">Students Chart</button>
+                <button onclick="showChart('chart4')"style=" margin-right: 10px; ">chart4</button>
+                <button onclick="showChart('chart5')" style=" margin-right: 10px;">chart5</button>
+                <button onclick="showChart('chart6')" style=" margin-right: 10px;">chart6</button>
+            </form>
         </div>
-        <div>
-            <section class="container-form">
-                <canvas id="salaryChart" width="500" height="300" ></canvas>
-            </section>
-        </div>
-    </div>
-    <div style="display: flex; margin-top: 30px;">
-        <div>
-            <section class="container-form">
-                <canvas id="studentsChart" width="400" height="400" ></canvas>
-            </section>
-        </div>
-    </div>
+        <section id="chartContainer" style="
+            position: fixed;
+            max-width: 1200px;
+            width: 100%;
+            background: #fbfeff;
+            padding: 25px;
+            justify-content: center;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        ">
+                <canvas id="placementChart" width="1000px" height="600px"></canvas>
+                <canvas id="salaryChart" width="1000px" height="600px" style="display: none;"></canvas>
+                <canvas id="studentsChart" width="1000px" height="1000px" style="display: none;"></canvas>
+                <canvas id="chart4" width="1000px" height="600px" style="display: none;"></canvas>
+                <canvas id="chart5" width="1000px" height="600px" style="display: none;"></canvas>
+                <canvas id="chart6" width="1000px" height="600px" style="display: none;"></canvas>
+        </section>
+      
+        
     </main>
   </div>
   
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
-    // Sample data
+    function showChart(chartId) {
+    var charts = document.querySelectorAll("#chartContainer canvas");
+    charts.forEach(chart => {
+        if (chart.id === chartId) {
+            chart.style.display = "block";
+        } else {
+            chart.style.display = "none";
+        }
+    });
+    }
+
     const years = ['2018', '2019', '2020', '2021'];
     const placementRates = [70, 80, 75, 90];
     const averageSalaries = [50000, 55000, 60000, 65000];
     const totalStudents = [500, 600, 550, 700];
+    const chartData4 = [70, 80, 75, 90];
+    const chartData5 = [70, 80, 75, 90];
+    const chartData6 = [70, 80, 75, 90];
+
 
     // Line chart for placement rates
     const ctxPlacement = document.getElementById('placementChart').getContext('2d');
@@ -92,4 +118,74 @@
         }]
       }
     });
+    // Additional charts
+    const ctx4 = document.getElementById('chart4').getContext('2d');
+    const chart4 = new Chart(ctx4, {
+      type: 'line', // or 'bar', 'doughnut', etc.
+      data: {
+        labels: years, // update this with your data
+        datasets: [{
+          label: 'Chart 4', // update this with your data
+          data: chartData4, // update this with your data
+          borderColor: 'blue',
+          backgroundColor: 'rgba(0, 123, 255, 0.2)',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100
+          }
+        }
+      }
+    });
+
+    const ctx5 = document.getElementById('chart5').getContext('2d');
+    const chart5 = new Chart(ctx5, {
+      type: 'line', // or 'bar', 'doughnut', etc.
+      data: {
+        labels: years, // update this with your data
+        datasets: [{
+          label: 'Chart 5', // update this with your data
+          data: chartData5, // update this with your data
+          borderColor: 'blue',
+          backgroundColor: 'rgba(0, 123, 255, 0.2)',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100
+          }
+        }
+      }
+    });
+
+    const ctx6 = document.getElementById('chart6').getContext('2d');
+    const chart6 = new Chart(ctx6, {
+      type: 'line', // or 'bar', 'doughnut', etc.
+      data: {
+        labels: years, // update this with your data
+        datasets: [{
+          label: 'Chart 6', // update this with your data
+          data: chartData6, // update this with your data
+          borderColor: 'blue',
+          backgroundColor: 'rgba(0, 123, 255, 0.2)',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100
+          }
+        }
+      }
+    });
+    
   </script>
